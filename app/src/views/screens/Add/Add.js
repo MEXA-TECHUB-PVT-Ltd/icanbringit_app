@@ -1,14 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
+// Your component code
 const Add = () => {
+  const navigation = useNavigation();
+
+  const handleButtonClick = () => {
+    // Navigate to the new screen (AnotherScreen) without showing the tab bar
+    navigation.replace('AnotherScreen');
+
+    // If you want to pass parameters, you can do it like this:
+    // navigation.replace('AnotherScreen', { param1: 'value1', param2: 'value2' });
+  };
+
   return (
     <View>
-      {/* <Text>Add</Text> */}
+      {/* Your existing UI components */}
+      <TouchableOpacity onPress={handleButtonClick}>
+        {/* Your button or other UI components */}
+      </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
-export default Add
-
-const styles = StyleSheet.create({})
+export default Add;

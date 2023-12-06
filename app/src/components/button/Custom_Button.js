@@ -4,14 +4,14 @@ import { Button } from 'react-native-paper';
 import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 
-export default function Custom_Button(props) {
+export default function Custom_Button(props,style) {
     return (
 
         <Button
             disabled={props.checkdisable}
             mode="contained"
             onPress={props.customClick}
-            style={styles.button}
+            style={[styles.button,style]}
             contentStyle={{
                 padding: '1%',
                 justifyContent: 'center',

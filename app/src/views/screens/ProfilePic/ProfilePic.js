@@ -1,5 +1,12 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useRef, useState} from 'react';
+import {
+  Image,
+  PermissionsAndroid,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 import Signin_signup_header from '../../../components/button/Signin_signup_header';
 import Images from '../../../consts/Images';
 import Custom_Button from '../../../components/button/Custom_Button';
@@ -7,7 +14,7 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import COLORS from '../../../consts/colors';
 
 const ProfilePic = ({navigation}) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -38,6 +45,32 @@ const ProfilePic = ({navigation}) => {
       },
     );
   };
+  const requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'Camera Permission',
+          message: 'App needs access to your camera',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Camera permission granted');
+      } else {
+        console.log('Camera permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  // Call this function before using the camera
+  useEffect(() => {
+    requestCameraPermission();
+  }, []);
   const choosePhotoFromLibrary = value => {
     setSelectedItem(value);
     launchImageLibrary({mediaType: 'Photo'}, response => {
@@ -49,6 +82,7 @@ const ProfilePic = ({navigation}) => {
       ref_RBSheetCamera.current.close();
     });
   };
+  
 
   return (
     <View style={{flex: 1}}>
@@ -78,7 +112,7 @@ const ProfilePic = ({navigation}) => {
           load={false}
           // checkdisable={inn == '' && cm == '' ? true : false}
           customClick={() => {
-            navigation.navigate('Add_Location',);
+            navigation.navigate('Select_preferences');
           }}
         />
       </View>
@@ -120,40 +154,38 @@ const ProfilePic = ({navigation}) => {
         </View>
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
+            // flexDirection: 'row',
+            // justifyContent: 'space-evenly',
+            // alignItems: 'center',
+            marginHorizontal: 20,
             marginTop: 10,
           }}>
           <TouchableOpacity
             onPress={() => takePhotoFromCamera('camera')}
-            style={
-              selectedItem === 'camera'
-                ? styles.selectedItems
-                : styles.nonselectedItems
-            }
-            >
+            style={{flexDirection: 'row'}}>
             <Ionicons
-              color={selectedItem === 'camera' ? '#FACA4E' : '#888888'}
+              // color={selectedItem === 'camera' ? '#FACA4E' : '#888888'}
               name="camera"
               size={25}
+              color={COLORS.green}
             />
-            <Text style={{color: '#333333'}}>From camera</Text>
+            <Text style={{color: '#333333', marginLeft: 10}}>Take Photo</Text>
           </TouchableOpacity>
+          <View
+            style={{height: 0.5, backgroundColor: '#D1D0E0', marginTop: 9}}
+          />
           <TouchableOpacity
             onPress={() => choosePhotoFromLibrary('gallery')}
-            style={
-              selectedItem === 'gallery'
-                ? styles.selectedItems
-                : styles.nonselectedItems
-            }
-            >
+            style={{flexDirection: 'row', marginTop: 10}}>
             <MaterialCommunityIcons
-            //   color={selectedItem === 'gallery' ? '#FACA4E' : '#888888'}
+              //   color={selectedItem === 'gallery' ? '#FACA4E' : '#888888'}
               name="image"
               size={25}
+              color={COLORS.green}
             />
-            <Text style={{color: '#333333'}}>From gallery</Text>
+            <Text style={{color: '#333333', marginLeft: 10}}>
+              Choose a Photo
+            </Text>
           </TouchableOpacity>
         </View>
       </RBSheet>

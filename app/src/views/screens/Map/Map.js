@@ -7,7 +7,6 @@ import Back from './../../../assets/svg/back.svg';
 import Pin from './../../../assets/svg/pin.svg';
 import styles from './styles';
 import Custom_Button from '../../../components/button/Custom_Button';
-import { Input } from '../../../components/button/TextInput';
 const CustomMarker = () => (
     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
         <Pin width={41} height={41} />

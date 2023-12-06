@@ -7,16 +7,41 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import COLORS from '../../../consts/colors';
 import Images from '../../../consts/Images';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import CustomText from '../../../components/Text';
 import Icon from '../../../consts/Icons';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import {Picker} from '@react-native-picker/picker';
+import DatePicker from 'react-native-date-picker';
+import InnerButton from '../../../components/InnerButton/InnerButton';
+import Custom_Button from '../../../components/button/Custom_Button';
+const Explore = ({navigation}) => {
+  const ref_RBSheetCamera = useRef(null);
+  const [selectedGender, setSelectedGender] = useState('Select Type'); // Default gender value
+  const genderOptions = [
+    {label: 'Select Type', value: 'Select Gender'},
+    {label: 'Online', value: 'Online'},
+  ];
 
-const Explore = () => {
+  const [selectedCategory, setSelectedCategory] = useState('Select Type'); // Default gender value
+  const categoryOptions = [
+    {label: 'Select Category', value: 'Select Category'},
+    {label: 'Category1', value: 'Category1'},
+    {label: 'Category2', value: 'Category2'},
+    {label: 'Category3', value: 'Category3'},
+    {label: 'Category4', value: 'Category4'},
+    {label: 'Category5', value: 'Category5'},
+  ];
+  const [date, setDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  const [endOpen, setEndOpen] = useState(false);
   const Data = [
     {
       id: 1,
@@ -63,8 +88,8 @@ const Explore = () => {
     },
   ];
   return (
-    <View
-      style={{flex: 1, backgroundColor: COLORS.white, paddingHorizontal: 20}}>
+    <SafeAreaView
+      style={{flexGrow: 1, backgroundColor: COLORS.white, paddingHorizontal: 20, paddingTop:25}}>
       <View style={styles.headerView}>
         <View style={{flexDirection: 'row'}}>
           <Image source={Images.locationIcon} />
@@ -74,8 +99,16 @@ const Explore = () => {
           </View>
         </View>
         <View style={{flexDirection: 'row'}}>
-          <Image source={Images.NotificationsIcon} style={{marginRight: 20}} />
-          <Image source={Images.filterIcon} />
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Notifications')}>
+            <Image
+              source={Images.NotificationsIcon}
+              style={{marginRight: 20}}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => ref_RBSheetCamera.current.open()}>
+            <Image source={Images.filterIcon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View
@@ -102,7 +135,7 @@ const Explore = () => {
             justifyContent: 'space-between',
             marginTop: 20,
           }}>
-          <Text>AI Suggestions</Text>
+          <Text style={{fontWeight:'bold', color:COLORS.black}}>AI Suggestions</Text>
           <TouchableOpacity>
             <Text style={{color: COLORS.blue, textDecorationLine: 'underline'}}>
               Suggest More
@@ -110,21 +143,15 @@ const Explore = () => {
           </TouchableOpacity>
         </View>
 
-        <View>
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            // numColumns={2}
-            data={Data}
-            horizontal
-            renderItem={({item}) => {
-              return (
+        <View style={{flexDirection:'row'}}>
+     
                 <View style={styles.flatlist_container}>
                   <FastImage
-                    source={item.image}
-                    style={{height: 200, width: 200}} // Set a fixed height and width for the FastImage
+                    source={Images.SuggestionBG1}
+                    style={{height: 150, width: 150}} 
                     resizeMode="contain">
                     <View style={styles.cardInnerView}>
-                      <CustomText text={item.title} style={styles.txt} />
+                      <CustomText text={''} style={styles.txt} />
                       <View style={{flexDirection: 'row'}}>
                         <Icon
                           name={'access-time'}
@@ -141,18 +168,40 @@ const Explore = () => {
                     </View>
                   </FastImage>
                 </View>
-              );
-            }}
-          />
+                <View style={styles.flatlist_container}>
+                  <FastImage
+                    source={Images.SuggestionBG1}
+                    style={{height: 150, width: 150}} 
+                    resizeMode="contain">
+                    <View style={styles.cardInnerView}>
+                      <CustomText text={''} style={styles.txt} />
+                      <View style={{flexDirection: 'row'}}>
+                        <Icon
+                          name={'access-time'}
+                          type={'MaterialIcons'}
+                          color={'white'}
+                          size={15}
+                          style={{marginTop: 5}}
+                        />
+                        <CustomText
+                          text={'19 Dec 2023 - 02:00'}
+                          style={[styles.txt, {marginLeft: 5}]}
+                        />
+                      </View>
+                    </View>
+                  </FastImage>
+                </View>
+             
+             
         </View>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginTop: 20,
+            // marginTop: 20,
           }}>
-          <Text>Parties</Text>
-          <TouchableOpacity>
+          <Text style={{color:COLORS.black, fontWeight:'bold'}}>Parties</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Parties')}>
             <Text style={{color: COLORS.blue, textDecorationLine: 'underline'}}>
               View All
             </Text>
@@ -167,21 +216,24 @@ const Explore = () => {
             renderItem={({item}) => {
               return (
                 <View style={styles.flatlist_container2}>
-                  <Image
+               <TouchableOpacity onPress={()=> navigation.navigate('ViewEvent')}>
+               <Image
                     source={item.image}
                     resizeMode="contain"
                     style={styles.imageView}
                   />
                   <CustomText text={item.title} style={styles.titleView} />
                   <CustomText text={item.time} style={styles.timeView} />
-                <View style={{flexDirection:'row', marginTop:5}}>
-                <TouchableOpacity style={styles.cardBtn}>
-                    <CustomText text={item.online} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={[styles.cardBtn,{backgroundColor:'#FF6B01'}]}>
-                    <CustomText text={item.privte} style={styles.textView} />
-                  </TouchableOpacity>
-                </View>
+                  <View style={{flexDirection: 'row', marginTop: 5}}>
+                    <TouchableOpacity style={styles.cardBtn}>
+                      <CustomText text={item.online} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[styles.cardBtn, {backgroundColor: '#FF6B01'}]}>
+                      <CustomText text={item.privte} style={styles.textView} />
+                    </TouchableOpacity>
+                  </View>
+               </TouchableOpacity>
                 </View>
               );
             }}
@@ -208,7 +260,7 @@ const Explore = () => {
             horizontal
             renderItem={({item}) => {
               return (
-                <View style={styles.flatlist_container2}>
+                <View style={[styles.flatlist_container2,{width:220}]}>
                   <Image
                     source={item.image}
                     resizeMode="contain"
@@ -216,14 +268,15 @@ const Explore = () => {
                   />
                   <CustomText text={item.title} style={styles.titleView} />
                   <CustomText text={item.time} style={styles.timeView} />
-                <View style={{flexDirection:'row', marginTop:5}}>
-                <TouchableOpacity style={styles.cardBtn}>
-                    <CustomText text={item.online} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={[styles.cardBtn,{backgroundColor:'#FF6B01'}]}>
-                    <CustomText text={item.privte} style={styles.textView} />
-                  </TouchableOpacity>
-                </View>
+                  <View style={{flexDirection: 'row', marginTop: 5}}>
+                    <TouchableOpacity style={styles.cardBtn}>
+                      <CustomText text={item.online} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[styles.cardBtn, {backgroundColor: '#FF6B01'}]}>
+                      <CustomText text={item.privte} style={styles.textView} />
+                    </TouchableOpacity>
+                  </View>
                 </View>
               );
             }}
@@ -231,7 +284,133 @@ const Explore = () => {
         </View>
         <View style={{marginBottom: 80}} />
       </ScrollView>
-    </View>
+
+      <RBSheet
+        ref={ref_RBSheetCamera}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        animationType="fade"
+        minClosingHeight={0}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'rgba(52, 52, 52, 0.5)',
+          },
+          draggableIcon: {
+            backgroundColor: COLORS.greylight,
+            height: 3,
+            width: 50,
+          },
+          container: {
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            height: '60%',
+          },
+        }}>
+        <View
+          style={{
+            marginHorizontal: 20,
+          }}>
+          <CustomText style={styles.titleText} text={'Apply Filter'} />
+          {/* Select type */}
+          <CustomText
+            text={'Event Type'}
+            style={{
+              fontSize: 14,
+              marginTop: 10,
+              color: COLORS.black,
+              fontWeight: 'bold',
+            }}
+          />
+          <View
+            style={{
+              borderWidth: 0.5,
+              borderColor: 'black',
+              marginTop: 10,
+              borderRadius: 10,
+            }}>
+            <Picker
+              selectedValue={selectedGender}
+              onValueChange={itemValue => setSelectedGender(itemValue)}
+              style={styles.picker}>
+              {genderOptions.map((gender, index) => (
+                <Picker.Item
+                  key={index}
+                  label={gender.label}
+                  value={gender.value}
+                />
+              ))}
+            </Picker>
+          </View>
+          {/* Select Category */}
+          <CustomText
+            text={'Select Category'}
+            style={{
+              fontSize: 14,
+              marginTop: 10,
+              color: COLORS.black,
+              fontWeight: 'bold',
+            }}
+          />
+
+          <View
+            style={{
+              borderWidth: 0.5,
+              borderColor: 'black',
+              marginTop: 10,
+              borderRadius: 10,
+            }}>
+            <Picker
+              selectedValue={selectedCategory}
+              onValueChange={itemValue => setSelectedCategory(itemValue)}
+              style={styles.picker}>
+              {categoryOptions.map((gender, index) => (
+                <Picker.Item
+                  key={index}
+                  label={gender.label}
+                  value={gender.value}
+                />
+              ))}
+            </Picker>
+          </View>
+          {/* Date */}
+          <DatePicker
+            modal
+            open={open}
+            date={date}
+            onConfirm={date => {
+              setOpen(false);
+              setDate(date);
+            }}
+            onCancel={() => {
+              setOpen(false);
+            }}
+          />
+
+          <CustomText
+            text={'Select Date'}
+            style={{
+              fontSize: 14,
+              marginTop: 10,
+              color: COLORS.black,
+              fontWeight: 'bold',
+            }}
+          />
+          <InnerButton
+            Lefticon={true}
+            buttonText={date.toDateString()}
+            onPress={() => setOpen(true)}
+            name="calendar"
+            type={'feather'}
+            color={COLORS.black}
+            size={20}
+          />
+          <View style={{marginTop:20, alignSelf:'center'}}>
+
+          <Custom_Button title={'Apply'}  />
+          </View>
+        </View>
+      </RBSheet>
+    </SafeAreaView>
   );
 };
 
@@ -251,6 +430,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 10,
     // backgroundColor:'red'
+    width:'45%'
   },
   cardInnerView: {
     // alignItems:'flex-end',
@@ -269,22 +449,23 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   flatlist_container2: {
-    height: 250,
+    height: 230,
     marginHorizontal: 10,
     marginTop: 10,
     borderRadius: 10,
     borderColor: COLORS.black,
     borderWidth: 0.5,
-    width: 180,
+    width: 160,
   },
   titleView: {
-    color: COLORS.secondary,
+    color: COLORS.green,
     fontSize: 20,
     marginHorizontal: 10,
     fontWeight: 'bold',
   },
   imageView: {
-    width: 190,
+    width: 160,
+    alignSelf:'center'
   },
   timeView: {
     marginHorizontal: 10,
@@ -293,11 +474,16 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.blue,
     padding: 8,
     marginHorizontal: 10,
-    borderRadius:20,
-    width:'40%',
-    alignItems:'center'
+    borderRadius: 20,
+    width: '40%',
+    alignItems: 'center',
   },
-  textView:{
-    color:COLORS.white
-  }
+  textView: {
+    color: COLORS.white,
+  },
+  titleText: {
+    color: COLORS.primary,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
 });

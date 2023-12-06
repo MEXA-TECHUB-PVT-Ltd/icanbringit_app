@@ -78,7 +78,7 @@ function SignIn({navigation}) {
             device location.
           </Text>
           <View style={{marginHorizontal: '7%', marginTop: '0%'}}>
-            <Image source={appImages.pin_map} style={styles.map} />
+            {/* <Image source={appImages.pin_map} style={styles.map} /> */}
 
             <View
               style={{
@@ -86,16 +86,16 @@ function SignIn({navigation}) {
                 marginTop: '33%',
                 marginBottom: '5%',
               }}>
-              <CustomButton
+              {/* <CustomButton
                 title="Use my Current Location"
                 load={false}
                 // checkdisable={inn == '' && cm == '' ? true : false}
                 customClick={() => {
-                  navigation.navigate('SignIn')
+                  navigation.navigate('Select_preferences')
                 }}
-              />
+              /> */}
 
-              <Button
+              {/* <Button
                 disabled={false}
                 mode="contained"
                 onPress={() => {
@@ -116,7 +116,7 @@ function SignIn({navigation}) {
                   alignSelf: 'center',
                 }}>
                 Add Location
-              </Button>
+              </Button> */}
             </View>
           </View>
         </View>

@@ -15,6 +15,7 @@ red: '#FF0000',
 blue: '#03D2FC',
 success: '#00D215',
 black: 'black',
-iconColor:'#949494'
+iconColor:'#949494',
+green:'#1B1464'
 }
 export default COLORS;

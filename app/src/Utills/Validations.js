@@ -32,7 +32,7 @@ const resetPasswordValidationSchema = Yup.object().shape({
     .min(8, ({ min }) => `Password must be at least ${min} character`)
     .required("Password is required"),
   confirmPassword: Yup.string()
-    .required("Please re-type your password")
+    .required("Please Confirm your password")
     .oneOf([Yup.ref("password")], "Passwords does not match"),
 });
 
