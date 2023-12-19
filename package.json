@@ -6,8 +6,15 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
+    "lint-fix": "--fix",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "clean": "cd android && ./gradlew clean",
+    "doctor": "npx react-native doctor",
+    "asset": "npx react-native-asset",
+    "bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/src/main/assets/index.android.bundle",
+    "build-android": "cd android && ./gradlew assembleRelease",
+    "build-ios": "xcodebuild -workspace RebartyingCRM.xcworkspace -scheme YourScheme -configuration Release -destination 'generic/platform=iOS' archive -archivePath build/RebartyingCRM.xcarchive && xcodebuild -exportArchive -archivePath build/RebartyingCRM.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build/RebartyingCRM.ipa"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.5.1",
@@ -82,5 +89,20 @@
   },
   "engines": {
     "node": ">=16"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "reactNativePermissionsIOS": {
+    "photo": {
+      "permissions": [
+        "photo"
+      ]
+    },
+    "camera": {
+      "permissions": [
+        "camera"
+      ]
+    }
   }
 }
