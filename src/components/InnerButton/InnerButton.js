@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import Icon from '../../constants/Icons'
 
 const InnerButton = ({
@@ -23,20 +23,7 @@ const InnerButton = ({
         <View style={[styles.row, icon_view]}>
           <Text style={[styles.defaultText, textStyle]}>{buttonText}</Text>
         </View>
-        {Lefticon && (
-          <Icon
-            name={name}
-            type={type}
-            color={color}
-            size={size}
-            style={{
-              alignSelf: 'flex-end',
-              padding: 15,
-              height: 50,
-              marginTop: 30,
-            }}
-          />
-        )}
+        {Lefticon && <Icon name={name} type={type} color={color} size={size} style={styles.icon} />}
       </TouchableOpacity>
     </>
   )
@@ -52,7 +39,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 20,
     alignSelf: 'center',
-    borderColor: COLORS.black,
+    borderColor: Colors.black,
     borderWidth: 0.5,
     flexDirection: 'row',
     paddingHorizontal: 10,
@@ -63,11 +50,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   defaultText: {
-    color: COLORS.black,
+    color: Colors.black,
     fontSize: 13,
   },
   icon: {
-    width: '12%',
-    paddingRight: 30,
+    alignSelf: 'flex-end',
+    padding: 15,
+    height: 50,
+    marginTop: 30,
   },
 })

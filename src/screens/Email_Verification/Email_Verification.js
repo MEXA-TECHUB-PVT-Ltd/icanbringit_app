@@ -15,15 +15,19 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field'
-import CustomButton from '../../components/button/Custom_Button'
-import styles from './styles'
+import FlashMessage, {showMessage} from 'react-native-flash-message'
 
 import FVR_headers from '../../components/button/FVR_headers'
-import FlashMessage, {showMessage} from 'react-native-flash-message'
+import CustomButton from '../../components/button/Custom_Button'
+import styles from './styles'
+import {globalStyles as gs} from '../../styles'
+
+import {colors} from '../../themes'
+
 const CELL_COUNT = 4
 LogBox.ignoreAllLogs()
 
-const App = ({navigation}) => {
+const App = () => {
   const [value, setValue] = useState('')
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT})
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -32,8 +36,8 @@ const App = ({navigation}) => {
   })
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={{backgroundColor: '#ADDAFA'}}>
+    <SafeAreaView style={gs.fill}>
+      <ScrollView style={{backgroundColor: colors.fresh_air}}>
         <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
         <View style={styles.mainView}>
           <FVR_headers
@@ -63,8 +67,8 @@ const App = ({navigation}) => {
           </View>
 
           <View style={{alignSelf: 'center'}}>
-            <Text style={[styles.txt1, {color: '#1B1464'}]}>
-              Resend Code <Text style={{color: '#5D5D5D'}}>in 00:56</Text>
+            <Text style={[styles.txt1, {color: colors.primary}]}>
+              Resend Code <Text style={{color: colors.davy_grey}}>in 00:56</Text>
             </Text>
           </View>
 
@@ -72,21 +76,13 @@ const App = ({navigation}) => {
             <CustomButton
               title="Verify"
               load={false}
-              // checkdisable={inn == '' && cm == '' ? true : false}
-              customClick={() => {
-                // showMessage({
-                //     message: "My message title",
-                //     description: "My message description",
-                //     type: "default",
-                //     backgroundColor: "purple", // background color
-                //     color: "#606060", // text color
-                //   });
+              customClick={() =>
                 showMessage({
                   message: 'Success',
                   description: 'Email Verified Successfully',
                   type: 'success',
                 })
-              }}
+              }
             />
           </View>
 

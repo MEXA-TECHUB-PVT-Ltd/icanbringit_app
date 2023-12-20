@@ -1,18 +1,19 @@
-import React, {useEffect} from 'react'
-import {SafeAreaView, ScrollView, Image, View, TouchableOpacity, Platform} from 'react-native'
+import React from 'react'
+import {SafeAreaView, ScrollView, Image, View, TouchableOpacity} from 'react-native'
 
 import {Text, Divider} from 'react-native-paper'
-import COLORS from '../../themes/colors'
-import appImages from './../../constants/Images'
 import {Formik} from 'formik'
 
-import CustomButton from '../../components/button/Custom_Button'
-
 import Signin_signup_header from '../../components/button/Signin_signup_header'
-import styles from './styles'
-import {SignUpValidationSchema} from '../../utils/Validations'
-import CustomText from '../../components/Text'
+import CustomButton from '../../components/button/Custom_Button'
 import InputField from '../../components/InputFiled'
+import CustomText from '../../components/Text'
+
+import {SignUpValidationSchema} from '../../utils/Validations'
+import {isIos} from '../../utils/helpers/Dimensions'
+import images from '../../constants/images'
+import Colors from '../../themes/colors'
+import styles from './styles'
 
 const SignUp = ({navigation}) => {
   const RegisterUser = () => navigation.navigate('AboutYourSelf')
@@ -49,7 +50,7 @@ const SignUp = ({navigation}) => {
                   Lefticon={true}
                   name="email-outline"
                   type={'material-community'}
-                  color={COLORS.grey}
+                  color={Colors.quartz}
                   size={18}
                 />
                 {errors.email && touched.email && (
@@ -65,7 +66,7 @@ const SignUp = ({navigation}) => {
                   Lefticon={true}
                   name="lock"
                   type={'SimpleLineIcons'}
-                  color={COLORS.greylight}
+                  color={Colors.old_silver_o2}
                   size={18}
                 />
                 {errors.password && touched.password && (
@@ -82,7 +83,7 @@ const SignUp = ({navigation}) => {
                   Lefticon={true}
                   name="lock"
                   type={'SimpleLineIcons'}
-                  color={COLORS.greylight}
+                  color={Colors.old_silver_o2}
                   size={18}
                 />
                 {errors.confirmPassword && touched.confirmPassword && (
@@ -112,10 +113,10 @@ const SignUp = ({navigation}) => {
                 <Divider style={styles.divider} />
               </View>
 
-              <View style={[styles.v2, {width: Platform.OS === 'ios' ? '60%' : '40%'}]}>
-                <Image source={appImages.f} style={styles.img} />
-                <Image source={appImages.g} style={styles.img} />
-                {Platform.OS === 'ios' && <Image source={appImages.a} style={styles.img} />}
+              <View style={[styles.v2, {width: isIos ? '60%' : '40%'}]}>
+                <Image source={images.f} style={styles.img} />
+                <Image source={images.g} style={styles.img} />
+                {isIos && <Image source={images.a} style={styles.img} />}
               </View>
 
               <TouchableOpacity

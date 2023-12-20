@@ -1,15 +1,17 @@
 import {StyleSheet} from 'react-native'
-import COLORS from '../../themes/colors'
-import {widthPercentageToDP} from 'react-native-responsive-screen'
+
+import Colors from '../../themes/colors'
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
+import {colors, fonts} from '../../themes'
 
 const STYLES = StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: '#ADDAFA',
+    backgroundColor: colors.fresh_air,
   },
   container: {
     flex: 1,
-    backgroundColor: '#ffff',
+    backgroundColor: colors.white,
     paddingVertical: '5%',
   },
   v: {
@@ -35,30 +37,36 @@ const STYLES = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: '9%',
+    marginBottom: '10%',
+  },
   button: {
     paddingHorizontal: '5%',
     width: '100%',
     alignSelf: 'center',
   },
   txt3: {
-    color: COLORS.dark,
-    fontSize: widthPercentageToDP(5.7),
+    color: Colors.dark,
+    fontSize: wp(5.7),
     textAlign: 'center',
-    fontFamily: 'Montserrat-SemiBold',
+    fontFamily: fonts.montserrat.semi_bold,
     marginHorizontal: '15%',
     marginTop: '10%',
   },
   txt4: {
-    color: '#5D5D5D',
-    fontSize: widthPercentageToDP(3.9),
+    color: colors.davy_grey,
+    fontSize: wp(3.9),
     textAlign: 'center',
     marginHorizontal: '5%',
-    fontFamily: 'Montserrat-Medium',
+    fontFamily: fonts.montserrat.medium,
     marginTop: '5%',
     lineHeight: 20,
   },
   buttonText: {
-    color: 'white',
+    color: colors.white,
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -66,8 +74,8 @@ const STYLES = StyleSheet.create({
     bottom: '30%', // Adjust this value to center the pagination dots vertically.
   },
   txt: {
-    color: 'white',
-    fontSize: widthPercentageToDP(2),
+    color: colors.white,
+    fontSize: wp(2),
   },
 
   btnl: {
@@ -80,13 +88,11 @@ const STYLES = StyleSheet.create({
     alignSelf: 'center',
   },
   txtl: {
-    color: 'white',
+    color: colors.white,
     fontSize: 16,
     alignSelf: 'center',
   },
-  wrapper: {
-    // backgroundColor: 'pink',
-  },
+  wrapper: {},
 })
 
 export default STYLES

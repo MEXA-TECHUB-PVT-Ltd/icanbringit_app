@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native'
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
+import { colors, fonts } from '../../themes'
 
 const STYLES = StyleSheet.create({
   BUTTONSTYLE: {
@@ -12,7 +13,7 @@ const STYLES = StyleSheet.create({
     justifyContent: 'center', // for middle writting
     height: 40,
     width: 200,
-    backgroundColor: '#B3446C',
+    backgroundColor: colors.irresistible,
   },
   body: {
     width: '100%',
@@ -23,7 +24,7 @@ const STYLES = StyleSheet.create({
     height: '100%',
   },
   btn: {
-    backgroundColor: '#FF5722',
+    backgroundColor: colors.giants_orange,
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
@@ -33,22 +34,22 @@ const STYLES = StyleSheet.create({
     marginTop: '10%',
   },
   txt: {
-    color: '#ffff',
+    color: colors.white,
     fontSize: 14,
-    fontFamily: 'PlusJakartaSans-SemiBold',
+    fontFamily: fonts.plusJakrtaSans.semi_bold,
   },
   txt1: {
-    color: '#000000',
+    color: colors.black,
     fontSize: wp(4.5),
-    fontFamily: 'PlusJakartaSans-Bold',
+    fontFamily: fonts.plusJakrtaSans.bold,
     marginHorizontal: '3%',
     marginTop: '5%',
   },
   txt2: {
-    color: '#000000',
+    color: colors.black,
     fontSize: wp(3.2),
     marginTop: '2%',
-    fontFamily: 'PlusJakartaSans-SemiBold',
+    fontFamily: fonts.plusJakrtaSans.semi_bold,
     marginLeft: '3%',
     marginRight: '10%',
   },
@@ -57,7 +58,6 @@ const STYLES = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
     bottom: 0,
-    // marginTop: '20%',
     position: 'absolute',
     backgroundColor: 'white',
     borderTopEndRadius: 25,

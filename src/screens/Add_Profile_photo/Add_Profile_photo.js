@@ -1,18 +1,22 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useRef} from 'react'
 import {SafeAreaView, ScrollView, StatusBar, Image, View, TouchableOpacity} from 'react-native'
-import {Text, Divider} from 'react-native-paper'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import RBSheet from 'react-native-raw-bottom-sheet'
 
-import CustomButton from '../../components/button/Custom_Button'
+import {Text, Divider} from 'react-native-paper'
+import RBSheet from 'react-native-raw-bottom-sheet'
 import FlashMessage, {showMessage} from 'react-native-flash-message'
 import ImagePicker from 'react-native-image-crop-picker'
+
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+
 import Signin_signup_header from '../../components/button/Signin_signup_header'
+import CustomButton from '../../components/button/Custom_Button'
 import styles from './styles'
 
 import Profile from '../../assets/svgs/Profile.svg'
 import Gallery from '../../assets/svgs/gallary.svg'
 import Camera from '../../assets/svgs/camera.svg'
+import {globalPaddingStyles, globalStyles} from '../../styles'
+import {colors} from '../../themes'
 
 function SignIn({navigation}) {
   const [image, setImage] = useState('')
@@ -21,91 +25,51 @@ function SignIn({navigation}) {
     const data = await ImagePicker.openCamera({
       width: 500,
       height: 500,
-      // cropping: true,
-    }).then(imageDetail => {
-      // console.log(imageDetail)
-      // console.log(imageDetail.path.split('/').pop())
-
-      // setfilename(imageDetail.path.split('/').pop())
-      // seturi(imageDetail.path)
-      // setmimeType(imageDetail.mime)
-      // console.log('-----' + imageDetail)
-      // console.log(uri + '--' + filename + '--' + mimeType)
-
-      // let profileImageObj = {
-      //     uri: uri,
-      //     name: filename,
-      //     type: mimeType,
-      // };
+    }).then(imageDetail =>
       setImage({
         uri: imageDetail.path,
-      })
-    })
+      }),
+    )
   }
   const takePhotoFromGallery = async () => {
-    // console.warn('gallery')
     const data = await ImagePicker.openPicker({
       width: 500,
       height: 500,
-    }).then(imageDetail => {
-      console.log(imageDetail)
-      console.log(imageDetail.path.split('/').pop())
-
-      // setfilename(imageDetail.path.split('/').pop())
-      // seturi(imageDetail.path)
-      // setmimeType(imageDetail.mime)
-      // console.log('-----' + imageDetail)
-      // console.log(uri + '--' + filename + '--' + mimeType)
-
-      // let profileImageObj = {
-      //     uri: uri,
-      //     name: filename,
-      //     type: mimeType,
-      // };
+    }).then(imageDetail =>
       setImage({
         uri: imageDetail.path,
-      })
-    })
+      }),
+    )
   }
   const refRBSheet = useRef()
-  const optionsv = item => {
-    refRBSheet.current.open()
-  }
-  useEffect(() => {}, [])
+  const optionsv = item => refRBSheet.current.open()
+
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={{backgroundColor: 'white'}}>
-        <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
+    <SafeAreaView style={globalStyles.fill}>
+      <ScrollView style={{backgroundColor: colors.white}}>
+        <StatusBar barStyle={'dark-content'} backgroundColor={colors.transparent} translucent={true} />
         <View style={styles.mainView}>
           <Signin_signup_header title="Add Profile Photo" />
-          <View style={{marginHorizontal: '7%', marginTop: '0%'}}>
+          <View style={styles.avatarContainer}>
             <View style={styles.v1}>
-              {
-                //null ni ha to image ko dekhana ha
-                image ? (
-                  <Image source={image} style={styles.upload} resizeMode={'stretch'} />
-                ) : (
-                  <View style={styles.v}>
-                    <Profile />
-                  </View>
-                )
-              }
+              {image ? (
+                <Image source={image} style={styles.upload} resizeMode={'stretch'} />
+              ) : (
+                <View style={styles.v}>
+                  <Profile />
+                </View>
+              )}
             </View>
-            <Text
-              onPress={() => {
-                optionsv()
-              }}
-              style={styles.txt1}>
+            <Text onPress={optionsv} style={styles.txt1}>
               {image == '' ? 'Add Photo' : 'Change Photo'}
             </Text>
           </View>
 
           <FlashMessage position="top" />
-          <View style={{alignSelf: 'center', marginTop: '80%', marginBottom: '5%'}}>
+          <View style={styles.btnContainer}>
             <CustomButton
               title="Continue"
               load={false}
-              // checkdisable={inn == '' && cm == '' ? true : false}
               customClick={() => {
                 if (image == '') {
                   showMessage({
@@ -125,9 +89,6 @@ function SignIn({navigation}) {
 
       <RBSheet
         ref={refRBSheet}
-        // closeOnDragDown={true}
-        // closeOnPressMask={false}
-        // animationType="fade"
         customStyles={{
           wrapper: {
             backgroundColor: 'rgba(52, 52, 52, 0.5)',
@@ -139,20 +100,13 @@ function SignIn({navigation}) {
             borderTopLeftRadius: 40,
             borderTopRightRadius: 40,
             height: '25%',
-            backgroundColor: 'white',
+            backgroundColor: colors.white,
           },
         }}>
-        <View style={{padding: 20}}>
+        <View style={globalPaddingStyles.p20}>
           <View style={styles.rbview}>
-            <Text></Text>
-            <Text style={{color: 'black', fontSize: 20}}></Text>
-
-            <TouchableOpacity
-              style={{}}
-              onPress={() => {
-                refRBSheet.current.close()
-              }}>
-              <MaterialIcons name="close" size={24} color={'black'} />
+            <TouchableOpacity onPress={() => refRBSheet.current.close()}>
+              <MaterialIcons name="close" size={24} color={colors.black} />
             </TouchableOpacity>
           </View>
 
@@ -161,7 +115,7 @@ function SignIn({navigation}) {
               takePhotoFromCamera()
               refRBSheet.current.close()
             }}
-            style={{paddingLeft: 15, flexDirection: 'row'}}>
+            style={styles.smIcon}>
             <Camera />
             <Text style={styles.txtimg}>Take a Photo</Text>
           </TouchableOpacity>
@@ -173,7 +127,7 @@ function SignIn({navigation}) {
               takePhotoFromGallery()
               refRBSheet.current.close()
             }}
-            style={{paddingLeft: 15, flexDirection: 'row'}}>
+            style={styles.smIcon}>
             <Gallery />
             <Text style={styles.txtimg}>Choose a Photo</Text>
           </TouchableOpacity>

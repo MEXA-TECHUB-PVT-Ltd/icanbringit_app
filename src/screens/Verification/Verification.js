@@ -20,6 +20,7 @@ import FlashMessage, {showMessage} from 'react-native-flash-message'
 import CustomButton from '../../components/button/Custom_Button'
 import styles from './styles'
 import FVR_headers from '../../components/button/FVR_headers'
+import { colors } from '../../themes'
 
 const CELL_COUNT = 4
 LogBox.ignoreAllLogs()
@@ -42,7 +43,7 @@ const App = ({navigation}) => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={{backgroundColor: '#ADDAFA'}}>
+      <ScrollView style={{backgroundColor: colors.fresh_air}}>
         <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
         <View style={styles.mainView}>
           <FVR_headers
@@ -72,8 +73,8 @@ const App = ({navigation}) => {
           </View>
 
           <View style={{alignSelf: 'center'}}>
-            <Text style={[styles.txt1, {color: '#1B1464'}]}>
-              Resend Code <Text style={{color: '#5D5D5D'}}>in 00 : {count}</Text>
+            <Text style={[styles.txt1, {color: colors.primary}]}>
+              Resend Code <Text style={{color: colors.davy_grey}}>in 00 : {count}</Text>
             </Text>
           </View>
 

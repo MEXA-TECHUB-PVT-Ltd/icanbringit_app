@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native'
+// styles/index
 
-const STYLES = StyleSheet.create({
-  settingRipple: {
-    padding: 15,
-  },
-})
+// global styles
+export {default as globalStyles} from './global/globalStyles'
+export {default as globalMarginStyles} from './global/globalMarginStyles'
+export {default as globalPaddingStyles} from './global/globalPaddingStyles'
 
-export default STYLES
+// auth styles
+// export {default as authStyles} from './auth/authStyles'

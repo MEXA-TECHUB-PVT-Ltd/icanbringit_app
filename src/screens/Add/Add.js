@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, TouchableOpacity} from 'react-native'
+import {TouchableOpacity} from 'react-native'
 
 import {useNavigation} from '@react-navigation/native'
 
@@ -8,11 +8,7 @@ const Add = () => {
 
   const handleButtonClick = () => navigation.replace('AnotherScreen')
 
-  return (
-    <View>
-      <TouchableOpacity onPress={handleButtonClick}></TouchableOpacity>
-    </View>
-  )
+  return <TouchableOpacity onPress={handleButtonClick}></TouchableOpacity>
 }
 
 export default Add

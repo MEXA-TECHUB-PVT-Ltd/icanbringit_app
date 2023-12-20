@@ -1,6 +1,10 @@
-import {StyleSheet, Pressable, Text, View, Row} from 'react-native'
 import React from 'react'
+import {StyleSheet, Pressable, Text, View, Row} from 'react-native'
+
 import Entypo from 'react-native-vector-icons/Entypo'
+
+import { colors } from '../../themes'
+
 const Footer = props => {
   return (
     <View m={5} ml={3} mb={0}>
@@ -31,16 +35,12 @@ const Footer = props => {
 export default Footer
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderRadius: 20,
     overflow: 'hidden',
   },
   progressBar: {
     height: 5,
-    backgroundColor: '#F5BF03', // Green color
-  },
-  progressText: {
-    textAlign: 'center',
-    marginTop: 5,
+    backgroundColor: colors.golden,
   },
 })

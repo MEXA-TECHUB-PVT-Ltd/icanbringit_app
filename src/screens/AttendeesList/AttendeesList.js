@@ -7,8 +7,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import InputField from '../../components/InputFiled'
 import CustomText from '../../components/Text'
-import COLORS from '../../themes/colors'
-import Images from '../../constants/Images'
+import Colors from '../../themes/colors'
+import images from '../../constants/images'
 import InnerButton from '../../components/InnerButton/InnerButton'
 import Custom_Button from '../../components/button/Custom_Button'
 
@@ -24,7 +24,7 @@ const AttendeesList = () => {
   const notificationData = [
     {
       id: 1,
-      image: Images.profiledp,
+      image: images.profiledp,
       title: 'Olivia Martinez ',
       time: 'Female - 23',
       status: true,
@@ -32,7 +32,7 @@ const AttendeesList = () => {
     },
     {
       id: 2,
-      image: Images.avatar,
+      image: images.avatar,
       title: 'Olivia Martinez ',
 
       time: 'Female - 23',
@@ -41,7 +41,7 @@ const AttendeesList = () => {
     },
     {
       id: 3,
-      image: Images.profiledp,
+      image: images.profiledp,
       title: 'Olivia Martinez ',
       status: true,
       type: 'Accept',
@@ -49,7 +49,7 @@ const AttendeesList = () => {
     },
     {
       id: 4,
-      image: Images.avatar,
+      image: images.avatar,
       title: 'Olivia Martinez ',
       status: true,
       type: 'Ignore',
@@ -57,7 +57,7 @@ const AttendeesList = () => {
     },
     {
       id: 5,
-      image: Images.profiledp,
+      image: images.profiledp,
       title: 'Olivia Martinez ',
       status: true,
       type: 'Accept',
@@ -65,7 +65,7 @@ const AttendeesList = () => {
     },
     {
       id: 5,
-      image: Images.avatar,
+      image: images.avatar,
       title: 'Olivia Martinez',
       time: 'Female - 23',
       status: false,
@@ -73,7 +73,7 @@ const AttendeesList = () => {
     },
     {
       id: 5,
-      image: Images.profiledp,
+      image: images.profiledp,
       title: 'Olivia Martinez',
       time: 'Female - 23',
       status: false,
@@ -106,21 +106,19 @@ const AttendeesList = () => {
                 width: '86%',
               }}>
               <TouchableOpacity
-                //  onPress={handleSearchIconPress}
                 style={{
                   justifyContent: 'center',
                   height: 60,
-                  // alignSelf:'center',
                   marginTop: 15,
                 }}>
-                <Ionicons name="chevron-back-outline" size={28} color={COLORS.black} />
+                <Ionicons name="chevron-back-outline" size={28} color={Colors.black} />
               </TouchableOpacity>
               <CustomText
                 text={'Attendees List'}
                 style={{
                   fontSize: 20,
                   fontWeight: 'bold',
-                  color: COLORS.black,
+                  color: Colors.black,
                   marginTop: 10,
                 }}
               />
@@ -134,7 +132,7 @@ const AttendeesList = () => {
                 // alignSelf:'center',
                 marginTop: 15,
               }}>
-              <Ionicons name="chevron-back-outline" size={28} color={COLORS.black} />
+              <Ionicons name="chevron-back-outline" size={28} color={Colors.black} />
             </TouchableOpacity>
           )}
         </View>
@@ -149,7 +147,7 @@ const AttendeesList = () => {
                 marginTop: 30,
                 paddingHorizontal: 10,
               }}>
-              <AntDesign name="search1" size={22} color={COLORS.greylight} />
+              <AntDesign name="search1" size={22} color={Colors.old_silver_o2} />
             </View>
           </View>
         )}
@@ -157,7 +155,7 @@ const AttendeesList = () => {
         <View>
           {!showInputField && (
             <TouchableOpacity onPress={handleSearchIconPress}>
-              <AntDesign name="search1" size={22} color={COLORS.black} />
+              <AntDesign name="search1" size={22} color={Colors.black} />
             </TouchableOpacity>
           )}
         </View>
@@ -201,18 +199,18 @@ const AttendeesList = () => {
                   <TouchableOpacity
                     onPress={() => refRBSheet.current.open()}
                     style={{
-                      backgroundColor: COLORS.green,
+                      backgroundColor: Colors.primary,
                       padding: 10,
                       marginRight: 10,
                       borderRadius: 10,
                       width: '45%',
                       alignItems: 'center',
                     }}>
-                    <CustomText text={'Assign Task'} style={{color: COLORS.white, fontSize: 13}} />
+                    <CustomText text={'Assign Task'} style={{color: Colors.white, fontSize: 13}} />
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={{
-                      backgroundColor: COLORS.green,
+                      backgroundColor: Colors.primary,
                       padding: 10,
                       marginRight: 10,
                       borderRadius: 10,
@@ -220,11 +218,11 @@ const AttendeesList = () => {
                       alignItems: 'center',
                     }}
                     onPress={() => refRBSheetAssignItem.current.open()}>
-                    <CustomText text={'Assign Item'} style={{color: COLORS.white, fontSize: 13}} />
+                    <CustomText text={'Assign Item'} style={{color: Colors.white, fontSize: 13}} />
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={{height: 0.5, backgroundColor: COLORS.greylight}} />
+              <View style={{height: 0.5, backgroundColor: Colors.old_silver_o2}} />
             </View>
           )}
         />
@@ -241,7 +239,7 @@ const AttendeesList = () => {
             backgroundColor: 'rgba(52, 52, 52, 0.5)',
           },
           draggableIcon: {
-            backgroundColor: COLORS.white,
+            backgroundColor: Colors.white,
             height: 3,
             width: 50,
           },
@@ -256,7 +254,7 @@ const AttendeesList = () => {
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <CustomText text={'Assign Task'} style={{fontSize: 16, fontWeight: 'bold'}} />
               <TouchableOpacity onPress={() => refRBSheet.current.close()}>
-                <AntDesign name="close" size={20} color={COLORS.black} />
+                <AntDesign name="close" size={20} color={Colors.black} />
               </TouchableOpacity>
             </View>
             <InputField placeholder={'Add Description'} style={{height: 100}} />
@@ -271,7 +269,7 @@ const AttendeesList = () => {
                 Lefticon={true}
                 name="date-range"
                 type={'MaterialIcons'}
-                color={COLORS.black}
+                color={Colors.black}
                 size={20}
                 style={{width: '45%'}}
               />
@@ -280,7 +278,7 @@ const AttendeesList = () => {
                 Lefticon={true}
                 name="time-outline"
                 type={'ionicon'}
-                color={COLORS.black}
+                color={Colors.black}
                 size={20}
                 style={{width: '45%'}}
               />
@@ -303,7 +301,7 @@ const AttendeesList = () => {
             backgroundColor: 'rgba(52, 52, 52, 0.5)',
           },
           draggableIcon: {
-            backgroundColor: COLORS.white,
+            backgroundColor: Colors.white,
             height: 3,
             width: 50,
           },
@@ -318,7 +316,7 @@ const AttendeesList = () => {
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <CustomText text={'Assign Task'} style={{fontSize: 16, fontWeight: 'bold'}} />
               <TouchableOpacity onPress={() => refRBSheetAssignItem.current.close()}>
-                <AntDesign name="close" size={20} color={COLORS.black} />
+                <AntDesign name="close" size={20} color={Colors.black} />
               </TouchableOpacity>
             </View>
             <View

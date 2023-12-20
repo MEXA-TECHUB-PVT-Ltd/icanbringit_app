@@ -10,7 +10,7 @@ import {
   SafeAreaView,
 } from 'react-native'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import CustomText from '../../components/Text'
 import Signin_signup_header from '../../components/button/Signin_signup_header'
 import Custom_Button from '../../components/button/Custom_Button'
@@ -103,7 +103,7 @@ const ReminderScreen = () => {
       <View
         style={{
           borderWidth: 0.5,
-          borderColor: COLORS.greylight,
+          borderColor: Colors.old_silver_o2,
           width: '90%',
           alignSelf: 'center',
           borderRadius: 10,
@@ -117,7 +117,7 @@ const ReminderScreen = () => {
             fontSize: 16,
             paddingHorizontal: 20,
             marginTop: 10,
-            color: COLORS.black,
+            color: Colors.black,
           }}
         />
         <FlatList
@@ -132,7 +132,7 @@ const ReminderScreen = () => {
               <View style={styles.flatlist_container}>
                 <TouchableOpacity
                   style={{
-                    backgroundColor: isSelected ? COLORS.blue : 'transparent',
+                    backgroundColor: isSelected ? Colors.skye_blue : 'transparent',
                     borderRadius: 7,
                     width: 40,
                     alignItems: 'center',

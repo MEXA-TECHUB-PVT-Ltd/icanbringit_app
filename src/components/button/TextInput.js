@@ -1,23 +1,16 @@
 import React, {useState} from 'react'
-import {View, TextInput, TouchableOpacity} from 'react-native'
+import {View, TextInput, TouchableOpacity, StyleSheet} from 'react-native'
 
 import Email from './../../assets/svgs/email.svg'
 import Lock from './../../assets/svgs/Lock.svg'
 import Eye from './../../assets/svgs/eye.svg'
 import Close_eye from './../../assets/svgs/close_eye.svg'
+import { colors } from '../../themes'
 
 const EmailInput = props => {
   return (
     <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderColor: '#E4DFDF',
-        borderWidth: 1,
-        borderRadius: 10,
-        paddingHorizontal: '4%',
-        backgroundColor: '#FFFFFF',
-      }}>
+      style={styles.emailInputContainer}>
       <Email width={20} height={20} />
       <TextInput style={{flex: 1}} placeholder={props.title} />
     </View>
@@ -34,12 +27,12 @@ const PasswordInput = props => {
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        borderColor: '#E4DFDF',
+        borderColor: colors.gainsboro,
         borderWidth: 1,
         borderRadius: 10,
         paddingHorizontal: '4%',
         marginTop: '7%',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
       }}>
       <Lock width={20} height={20} />
       <TextInput style={{flex: 1}} placeholder={props.title} secureTextEntry={!passwordVisible} />
@@ -54,17 +47,29 @@ const Input = props => {
   return (
     <View
       style={{
-        borderColor: '#E4DFDF',
+        borderColor: colors.gainsboro,
         borderWidth: 1,
         borderRadius: 10,
         paddingHorizontal: '4%',
         marginTop: '2%',
         marginBottom: '5%',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
       }}>
       <TextInput style={{flex: 1}} keyboardType={props.type} placeholder={props.title} />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  emailInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: colors.gainsboro,
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: '4%',
+    backgroundColor: colors.white,
+  },
+})
 
 export {EmailInput, PasswordInput, Input}

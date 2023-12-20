@@ -6,7 +6,6 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
-  Platform,
 } from 'react-native'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -15,8 +14,9 @@ import {Text, Button, Snackbar, Headline} from 'react-native-paper'
 import LoginHeader from '../../components/logins_comp/LoginHeader'
 import STYLES from '../../components/button/styles'
 import base_url from '../../constants/base_url'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import styles from './styles'
+import {isIos} from '../../utils/helpers/Dimensions'
 
 const height = Dimensions.get('window').height
 
@@ -44,7 +44,7 @@ function Login({route, navigation}) {
       setloading(false)
       setSnackDetails({
         text: 'Please fill all the fields',
-        backgroundColor: COLORS.red,
+        backgroundColor: Colors.red,
       })
       onToggleSnackBar()
     } else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
@@ -52,7 +52,7 @@ function Login({route, navigation}) {
 
       setSnackDetails({
         text: 'Please enter a valid email address',
-        backgroundColor: COLORS.red,
+        backgroundColor: Colors.red,
       })
       onToggleSnackBar()
     } else {
@@ -77,13 +77,13 @@ function Login({route, navigation}) {
           if (response[0].error == true) {
             setSnackDetails({
               text: response[0].message,
-              backgroundColor: COLORS.red,
+              backgroundColor: Colors.red,
             })
             onToggleSnackBar()
           } else {
             setSnackDetails({
               text: response[0].message,
-              backgroundColor: COLORS.primary,
+              backgroundColor: Colors.primary,
             })
             onToggleSnackBar()
             storeData(response[0])
@@ -123,7 +123,7 @@ function Login({route, navigation}) {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: COLORS.white,
+        backgroundColor: Colors.white,
       }}>
       <Snackbar
         visible={visible}
@@ -140,10 +140,10 @@ function Login({route, navigation}) {
         {snackDetails.text}
       </Snackbar>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={isIos ? 'padding' : 'height'}
         style={{
           flex: 1,
-          backgroundColor: COLORS.white,
+          backgroundColor: Colors.white,
           zIndex: -9,
         }}>
         <ScrollView
@@ -165,7 +165,7 @@ function Login({route, navigation}) {
               <Text
                 style={{
                   marginTop: '5%',
-                  color: COLORS.greylight,
+                  color: Colors.old_silver_o2,
                 }}>
                 Sign In to get started with BeforeVault
               </Text>
@@ -173,46 +173,44 @@ function Login({route, navigation}) {
 
             <View style={styles.txtInptView}>
               <TextInput
-                // left={<TextInput.Icon name="email" color={COLORS.primary} />}
+                // left={<TextInput.Icon name="email" color={Colors.primary} />}
                 style={styles.txtInpt}
-                color={COLORS.dark}
+                color={Colors.dark}
                 placeholder="Email"
-                placeholderTextColor={COLORS.dark}
+                placeholderTextColor={Colors.dark}
                 keyboardType="email-address"
                 autoCapitalize="none"
-                underlineColor={COLORS.dark}
-                activeUnderlineColor={COLORS.primary}
+                underlineColor={Colors.dark}
+                activeUnderlineColor={Colors.primary}
                 autoCorrect={false}
                 mode="flat"
                 onChangeText={text => setEmail(text)}
-                left={<TextInput.Icon icon="email" iconColor={COLORS.light} />}
+                left={<TextInput.Icon icon="email" iconColor={Colors.light} />}
               />
               <TextInput
-                // left={<TextInput.Icon name="email" color={COLORS.primary} />}
+                // left={<TextInput.Icon name="email" color={Colors.primary} />}
                 style={[
                   styles.txtInpt,
                   {
                     marginTop: 20,
                   },
                 ]}
-                color={COLORS.dark}
+                color={Colors.dark}
                 placeholder="Password"
-                placeholderTextColor={COLORS.dark}
+                placeholderTextColor={Colors.dark}
                 autoCapitalize="none"
-                underlineColor={COLORS.dark}
-                activeUnderlineColor={COLORS.primary}
+                underlineColor={Colors.dark}
+                activeUnderlineColor={Colors.primary}
                 autoCorrect={false}
                 mode="flat"
                 secureTextEntry={secureTextEntry}
                 onChangeText={text => setPassword(text)}
-                left={<TextInput.Icon icon="lock" iconColor={COLORS.light} />}
+                left={<TextInput.Icon icon="lock" iconColor={Colors.light} />}
                 right={
                   <TextInput.Icon
                     icon={secureTextEntry ? 'eye' : 'eye-off'}
-                    onPress={() => {
-                      setSecureTextEntry(!secureTextEntry)
-                    }}
-                    iconColor={COLORS.light}
+                    onPress={() => setSecureTextEntry(!secureTextEntry)}
+                    iconColor={Colors.light}
                   />
                 }
                 // onChangeText={text => setEmail(text)}
@@ -223,10 +221,7 @@ function Login({route, navigation}) {
                   justifyContent: 'flex-end',
                   marginTop: 20,
                 }}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('ForgetPass')
-                  }}>
+                <TouchableOpacity onPress={() => navigation.navigate('ForgetPass')}>
                   <Text style={styles.frgtpss}>Forget Password?</Text>
                 </TouchableOpacity>
               </View>
@@ -240,7 +235,7 @@ function Login({route, navigation}) {
                   mode="contained"
                   style={STYLES.btn}
                   contentStyle={STYLES.btnContent}
-                  onPress={() => callLogin()}
+                  onPress={callLogin}
                   loading={loading}
                   disabled={loading}>
                   <Text style={STYLES.btnText}>Sign in</Text>
@@ -250,28 +245,19 @@ function Login({route, navigation}) {
                     styles.SgnOrIntxt,
                     {
                       paddingVertical: '5%',
-                      backgroundColor: COLORS.white,
+                      backgroundColor: Colors.white,
                     },
                   ]}>
                   <Text
                     style={{
-                      color: COLORS.dark,
+                      color: Colors.dark,
                     }}>
                     Don’t have account?{' '}
                   </Text>
                   <TouchableOpacity
-                    style={{
-                      left: '5%',
-                    }}
-                    onPress={() => {
-                      navigation.navigate('Signup')
-                    }}>
-                    <Text
-                      style={{
-                        color: COLORS.secondary,
-                      }}>
-                      Sign up
-                    </Text>
+                    style={{left: '5%'}}
+                    onPress={() => navigation.navigate('Signup')}>
+                    <Text style={{color: Colors.secondary}}>Sign up</Text>
                   </TouchableOpacity>
                 </View>
               </View>

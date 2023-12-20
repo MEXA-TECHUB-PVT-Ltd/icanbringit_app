@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native'
 
 import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
+import { colors, fonts } from '../../themes'
 
 const STYLES = StyleSheet.create({
   bg: {
@@ -15,7 +16,7 @@ const STYLES = StyleSheet.create({
   txt: {
     color: 'black',
     fontSize: heightPercentageToDP(3.2),
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',
     marginHorizontal: '11%',
@@ -32,11 +33,11 @@ const STYLES = StyleSheet.create({
     backgroundColor: 'white',
   },
   text: {
-    color: '#000000',
+    color: colors.black,
     fontSize: 20,
     textAlign: 'center',
     fontSize: widthPercentageToDP(4),
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: fonts.montserrat.regular,
   },
   btnl: {
     width: 45,
@@ -54,18 +55,18 @@ const STYLES = StyleSheet.create({
     marginTop: '60%',
   },
   txt1: {
-    color: '#000000',
+    color: colors.black,
     fontSize: 20,
     textAlign: 'center',
     fontSize: widthPercentageToDP(4.5),
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: fonts.montserrat.bold,
   },
   txt2: {
-    color: '#868686',
+    color: colors.old_silver,
     fontSize: 20,
     textAlign: 'center',
     fontSize: widthPercentageToDP(4.5),
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: fonts.montserrat.regular,
   },
   p: {
     borderRadius: 20,

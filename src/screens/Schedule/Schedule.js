@@ -12,7 +12,9 @@ import {
 
 import {Calendar, LocaleConfig} from 'react-native-calendars'
 
-import Images from '../../constants/Images'
+import images from '../../constants/images'
+import { colors, theme } from '../../themes'
+import Colors from '../../themes/Colors'
 
 LocaleConfig.locales['en'] = {
   monthNames: [
@@ -66,7 +68,7 @@ const Schedule = ({navigation}) => {
   const handleButton2Click = () => {
     setButton1Color('transparent')
     setButton2Color('white')
-    setButton2TextColor('gray')
+    setButton2TextColor(Colors.grey)
     setShowEvents(false)
   }
 
@@ -117,7 +119,7 @@ const Schedule = ({navigation}) => {
     <TouchableOpacity
       onPress={() => navigation.navigate('AssignedTask')}
       style={styles.itemContainer}>
-      <Image source={Images.profiledp} style={styles.userImage2} />
+      <Image source={images.profiledp} style={styles.userImage2} />
       <View style={styles.userInfo}>
         <Text style={styles.userName2}>{item.user}</Text>
         <TouchableOpacity style={styles.actionButton}>
@@ -129,7 +131,7 @@ const Schedule = ({navigation}) => {
   )
   const renderItem = ({item}) => (
     <View style={styles.card}>
-      <Image source={Images.profiledp} style={styles.userImage} />
+      <Image source={images.profiledp} style={styles.userImage} />
       <View style={styles.textContainer}>
         <Text style={styles.userName}>{item.user}</Text>
         <Text style={styles.notificationTime}>{item.time}</Text>
@@ -151,20 +153,20 @@ const Schedule = ({navigation}) => {
             [selectedDate]: {selected: true, selectedColor: 'blue'},
           }}
           theme={{
-            calendarBackground: 'white',
-            textSectionTitleColor: '#b6c1cd',
-            selectedDayBackgroundColor: '#00adf5',
+            calendarBackground: colors.white,
+            textSectionTitleColor: colors.pastel_blue,
+            selectedDayBackgroundColor: colors.cerulean,
             selectedDayTextColor: 'white',
-            todayTextColor: '#00adf5',
-            dayTextColor: '#2d4150',
-            textDisabledColor: '#d9e1e8',
+            todayTextColor: colors.cerulean,
+            dayTextColor: colors.charcoal,
+            textDisabledColor: colors.gainsboro_taupe,
             arrowColor: 'orange',
             textDayFontFamily: 'monospace',
             textMonthFontFamily: 'monospace',
             textDayHeaderFontFamily: 'monospace',
-            textDayFontWeight: '300',
+            textDayFontWeight: theme.light.fontWeight.light,
             textMonthFontWeight: 'bold',
-            textDayHeaderFontWeight: '300',
+            textDayHeaderFontWeight: theme.light.fontWeight.light,
             textDayFontSize: 16,
             textMonthFontSize: 16,
             textDayHeaderFontSize: 16,
@@ -199,7 +201,7 @@ const styles = StyleSheet.create({
   container: {
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: colors.white,
       padding: 16,
     },
   },
@@ -207,7 +209,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 20,
-    backgroundColor: '#D1D0E0',
+    backgroundColor: colors.lavender,
     borderRadius: 30,
     height: 45,
   },
@@ -224,13 +226,13 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     padding: 16,
   },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderRadius: 8,
     marginBottom: 16,
     elevation: 2,
@@ -249,28 +251,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  notificationTitle: {
-    fontSize: 14,
-  },
   notificationTime: {
     fontSize: 12,
-    color: 'gray',
+    color: Colors.grey,
   },
   button: {
-    backgroundColor: '#3498db',
+    backgroundColor: colors.tufts_blue,
     padding: 5,
     borderRadius: 4,
     marginRight: 8,
     width: '50%',
   },
   buttonText: {
-    color: '#fff',
+    color: colors.white,
   },
 
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderRadius: 8,
     marginBottom: 16,
     elevation: 2,
@@ -289,17 +288,17 @@ const styles = StyleSheet.create({
   },
   userName2: {
     fontSize: 15,
-    color: 'black', // Text color for the username
+    color: colors.black, // Text color for the username
     marginRight: 8,
   },
   actionButton: {
-    backgroundColor: '#2ecc71', // Background color for the button
+    backgroundColor: colors.light_green, // Background color for the button
     padding: 8,
     borderRadius: 8,
     alignSelf: 'flex-end',
   },
   buttonText22: {
-    color: '#fff', // Text color for the button
+    color: colors.white, // Text color for the button
     fontWeight: 'bold',
   },
 })

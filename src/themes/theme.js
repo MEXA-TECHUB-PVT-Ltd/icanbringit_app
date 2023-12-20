@@ -1,4 +1,9 @@
+import { colors } from "."
+
 const palette = {
+
+  // need to change palette colors from colors.js
+
   background: '#FFFFFF',
   backgroundLight: '#F8FAFC',
   backgroundDark: '#E4EBF1',
@@ -18,7 +23,7 @@ const palette = {
   warningColor: '#ffc532',
   warningColorLight: '#FFEDBF',
 
-  colorWhite: '#FFFFFF',
+  colorWhite: colors.white,
   colorBlack: '#000000',
 
   textLighter: '#779bbb',
@@ -84,26 +89,26 @@ const fontWeight = {
 
 const lightColors = {
   ...palette,
-  background: '#fff',
-  text: '#333',
+  background: colors.white,
+  text: colors.dark_charcoal,
 }
 
 const darkColors = {
   ...palette,
-  background: '#333',
-  text: '#fff',
+  background: colors.dark_charcoal,
+  text: colors.white,
 }
 
 const theme = {
   light: {
-    colors: lightColors,
+    Colors: lightColors,
     spacing,
     fontSize,
     borderRadius,
     fontWeight,
   },
   dark: {
-    colors: darkColors,
+    Colors: darkColors,
     spacing,
     fontSize,
     borderRadius,

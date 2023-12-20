@@ -12,9 +12,15 @@ import Feather from 'react-native-vector-icons/Feather'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import {styles} from './styles'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import CustomText from '../../components/Text'
-import Images from '../../constants/Images'
+import images from '../../constants/images'
+import {colors, theme} from '../../themes'
+import {
+  globalStyles as gs,
+  globalMarginStyles as gms,
+  globalPaddingStyles as gps,
+} from '../../styles'
 
 const Chat = ({navigation, route}) => {
   const [messages, setMessages] = useState([])
@@ -40,7 +46,7 @@ const Chat = ({navigation, route}) => {
       <InputToolbar
         {...props}
         containerStyle={{
-          backgroundColor: COLORS.white,
+          backgroundColor: Colors.white,
           flexDirection: 'row',
           alignItems: 'center',
         }}>
@@ -55,8 +61,8 @@ const Chat = ({navigation, route}) => {
   const renderSend = props => {
     return (
       <Send {...props}>
-        <View style={{backgroundColor: COLORS.green, padding: 12}}>
-          <Feather name="send" size={20} color={COLORS.white} />
+        <View style={{backgroundColor: Colors.primary, padding: 12}}>
+          <Feather name="send" size={20} color={Colors.white} />
         </View>
       </Send>
     )
@@ -68,45 +74,46 @@ const Chat = ({navigation, route}) => {
         {...props}
         wrapperStyle={{
           right: {
-            backgroundColor: '#D1D0E0',
+            backgroundColor: colors.lavender,
           },
         }}
         textStyle={{
           right: {
-            color: COLORS.black,
+            color: Colors.black,
           },
         }}
       />
     )
   }
 
-  const scrollToBottomComponent = props => {}
-
   return (
-    <SafeAreaView style={{flexGrow: 1}}>
+    <SafeAreaView style={gs.flexGrowFill}>
       <View style={styles.container}>
         <View
           style={{
             marginHorizontal: 10,
             flexDirection: 'row',
           }}>
-          <Ionicons name="chevron-back-outline" size={28} color={COLORS.black} />
+          <Ionicons name="chevron-back-outline" size={28} color={Colors.black} />
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Image source={Images.ChatDp} />
+            <Image source={images.chatDp} />
             <View style={{marginLeft: 10, width: '60%'}}>
               <CustomText text={'Sahara Ardia...'} style={{fontSize: 16, fontWeight: 'bold'}} />
               <CustomText text={'Online'} />
             </View>
             <View style={{width: '10%', alignItems: 'flex-end'}}>
               <TouchableOpacity onPress={() => ref_RBSheetCamera.current.open()}>
-                <Entypo name="dots-three-vertical" size={20} color={COLORS.black} />
+                <Entypo name="dots-three-vertical" size={20} color={Colors.black} />
               </TouchableOpacity>
             </View>
           </View>
         </View>
       </View>
       <View style={{alignItems: 'center', alignContent: 'center', marginTop: 20}}>
-        <CustomText text={'Start Your Chat'} style={{color: COLORS.black, fontSize: 18}} />
+        <CustomText
+          text={'Start Your Chat'}
+          style={{color: Colors.black, fontSize: theme.light.fontSize.lg}}
+        />
       </View>
       <GiftedChat
         scrollToBottom
@@ -115,10 +122,9 @@ const Chat = ({navigation, route}) => {
         messages={messages}
         onSend={newMessages => onSend(newMessages)}
         renderInputToolbar={props => customInputToolbar(props)}
-        textInputStyle={{color: COLORS.black}}
+        textInputStyle={{color: Colors.black}}
         renderBubble={renderBubble}
         renderSend={renderSend}
-        scrollToBottomComponent={scrollToBottomComponent}
       />
 
       <RBSheet
@@ -132,7 +138,7 @@ const Chat = ({navigation, route}) => {
             backgroundColor: 'rgba(52, 52, 52, 0.5)',
           },
           draggableIcon: {
-            backgroundColor: COLORS.white,
+            backgroundColor: Colors.white,
             height: 3,
             width: 50,
           },
@@ -143,10 +149,10 @@ const Chat = ({navigation, route}) => {
           },
         }}>
         <View>
-          <View style={{marginHorizontal: 20}}>
+          <View style={gms.mh20}>
             <View style={{alignItems: 'flex-end'}}>
               <TouchableOpacity onPress={() => ref_RBSheetCamera.current.close()}>
-                <AntDesign name="close" size={20} color={COLORS.black} />
+                <AntDesign name="close" size={20} color={Colors.black} />
               </TouchableOpacity>
             </View>
             <TouchableOpacity
@@ -154,17 +160,17 @@ const Chat = ({navigation, route}) => {
                 navigation.navigate('Report')
                 ref_RBSheetCamera.current.close()
               }}
-              style={{padding: 10}}>
+              style={gps.p10}>
               <CustomText text={'Report User'} />
             </TouchableOpacity>
-            <View style={{height: 0.5, backgroundColor: '#D1D0E0'}} />
+            <View style={{height: 0.5, backgroundColor: colors.lavender}} />
             <TouchableOpacity
-              style={{marginTop: 10}}
+              style={gms.mt10}
               onPress={() => {
                 ref_RBSheetCamera.current.close()
                 toggleModal()
               }}>
-              <CustomText text={'Delete Chat'} style={{padding: 10}} />
+              <CustomText text={'Delete Chat'} style={gps.p10} />
             </TouchableOpacity>
           </View>
         </View>
@@ -173,18 +179,18 @@ const Chat = ({navigation, route}) => {
         <View
           style={{
             flex: 0.2,
-            backgroundColor: COLORS.white,
+            backgroundColor: Colors.white,
             borderRadius: 15,
             marginHorizontal: 20,
           }}>
-          <View style={{marginHorizontal: 20, marginTop: 10}}>
+          <View style={(gms.mh20, gms.mt10)}>
             <CustomText
               text={'Delete Chat'}
-              style={{fontSize: 18, fontWeight: 'bold', color: COLORS.black}}
+              style={{fontSize: theme.light.fontSize.lg, fontWeight: 'bold', color: Colors.black}}
             />
             <CustomText
               text={'Do you want to delete chat?'}
-              style={{fontSize: 13, color: COLORS.grey, marginTop: 6}}
+              style={{fontSize: 13, color: Colors.quartz, marginTop: 6}}
             />
           </View>
           <View
@@ -198,27 +204,26 @@ const Chat = ({navigation, route}) => {
               onPress={() => toggleModal()}
               style={{
                 padding: 10,
-                backgroundColor: '#D1D0E0',
+                backgroundColor: colors.lavender,
                 width: '40%',
                 borderRadius: 10,
                 alignContent: 'center',
                 alignItems: 'center',
               }}>
-              <CustomText text={'Cancel'} style={{color: COLORS.black}} />
+              <CustomText text={'Cancel'} style={{color: Colors.black}} />
             </TouchableOpacity>
             <TouchableOpacity
               style={{
                 padding: 10,
-                backgroundColor: '#1B1464',
+                backgroundColor: colors.primary,
                 width: '40%',
                 borderRadius: 10,
                 alignContent: 'center',
                 alignItems: 'center',
               }}>
-              <CustomText text={'Yes Delete'} style={{color: COLORS.white}} />
+              <CustomText text={'Yes Delete'} style={{color: Colors.white}} />
             </TouchableOpacity>
           </View>
-          {/* <Button title="Hide modal" onPress={toggleModal} /> */}
         </View>
       </Modal>
     </SafeAreaView>

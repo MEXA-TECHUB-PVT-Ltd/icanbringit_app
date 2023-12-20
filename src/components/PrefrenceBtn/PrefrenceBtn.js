@@ -1,21 +1,9 @@
 import React from 'react'
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 
-const InnerButton = ({
-  style,
-  onPress,
-  buttonText,
-  textStyle,
-  icon_view,
-  isDisabled = false,
-  Lefticon,
-  name,
-  type,
-  color,
-  size,
-}) => {
+const InnerButton = ({style, onPress, buttonText, textStyle, icon_view, isDisabled = false}) => {
   return (
     <>
       <TouchableOpacity onPress={onPress} style={[styles.container, style]} disabled={isDisabled}>
@@ -27,8 +15,6 @@ const InnerButton = ({
   )
 }
 
-export default InnerButton
-
 const styles = StyleSheet.create({
   container: {
     height: 50,
@@ -37,7 +23,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 20,
     alignSelf: 'center',
-    borderColor: COLORS.black,
+    borderColor: Colors.black,
     borderWidth: 0.5,
     flexDirection: 'row',
     paddingHorizontal: 10,
@@ -48,12 +34,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   defaultText: {
-    color: COLORS.black,
+    color: Colors.black,
     fontSize: 16,
     alignSelf: 'center',
   },
-  icon: {
-    width: '12%',
-    paddingRight: 30,
-  },
 })
+
+export default InnerButton
+

@@ -16,6 +16,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 import styles from './styles'
 import Back from '../../assets/svgs/back.svg'
+import { colors } from '../../themes'
 
 LogBox.ignoreAllLogs()
 
@@ -65,7 +66,7 @@ const Select_preferences = ({navigation}) => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={{backgroundColor: '#ffff'}}>
+      <ScrollView style={{backgroundColor: colors.white}}>
         <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
         <View style={styles.mainView}>
           <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.goBack()}>
@@ -93,14 +94,14 @@ const Select_preferences = ({navigation}) => {
                       onPress={() => setclickedId(index)}
                       style={[
                         index === clickedId
-                          ? [styles.optionsView, {backgroundColor: '#3FA9F5'}]
-                          : [styles.optionsView, {backgroundColor: 'white'}],
+                          ? [styles.optionsView, {backgroundColor: colors.picton_blue}]
+                          : [styles.optionsView, {backgroundColor: colors.white}],
                       ]}>
                       <Text
                         style={[
                           index === clickedId
-                            ? [styles.text, {color: 'white'}]
-                            : [styles.text, {color: 'black'}],
+                            ? [styles.text, {color: colors.white}]
+                            : [styles.text, {color: colors.black}],
                         ]}>
                         {item.head}
                       </Text>
@@ -122,14 +123,14 @@ const Select_preferences = ({navigation}) => {
                       }}
                       style={[
                         index === clickedId1
-                          ? [styles.optionsView, {backgroundColor: '#3FA9F5'}]
-                          : [styles.optionsView, {backgroundColor: 'white'}],
+                          ? [styles.optionsView, {backgroundColor: colors.picton_blue}]
+                          : [styles.optionsView, {backgroundColor: colors.white}],
                       ]}>
                       <Text
                         style={[
                           index === clickedId1
-                            ? [styles.text, {color: 'white'}]
-                            : [styles.text, {color: 'black'}],
+                            ? [styles.text, {color: colors.white}]
+                            : [styles.text, {color: colors.black}],
                         ]}>
                         {item.head}
                       </Text>
@@ -151,14 +152,14 @@ const Select_preferences = ({navigation}) => {
                       }}
                       style={[
                         index === clickedId2
-                          ? [styles.optionsView, {backgroundColor: '#3FA9F5'}]
-                          : [styles.optionsView, {backgroundColor: 'white'}],
+                          ? [styles.optionsView, {backgroundColor: colors.picton_blue}]
+                          : [styles.optionsView, {backgroundColor: colors.white}],
                       ]}>
                       <Text
                         style={[
                           index === clickedId2
-                            ? [styles.text, {color: 'white'}]
-                            : [styles.text, {color: 'black'}],
+                            ? [styles.text, {color: colors.white}]
+                            : [styles.text, {color: colors.black}],
                         ]}>
                         {item.head}
                       </Text>
@@ -176,19 +177,19 @@ const Select_preferences = ({navigation}) => {
               </Text>
               <TouchableOpacity
                 activeOpacity={0.7}
-                style={[styles.btnl, {backgroundColor: '#1B1464'}]}
+                style={[styles.btnl, {backgroundColor: colors.primary}]}
                 onPress={() => {
                   setcount(count + 1)
                   if (count >= 3) {
                     navigation.navigate('Thank_you')
                   }
                 }}>
-                <MaterialIcons name={'navigate-next'} size={36} color={'#F0F0F0'} />
+                <MaterialIcons name={'navigate-next'} size={36} color={colors.anti_flash_white} />
               </TouchableOpacity>
             </View>
             <ProgressBar
               progress={count == 1 ? 0.3 : count == 2 ? 0.6 : count == 3 ? 1 : 0}
-              color={'#3FA9F5'}
+              color={colors.picton_blue}
               style={styles.p}
             />
           </View>

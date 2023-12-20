@@ -10,7 +10,8 @@ import FVR_headers from '../../components/button/FVR_headers'
 import {resetPasswordValidationSchema} from '../../utils/Validations'
 import InputField from '../../components/InputFiled'
 import CustomText from '../../components/Text'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
+import { colors } from '../../themes'
 
 LogBox.ignoreAllLogs()
 
@@ -18,7 +19,7 @@ const App = ({navigation}) => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={{backgroundColor: '#ADDAFA'}}>
+      <ScrollView style={{backgroundColor: colors.fresh_air}}>
         <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
         <View style={styles.mainView}>
           <FVR_headers title="Reset Password" title1="Create a strong password." />
@@ -50,7 +51,7 @@ const App = ({navigation}) => {
                     Lefticon={true}
                     name="lock"
                     type={'SimpleLineIcons'}
-                    color={'gray'}
+                    color={Colors.grey}
                     size={18}
                     style={styles.input}
                   />
@@ -68,7 +69,7 @@ const App = ({navigation}) => {
                     Lefticon={true}
                     name="lock"
                     type={'SimpleLineIcons'}
-                    color={COLORS.iconColor}
+                    color={Colors.quartz}
                     size={18}
                     style={styles.input}
                   />

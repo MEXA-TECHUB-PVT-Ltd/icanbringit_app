@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, Text} from 'react-native'
 
-import COLORS from '../themes/colors'
+import Colors from '../themes/colors'
 
 const CustomText = ({style, text, numberOfLines, onLayout}) => {
   return (
@@ -12,8 +12,7 @@ const CustomText = ({style, text, numberOfLines, onLayout}) => {
 }
 const styles = StyleSheet.create({
   text: {
-    // ...FONTS.Medium16,
-    color: COLORS.grey,
+    color: Colors.quartz,
   },
 })
 

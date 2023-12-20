@@ -1,87 +1,28 @@
-import {View, Image, TouchableOpacity, FlatList, Text, StatusBar} from 'react-native'
 import React from 'react'
-import Images from '../../constants/Images'
-import COLORS from '../../themes/colors'
+import {View, Image, TouchableOpacity, FlatList, Text, StatusBar, StyleSheet} from 'react-native'
+
+import Colors from '../../themes/colors'
 import CustomText from '../../components/Text'
 import Header from '../../components/Header/Header'
+import notificationData from '../../data/notification-data'
+import {globalPaddingStyles as gps, globalStyles as gs} from '../../styles'
 
-const Notifications = ({navigation}) => {
-  const notificationData = [
-    {
-      id: 1,
-      image: Images.profiledp,
-      title: 'David Silbia Invite Jo Malone London’s Mother’s ',
-      time: '08:01 PM',
-      status: true,
-      type: 'Accept',
-    },
-    {
-      id: 2,
-      image: Images.profiledp,
-      title: 'David Silbia Invite Jo Malone London’s Mother’s ',
-
-      time: '08:01 PM',
-      status: true,
-      type: 'Ignore',
-    },
-    {
-      id: 3,
-      image: Images.profiledp,
-      title: 'David Silbia Invite Jo Malone London’s Mother’s ',
-      status: true,
-      type: 'Accept',
-      time: '08:01 PM',
-    },
-    {
-      id: 4,
-      image: Images.profiledp,
-      title: 'David Silbia Invite Jo Malone London’s Mother’s ',
-      status: true,
-      type: 'Ignore',
-      time: '08:01 PM',
-    },
-    {
-      id: 5,
-      image: Images.profiledp,
-      title: 'David Silbia Invite Jo Malone London’s Mother’s ',
-      status: true,
-      type: 'Accept',
-      time: '08:01 PM',
-    },
-    {
-      id: 5,
-      image: Images.profiledp,
-      title: 'James Else has download the form',
-      time: '08:01 PM',
-      status: false,
-      type: 'Ignore',
-    },
-    {
-      id: 5,
-      image: Images.profiledp,
-      title: 'James Else has download the form',
-      time: '08:01 PM',
-      status: false,
-      type: 'Accept',
-    },
-  ]
-
+const Notifications = () => {
   return (
-    <View style={{flex: 1}}>
+    <View style={gs.fill}>
       <StatusBar translucent={true} />
-
       <Header title={'Notifications'} />
       <FlatList
         ListHeaderComponent={() => <Text>Today</Text>}
         showsHorizontalScrollIndicator={false}
         data={notificationData}
         renderItem={({item, ind}) => (
-          <View style={{paddingHorizontal: 20, paddingTop: 15}}>
+          <View style={styles.listItemContainer}>
             <View style={{height: 120}}>
               <View style={{flexDirection: 'row', paddingTop: 10}}>
-                <Image source={item.image} style={{height: 50, width: 50, marginHorizontal: 10}} />
+                <Image source={item.image} style={styles.img} />
                 <View style={{width: '60%'}}>
-                  <CustomText text={item.title} style={{paddingTop: 10}} />
+                  <CustomText text={item.title} style={gps.pt10} />
                 </View>
                 <CustomText text={item.time} style={{fontSize: 12, marginTop: 11}} />
               </View>
@@ -91,8 +32,8 @@ const Notifications = ({navigation}) => {
                   flexDirection: 'row',
                   alignSelf: 'flex-end',
                   paddingRight: 20,
-                }}/>
-
+                }}
+              />
               <View
                 style={{
                   flexDirection: 'row',
@@ -100,30 +41,36 @@ const Notifications = ({navigation}) => {
                 }}>
                 <TouchableOpacity
                   style={{
-                    backgroundColor: COLORS.greylight,
+                    backgroundColor: Colors.old_silver_o2,
                     padding: 10,
                     marginRight: 10,
                     borderRadius: 10,
                   }}>
-                  <CustomText text={item.type} style={{color: COLORS.black}} />
+                  <CustomText text={item.type} style={{color: Colors.black}} />
                 </TouchableOpacity>
-                <TouchableOpacity
-                  style={{
-                    backgroundColor: COLORS.green,
-                    padding: 10,
-                    marginRight: 10,
-                    borderRadius: 10,
-                  }}>
-                  <CustomText text={item.type} style={{color: COLORS.white}} />
+                <TouchableOpacity style={styles.btnContainer}>
+                  <CustomText text={item.type} style={{color: Colors.white}} />
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{height: 0.5, backgroundColor: COLORS.greylight}} />
+            <View style={styles.divider} />
           </View>
         )}
       />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  listItemContainer: {paddingHorizontal: 20, paddingTop: 15},
+  divider: {height: 0.5, backgroundColor: Colors.old_silver_o2},
+  btnContainer: {
+    backgroundColor: Colors.primary,
+    padding: 10,
+    marginRight: 10,
+    borderRadius: 10,
+  },
+  img: {height: 50, width: 50, marginHorizontal: 10},
+})
 
 export default Notifications

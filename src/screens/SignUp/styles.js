@@ -2,12 +2,13 @@ import {StyleSheet} from 'react-native'
 
 import {heightPercentageToDP} from 'react-native-responsive-screen'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
+import { colors, fonts } from '../../themes'
 
 const STYLES = StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: Colors.white,
   },
   bigview: {
     flexDirection: 'row',
@@ -16,14 +17,14 @@ const STYLES = StyleSheet.create({
     marginVertical: '5%',
   },
   divider: {
-    backgroundColor: '#4B4B4B4D',
+    backgroundColor: colors.quartz,
     height: 1,
     width: '30%',
     alignSelf: 'center',
   },
   txt1: {
-    color: COLORS.grey,
-    fontFamily: 'Montserrat-SemiBold',
+    color: Colors.quartz,
+    fontFamily: fonts.montserrat.semi_bold,
     fontSize: heightPercentageToDP(1.8),
   },
   v2: {
@@ -37,13 +38,13 @@ const STYLES = StyleSheet.create({
     height: 50,
   },
   txt2: {
-    color: '#676767',
-    fontFamily: 'Montserrat-Medium',
+    color: colors.granite_grey,
+    fontFamily: fonts.montserrat.medium,
     fontSize: heightPercentageToDP(1.8),
   },
   txt3: {
-    color: COLORS.primary,
-    fontFamily: 'Montserrat-Bold',
+    color: Colors.primary,
+    fontFamily: fonts.montserrat.bold,
     fontSize: heightPercentageToDP(1.8),
   },
   errors: {

@@ -7,7 +7,7 @@ import SettingHeader from '../../components/SettingHeader/SettingHeader'
 import styles from './styles'
 import Custom_Button from '../../components/button/Custom_Button'
 import InputField from '../../components/InputFiled'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import CustomText from '../../components/Text'
 import {resetPasswordValidationSchema} from '../../utils/Validations'
 import CustomSnackbar from '../../components/CustomSnackbar/CustomSnackbar'
@@ -26,7 +26,7 @@ const UpdatePassword = ({navigation}) => {
   const resetPassword = ({values}) => handleUpdatePassword()
 
   return (
-    <SafeAreaView style={{flexGrow: 1, paddingTop: 25, backgroundColor: COLORS.white}}>
+    <SafeAreaView style={{flexGrow: 1, paddingTop: 25, backgroundColor: Colors.white}}>
       <SettingHeader title={'Change Password'} />
       <View style={styles.mainView}>
         {/* <Signin_signup_header title="I Can Bring It!" title1="Sign In" /> */}
@@ -53,7 +53,7 @@ const UpdatePassword = ({navigation}) => {
                   Lefticon={true}
                   name="lock"
                   type={'SimpleLineIcons'}
-                  color={COLORS.greylight}
+                  color={Colors.old_silver_o2}
                   size={18}
                 />
                 {/* {errors.password && touched.password && (
@@ -69,7 +69,7 @@ const UpdatePassword = ({navigation}) => {
                   Lefticon={true}
                   name="lock"
                   type={'SimpleLineIcons'}
-                  color={COLORS.greylight}
+                  color={Colors.old_silver_o2}
                   size={18}
                 />
                 {errors.password && touched.password && (
@@ -85,7 +85,7 @@ const UpdatePassword = ({navigation}) => {
                   Lefticon={true}
                   name="lock"
                   type={'SimpleLineIcons'}
-                  color={COLORS.greylight}
+                  color={Colors.old_silver_o2}
                   size={18}
                 />
                 {errors.confirmPassword && touched.confirmPassword && (

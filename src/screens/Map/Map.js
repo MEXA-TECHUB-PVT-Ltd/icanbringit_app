@@ -9,6 +9,7 @@ import Custom_Button from '../../components/button/Custom_Button'
 import Back from '../../assets/svgs/back.svg'
 import Pin from '../../assets/svgs/pin.svg'
 import styles from './styles'
+import { colors } from '../../themes'
 
 const CustomMarker = () => (
   <View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -98,7 +99,7 @@ const Onclick_getlatlong = ({navigation}) => {
             }}>
             <TextInput
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: colors.white,
                 width: '85%',
                 borderRadius: 20,
                 paddingLeft: '15%',
@@ -129,14 +130,14 @@ const Onclick_getlatlong = ({navigation}) => {
       <View style={styles.v}>
         <View
           style={{
-            borderColor: '#E4DFDF',
+            borderColor: colors.gainsboro,
             borderWidth: 1,
             borderRadius: 10,
             paddingHorizontal: '4%',
             marginTop: '10%',
             marginBottom: '5%',
             alignSelf: 'center',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: colors.white,
             width: '82%',
           }}>
           <TextInput

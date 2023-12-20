@@ -7,59 +7,19 @@ import {Formik} from 'formik'
 import FVR_headers from '../../components/button/FVR_headers'
 import {forgetPasswordValidationSchema} from '../../utils/Validations'
 import InputField from '../../components/InputFiled'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import CustomText from '../../components/Text'
+import {colors} from '../../themes'
+import {globalStyles as gs} from '../../styles'
 
 LogBox.ignoreAllLogs()
 
 const App = ({navigation}) => {
-  const [email, setemail] = useState('')
-
-  const forgetpass = async () => {
-    setloading(true)
-    try {
-      if (email != '') {
-        await fetch(global.url + 'user/forgotPassword', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: email,
-          }),
-        })
-          .then(response => response.json())
-          .then(data => {
-            if (data.error == false) {
-              setloading(false)
-              console.log(data.data.email + '<------>' + data.otp)
-              navigation.navigate('Verification', {
-                email: data.data.email,
-                otp: data.otp,
-              })
-            } else {
-              setloading(false)
-              console.log(data.message)
-              setEmailError(data.message)
-              setemail('')
-            }
-          })
-      } else {
-        setloading(false)
-        setEmailError('Please Enter Email')
-      }
-    } catch (error) {
-      setloading(false)
-      console.log('Post submission failed')
-      console.log(error.message)
-    }
-  }
   const forgetUserPassword = () => navigation.navigate('Verification')
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={{backgroundColor: '#ADDAFA'}}>
+    <SafeAreaView style={gs.fill}>
+      <ScrollView style={{backgroundColor: colors.fresh_air}}>
         <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
         <View style={styles.mainView}>
           <FVR_headers
@@ -67,7 +27,6 @@ const App = ({navigation}) => {
             title1="Enter your email below for a 4-digit verification code."
           />
           <View style={{marginHorizontal: '7%', marginTop: '25%'}}>
-            {/* <EmailInput title={'Enter Your Email '} /> */}
             <Formik
               initialValues={{
                 email: '',
@@ -90,7 +49,7 @@ const App = ({navigation}) => {
                       Lefticon={true}
                       name="email-outline"
                       type={'material-community'}
-                      color={COLORS.dark}
+                      color={Colors.dark}
                       size={18}
                       style={styles.input}
                     />
@@ -114,7 +73,6 @@ const App = ({navigation}) => {
                       <CustomButton
                         title="Send Code"
                         load={false}
-                        // checkdisable={inn == '' && cm == '' ? true : false}
                         customClick={() => handleSubmit(values)}
                       />
                     </View>

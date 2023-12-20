@@ -5,6 +5,8 @@ import Signin_signup_header from '../../components/button/Signin_signup_header'
 import InputField from '../../components/InputFiled'
 import Custom_Button from '../../components/button/Custom_Button'
 import {Picker} from '@react-native-picker/picker'
+import {colors} from '../../themes'
+import {globalPaddingStyles as gps, globalStyles as gs} from '../../styles'
 
 const AboutYourSelf = ({navigation}) => {
   const [selectedGender, setSelectedGender] = useState('Select Gender')
@@ -17,19 +19,12 @@ const AboutYourSelf = ({navigation}) => {
   ]
 
   return (
-    <View style={{flex: 1}}>
-      {/* <StatusBar translucent={false} /> */}
+    <View style={gs.fill}>
       <Signin_signup_header title="Tell Us About Yourself" />
       <ScrollView>
-        <View style={{paddingHorizontal: 20}}>
+        <View style={gps.ph20}>
           <InputField placeholder={'Full name'} />
-          <View
-            style={{
-              borderWidth: 0.5,
-              borderColor: 'black',
-              marginTop: 10,
-              borderRadius: 10,
-            }}>
+          <View style={styles.pickerContainer}>
             <Picker
               selectedValue={selectedGender}
               onValueChange={itemValue => setSelectedGender(itemValue)}
@@ -42,11 +37,10 @@ const AboutYourSelf = ({navigation}) => {
           <InputField placeholder={'Select Gender'} />
           <InputField placeholder={'Age'} />
           <InputField placeholder={'Country'} />
-          <View style={{marginTop: '40%'}}>
+          <View style={styles.btnContainer}>
             <Custom_Button
               title="Continue"
               load={false}
-              // checkdisable={inn == '' && cm == '' ? true : false}
               customClick={() => navigation.navigate('ProfilePic')}
             />
           </View>
@@ -59,8 +53,15 @@ const AboutYourSelf = ({navigation}) => {
 export default AboutYourSelf
 
 const styles = StyleSheet.create({
+  pickerContainer: {
+    borderWidth: 0.5,
+    borderColor: colors.black,
+    marginTop: 10,
+    borderRadius: 10,
+  },
   picker: {
-    borderColor: '#000',
+    borderColor: colors.black,
     borderWidth: 1,
   },
+  btnContainer: {marginTop: '40%'},
 })

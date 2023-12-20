@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import {StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native'
 
-import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
+import {widthPercentageToDP} from 'react-native-responsive-screen'
 
 import Signin_signup_header from '../../components/button/Signin_signup_header'
 import Custom_Button from '../../components/button/Custom_Button'
+import {colors, fonts} from '../../themes'
+import {globalMarginStyles as gms, globalStyles as gs} from '../../styles'
 
 const PreferedEvents = () => {
   const [clickedId, setclickedId] = useState()
@@ -24,36 +26,27 @@ const PreferedEvents = () => {
     },
   ])
   return (
-    <View style={{backgroundColor: 'white', flex: 1}}>
-      <View style={{marginHorizontal: 20}}>
+    <View style={gs.whiteContainer}>
+      <View style={gms.mh20}>
         <Signin_signup_header title="What type of Events do you prefer?" />
       </View>
       <View style={{marginHorizontal: '7%'}}>
         <FlatList
           data={fm}
           scrollEnabled={false}
-          renderItem={({item, index}) => {
-            return (
-              <TouchableOpacity
-                onPress={() => {
-                  setclickedId(index)
-                }}
-                style={[
-                  index === clickedId
-                    ? [styles.optionsView, {backgroundColor: '#3FA9F5'}]
-                    : [styles.optionsView, {backgroundColor: 'white'}],
-                ]}>
-                <Text
-                  style={[
-                    index === clickedId
-                      ? [styles.text, {color: 'white'}]
-                      : [styles.text, {color: 'black'}],
-                  ]}>
-                  {item.head}
-                </Text>
-              </TouchableOpacity>
-            )
-          }}
+          renderItem={({item, index}) => (
+            <TouchableOpacity
+              onPress={() => setclickedId(index)}
+              style={[
+                styles.optionsView,
+                {backgroundColor: index === clickedId ? colors.picton_blue : colors.white},
+              ]}>
+              <Text
+                style={[styles.text, {color: index === clickedId ? colors.white : colors.black}]}>
+                {item.head}
+              </Text>
+            </TouchableOpacity>
+          )}
           numColumns={1}
           keyExtractor={(item, index) => index}
         />
@@ -75,30 +68,21 @@ const PreferedEvents = () => {
 export default PreferedEvents
 
 const styles = StyleSheet.create({
-  txt: {
-    color: 'black',
-    fontSize: heightPercentageToDP(3.2),
-    fontFamily: 'Montserrat-Bold',
-    alignSelf: 'center',
-    textAlign: 'center',
-    marginHorizontal: '11%',
-  },
   optionsView: {
     justifyContent: 'center',
     borderWidth: 1,
     alignSelf: 'center',
     borderRadius: 15,
-    borderColor: 'lightgray',
+    borderColor: colors.ash_grey,
     width: 280,
     height: 40,
     marginTop: '5%',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
   text: {
-    color: '#000000',
-    fontSize: 20,
+    color: colors.black,
     textAlign: 'center',
     fontSize: widthPercentageToDP(4),
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: fonts.montserrat.regular,
   },
 })
