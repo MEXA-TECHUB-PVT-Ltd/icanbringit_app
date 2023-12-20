@@ -2,17 +2,19 @@ import {StyleSheet} from 'react-native'
 
 import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
+import {colors, fonts} from '../../themes'
 
 const STYLES = StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: Colors.white,
   },
-
+  smIcon: {paddingLeft: 15, flexDirection: 'row'},
+  avatarContainer: {marginHorizontal: '7%', marginTop: '0%'},
   txt: {
-    color: '#3FA9F5',
-    fontFamily: 'Montserrat-SemiBold',
+    color: colors.picton_blue,
+    fontFamily: fonts.montserrat.semi_bold,
     fontSize: heightPercentageToDP(1.8),
     marginTop: '4%',
     alignSelf: 'flex-end',
@@ -20,7 +22,7 @@ const STYLES = StyleSheet.create({
   v1: {
     alignSelf: 'center',
     borderWidth: 1,
-    borderColor: '#BBBBBB',
+    borderColor: colors.gray_o12,
     borderRadius: 100,
     width: 120,
     height: 120,
@@ -32,8 +34,8 @@ const STYLES = StyleSheet.create({
     alignSelf: 'center',
     textDecorationLine: 'underline',
     marginTop: '5%',
-    color: COLORS.primary,
-    fontFamily: 'Montserrat-SemiBold',
+    color: Colors.primary,
+    fontFamily: fonts.montserrat.semi_bold,
     fontSize: widthPercentageToDP(4),
   },
   rbview: {
@@ -41,15 +43,16 @@ const STYLES = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: '7%',
   },
+  btnContainer: {alignSelf: 'center', marginTop: '80%', marginBottom: '5%'},
   divider: {
     marginVertical: '5%',
-    backgroundColor: '#00000024',
+    backgroundColor: colors.light_black,
   },
   txtimg: {
     marginLeft: '5%',
 
-    color: '#191919',
-    fontFamily: 'Montserrat-SemiBold',
+    color: colors.eerie_black,
+    fontFamily: fonts.montserrat.semi_bold,
     fontSize: widthPercentageToDP(4),
   },
   upload: {

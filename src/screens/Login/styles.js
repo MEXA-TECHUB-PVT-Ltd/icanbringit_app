@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
+import { fonts } from '../../themes'
 
 const STYLES = StyleSheet.create({
   mainView: {
@@ -15,14 +16,14 @@ const STYLES = StyleSheet.create({
   },
   txtInpt: {
     width: '95%',
-    backgroundColor: COLORS.white,
-    color: COLORS.dark,
+    backgroundColor: Colors.white,
+    color: Colors.dark,
     fontSize: 15,
     alignSelf: 'center',
   },
   frgtpss: {
     alignSelf: 'flex-end',
-    color: COLORS.secondary,
+    color: Colors.secondary,
     marginHorizontal: '3%',
     marginVertical: '1%',
 
@@ -32,14 +33,14 @@ const STYLES = StyleSheet.create({
   orView: {
     alignSelf: 'center',
     marginTop: '10%',
-    color: COLORS.dark,
+    color: Colors.dark,
   },
   // --signup / login text style
   SgnOrIntxt: {
-    fontFamily: 'Raleway-Regular',
+    fontFamily: fonts.railway.regular,
     alignSelf: 'center',
     marginTop: '5%',
-    color: COLORS.dark,
+    color: Colors.dark,
     alignContent: 'center',
     textAlign: 'center',
     alignItems: 'center',

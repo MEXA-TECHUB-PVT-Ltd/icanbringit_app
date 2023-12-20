@@ -7,17 +7,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-import styles from './styles'
-import appImages from './../../constants/Images'
+import images from '../../constants/images'
 import B1 from '../../assets/svgs/filldot.svg'
 import B2 from '../../assets/svgs/blankdot.svg'
+import {colors} from '../../themes'
 
-const images = [
-  appImages.f1, // Replace with your image paths
-  appImages.f2,
-  appImages.f3,
-  appImages.f4,
-]
+import styles from './styles'
+import {globalStyles as gs} from '../../styles'
+
+const imagesArr = [images.f1, images.f2, images.f3, images.f4]
 
 const slideTexts = [
   'Organize Your Events With Ease',
@@ -45,7 +43,7 @@ function Onboarding({navigation}) {
 
   const goToNextSlide = () => {
     console.log('currentSlide---', currentSlide)
-    if (currentSlide < images.length - 1) {
+    if (currentSlide < imagesArr.length - 1) {
       const newSlide = currentSlide + 1
       setCurrentSlide(newSlide)
       swiperRef.current.scrollBy(1)
@@ -57,7 +55,6 @@ function Onboarding({navigation}) {
 
   const onIndexChanged = async index => {
     setCurrentSlide(index)
-    console.log('index--->', index)
     if (index == 4) {
       navigation.replace('Welcome')
       await AsyncStorage.setItem('boardcheck', 'true')
@@ -65,7 +62,7 @@ function Onboarding({navigation}) {
   }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={gs.fill}>
       <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
       <View style={styles.mainView}>
         <Swiper
@@ -75,7 +72,7 @@ function Onboarding({navigation}) {
           // paginationStyle={styles.paginationStyle}
           showsPagination={false}
           onIndexChanged={onIndexChanged}>
-          {images.map((image, index) => (
+          {imagesArr.map((image, index) => (
             <View style={styles.slide} key={index}>
               <Image source={image} style={styles.image} resizeMode={'contain'} />
               <View style={styles.buttonContainer}>
@@ -92,28 +89,25 @@ function Onboarding({navigation}) {
             </View>
           ))}
         </Swiper>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: '9%',
-            marginBottom: '10%',
-          }}>
+        <View style={styles.btnContainer}>
           <TouchableOpacity
             activeOpacity={0.7}
-            style={[styles.btnl, {backgroundColor: currentSlide == 0 ? '#F0F0F0' : '#1B1464'}]}
+            style={[
+              styles.btnl,
+              {backgroundColor: currentSlide == 0 ? colors.anti_flash_white : colors.primary},
+            ]}
             onPress={goToPreviousSlide}>
             <MaterialIcons
               name={'navigate-before'}
               size={36}
-              color={currentSlide == 0 ? '#8A8A8A' : '#F0F0F0'}
+              color={currentSlide == 0 ? colors.philipine_grey : colors.anti_flash_white}
             />
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.7}
-            style={[styles.btnl, {backgroundColor: '#1B1464'}]}
+            style={[styles.btnl, {backgroundColor: colors.primary}]}
             onPress={goToNextSlide}>
-            <MaterialIcons name={'navigate-next'} size={36} color={'#F0F0F0'} />
+            <MaterialIcons name={'navigate-next'} size={36} color={colors.anti_flash_white} />
           </TouchableOpacity>
         </View>
       </View>

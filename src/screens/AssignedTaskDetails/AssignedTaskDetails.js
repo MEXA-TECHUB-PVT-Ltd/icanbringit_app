@@ -3,14 +3,16 @@ import {Image, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View} fro
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/Colors'
 import Back from '../../assets/svgs/back.svg'
 import CustomText from '../../components/Text'
-import Images from '../../constants/Images'
+import images from '../../constants/images'
+import {globalStyles as gs, globalMarginStyles as gms} from '../../styles'
+import {theme} from '../../themes'
 
 const AssignedTaskDetails = ({navigation}) => {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={gs.fill}>
       <View
         style={{
           flexDirection: 'row',
@@ -37,137 +39,93 @@ const AssignedTaskDetails = ({navigation}) => {
       </View>
 
       <ScrollView>
-        <View style={{marginHorizontal: 20}}>
-          <CustomText
-            text={'Task # 1'}
-            style={{
-              marginTop: 20,
-              color: COLORS.green,
-              fontWeight: 'bold',
-              fontSize: 16,
-            }}
-          />
+        <View style={gms.mh20}>
+          <CustomText text={'Task # 1'} style={styles.boldText} />
           <CustomText
             text={'Buy Decoration Things'}
             style={{
               marginTop: 20,
-              color: COLORS.black,
+              color: Colors.black,
               fontWeight: 'bold',
               fontSize: 14,
             }}
           />
           <CustomText
             text={'Nov 27, 2023 - 03:00 pm'}
-            style={{color: COLORS.grey, fontSize: 12, marginTop: 10}}
+            style={{color: Colors.quartz, fontSize: theme.light.fontSize.xs, marginTop: 10}}
           />
           <CustomText
             text={
               'Your task is to buy decorations that reflect your personal style and create a welcoming environment. Begin by exploring local home decor stores or online platforms to find a diverse range of items, such as wall art, vases, cushions, or any other decorative pieces that catch your eye.'
             }
-            style={{color: COLORS.grey, fontSize: 12, marginTop: 10}}
+            style={{color: Colors.quartz, fontSize: theme.light.fontSize.xs, marginTop: 10}}
           />
-          <CustomText
-            text={'Available on'}
-            style={{
-              marginTop: 20,
-              color: COLORS.green,
-              fontWeight: 'bold',
-              fontSize: 16,
-            }}
-          />
-          <View style={{marginTop: 30}}>
+          <CustomText text={'Available on'} style={styles.boldText} />
+          <View style={gms.mt30}>
             <TouchableOpacity
               onPress={() => navigation.navigate('AssignedTaskDetails')}
               style={{
-                backgroundColor: COLORS.blue,
+                backgroundColor: colors.skye_blue,
                 paddingVertical: 15,
                 borderRadius: 10,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
               }}>
-              {/* <CustomText text={'Assigned Task'} style={{color: COLORS.white}} /> */}
-              <Image source={Images.amazon} resizeMode="contain" style={{height: 20}} />
-              <MaterialIcons name="keyboard-arrow-right" size={20} color={COLORS.white} />
+              <Image source={images.amazon} resizeMode="contain" style={{height: 20}} />
+              <MaterialIcons name="keyboard-arrow-right" size={20} color={Colors.white} />
             </TouchableOpacity>
           </View>
-          <CustomText
-            text={'Task # 2'}
-            style={{
-              marginTop: 20,
-              color: COLORS.green,
-              fontWeight: 'bold',
-              fontSize: 16,
-            }}
-          />
+          <CustomText text={'Task # 2'} style={styles.boldText} />
           <CustomText
             text={'Buy a Wooden Table'}
             style={{
               marginTop: 20,
-              color: COLORS.black,
+              color: Colors.black,
               fontWeight: 'bold',
               fontSize: 14,
             }}
           />
           <CustomText
             text={'Nov 27, 2023 - 03:00 pm'}
-            style={{color: COLORS.grey, fontSize: 12, marginTop: 10}}
+            style={{color: Colors.quartz, fontSize: 12, marginTop: 10}}
           />
           <CustomText
             text={
               'Your task is to buy decorations that reflect your personal style and create a welcoming environment. Begin by exploring local home decor stores or online platforms to find a diverse range of items, such as wall art, vases, cushions, or any other decorative pieces that catch your eye.'
             }
-            style={{color: COLORS.grey, fontSize: 12, marginTop: 10}}
+            style={{color: Colors.quartz, fontSize: 12, marginTop: 10}}
           />
-          <CustomText
-            text={'Available on'}
-            style={{
-              marginTop: 20,
-              color: COLORS.green,
-              fontWeight: 'bold',
-              fontSize: 16,
-            }}
-          />
-          <View style={{marginTop: 30}}>
+          <CustomText text={'Available on'} style={styles.boldText} />
+          <View style={gms.mt30}>
             <TouchableOpacity
               onPress={() => navigation.navigate('AssignedTaskDetails')}
               style={{
-                backgroundColor: COLORS.blue,
+                backgroundColor: colors.skye_blue,
                 paddingVertical: 15,
                 borderRadius: 10,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
               }}>
-              {/* <CustomText text={'Assigned Task'} style={{color: COLORS.white}} /> */}
-              <Image source={Images.amazon} resizeMode="contain" style={{height: 20}} />
-              <MaterialIcons name="keyboard-arrow-right" size={20} color={COLORS.white} />
+              <Image source={images.amazon} resizeMode="contain" style={{height: 20}} />
+              <MaterialIcons name="keyboard-arrow-right" size={20} color={Colors.white} />
             </TouchableOpacity>
           </View>
-          <CustomText
-            text={'Available on'}
-            style={{
-              marginTop: 20,
-              color: COLORS.green,
-              fontWeight: 'bold',
-              fontSize: 16,
-            }}
-          />
-          <View style={{marginTop: 30}}>
+          <CustomText text={'Available on'} style={styles.boldText} />
+          <View style={gms.mt30}>
             <TouchableOpacity
               onPress={() => navigation.navigate('AssignedTaskDetails')}
               style={{
-                backgroundColor: COLORS.blue,
+                backgroundColor: colors.skye_blue,
                 paddingVertical: 15,
                 borderRadius: 10,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
               }}>
-              {/* <CustomText text={'Assigned Task'} style={{color: COLORS.white}} /> */}
-              <Image source={Images.amazon} resizeMode="contain" style={{height: 20}} />
-              <MaterialIcons name="keyboard-arrow-right" size={20} color={COLORS.white} />
+              <Image source={images.amazon} resizeMode="contain" style={{height: 20}} />
+              <MaterialIcons name="keyboard-arrow-right" size={20} color={Colors.white} />
             </TouchableOpacity>
           </View>
         </View>
-        {/* <View style={{height:100}}/> */}
       </ScrollView>
     </SafeAreaView>
   )
@@ -175,4 +133,11 @@ const AssignedTaskDetails = ({navigation}) => {
 
 export default AssignedTaskDetails
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  boldText: {
+    ...gms.mt20,
+    color: Colors.primary,
+    fontWeight: 'bold',
+    fontSize: theme.light.fontSize.md,
+  },
+})

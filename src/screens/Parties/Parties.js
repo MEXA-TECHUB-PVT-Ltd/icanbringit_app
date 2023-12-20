@@ -2,14 +2,15 @@ import React from 'react'
 import { FlatList, StyleSheet, Image, TouchableOpacity, View, SafeAreaView, StatusBar } from 'react-native'
 import Header from '../../components/Header/Header'
 import CustomText from '../../components/Text'
-import Images from '../../constants/Images'
-import COLORS from '../../themes/colors'
+import images from '../../constants/images'
+import Colors from '../../themes/colors'
+import { colors } from '../../themes'
 
 const Parties = ({navigation}) => {
     const PartiesData = [
         {
           id: 1,
-          image: Images.PartiesBg1,
+          image: images.PartiesBg1,
           title: 'Candyland Carnival',
           time: 'Sun, Oct 29 - 5:00 pm',
           online: 'online',
@@ -17,7 +18,7 @@ const Parties = ({navigation}) => {
         },
         {
           id: 2,
-          image: Images.PartiesBg1,
+          image: images.PartiesBg1,
           title: 'Candyland Carnival',
           time: 'Sun, Oct 29 - 5:00 pm',
           online: 'online',
@@ -25,7 +26,7 @@ const Parties = ({navigation}) => {
         },
         {
           id: 3,
-          image: Images.PartiesBg1,
+          image: images.PartiesBg1,
           title: 'Candyland Carnival',
           time: 'Sun, Oct 29 - 5:00 pm',
           online: 'online',
@@ -33,7 +34,7 @@ const Parties = ({navigation}) => {
         },
         {
             id: 3,
-            image: Images.PartiesBg1,
+            image: images.PartiesBg1,
             title: 'Candyland Carnival',
             time: 'Sun, Oct 29 - 5:00 pm',
             online: 'online',
@@ -41,7 +42,7 @@ const Parties = ({navigation}) => {
           },
           {
             id: 3,
-            image: Images.PartiesBg1,
+            image: images.PartiesBg1,
             title: 'Candyland Carnival',
             time: 'Sun, Oct 29 - 5:00 pm',
             online: 'online',
@@ -49,7 +50,7 @@ const Parties = ({navigation}) => {
           },
           {
             id: 3,
-            image: Images.PartiesBg1,
+            image: images.PartiesBg1,
             title: 'Candyland Carnival',
             time: 'Sun, Oct 29 - 5:00 pm',
             online: 'online',
@@ -57,7 +58,7 @@ const Parties = ({navigation}) => {
           },
           {
             id: 3,
-            image: Images.PartiesBg1,
+            image: images.PartiesBg1,
             title: 'Candyland Carnival',
             time: 'Sun, Oct 29 - 5:00 pm',
             online: 'online',
@@ -65,7 +66,7 @@ const Parties = ({navigation}) => {
           },
           {
             id: 3,
-            image: Images.PartiesBg1,
+            image: images.PartiesBg1,
             title: 'Candyland Carnival',
             time: 'Sun, Oct 29 - 5:00 pm',
             online: 'online',
@@ -102,7 +103,7 @@ const Parties = ({navigation}) => {
                       <CustomText text={item.online} />
                     </TouchableOpacity>
                     <TouchableOpacity
-                      style={[styles.cardBtn, {backgroundColor: '#FF6B01'}]}>
+                      style={[styles.cardBtn, {backgroundColor: colors.orange}]}>
                       <CustomText text={item.privte} style={styles.textView} />
                     </TouchableOpacity>
                   </View>
@@ -125,13 +126,13 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         marginTop: 10,
         borderRadius: 1,
-        borderColor: COLORS.black,
+        borderColor: Colors.black,
         // borderWidth: 0.1,
         elevation:0.9,
         width: 150,
       },
       titleView: {
-        color: COLORS.secondary,
+        color: Colors.secondary,
         fontSize: 18,
         marginHorizontal: 10,
         fontWeight: 'bold',
@@ -145,14 +146,13 @@ const styles = StyleSheet.create({
         fontSize:13
       },
       cardBtn: {
-        backgroundColor: COLORS.blue,
+        backgroundColor: Colors.skye_blue,
         padding: 8,
         marginHorizontal: 10,
         borderRadius: 20,
-        // width: '40%',
         alignItems: 'center',
       },
       textView: {
-        color: COLORS.white,
+        color: Colors.white,
       },
 })

@@ -5,8 +5,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import CustomText from '../../components/Text'
-import COLORS from '../../themes/colors'
-import Images from '../../constants/Images'
+import Colors from '../../themes/colors'
+import images from '../../constants/images'
 import InputField from '../../components/InputFiled'
 
 const ChatList = ({navigation}) => {
@@ -17,63 +17,63 @@ const ChatList = ({navigation}) => {
   const PartiesData = [
     {
       id: 1,
-      image: Images.ChatDp,
+      image: images.ChatDp,
       title: 'Sahara Ardia Fadia',
       time: ' 5:00 pm',
       detail: 'Okay see you soon',
     },
     {
       id: 2,
-      image: Images.ChatDp,
+      image: images.ChatDp,
       title: 'Sahara Ardia Fadia',
       time: ' 5:00 pm',
       detail: 'Okay see you soon',
     },
     {
       id: 3,
-      image: Images.ChatDp2,
+      image: images.ChatDp2,
       title: 'Sahara Ardia Fadia',
       time: ' 5:00 pm',
       detail: 'Okay see you soon',
     },
     {
       id: 3,
-      image: Images.ChatDp,
+      image: images.ChatDp,
       title: 'Sahara Ardia Fadia',
       time: ' 5:00 pm',
       detail: 'Okay see you soon',
     },
     {
       id: 3,
-      image: Images.ChatDp2,
+      image: images.ChatDp2,
       title: 'Sahara Ardia Fadia',
       time: ' 5:00 pm',
       detail: 'Okay see you soon',
     },
     {
       id: 3,
-      image: Images.ChatDp,
+      image: images.ChatDp,
       title: 'Sahara Ardia Fadia',
       time: ' 5:00 pm',
       detail: 'Okay see you soon',
     },
     {
       id: 3,
-      image: Images.ChatDp2,
+      image: images.ChatDp2,
       title: 'Sahara Ardia Fadia',
       time: ' 5:00 pm',
       detail: 'Okay see you soon',
     },
     {
       id: 3,
-      image: Images.ChatDp,
+      image: images.ChatDp,
       title: 'Sahara Ardia Fadia',
       time: ' 5:00 pm',
       detail: 'Okay see you soon',
     },
   ]
   return (
-    <SafeAreaView style={{flexGrow: 1, backgroundColor: COLORS.white, paddingTop: 30}}>
+    <SafeAreaView style={{flexGrow: 1, backgroundColor: Colors.white, paddingTop: 30}}>
       <View
         style={{
           height: 60,
@@ -87,7 +87,7 @@ const ChatList = ({navigation}) => {
           {!showInputField ? (
             <CustomText
               text={'Chats'}
-              style={{fontSize: 20, fontWeight: 'bold', color: COLORS.black}}
+              style={{fontSize: 20, fontWeight: 'bold', color: Colors.black}}
             />
           ) : (
             <TouchableOpacity
@@ -97,7 +97,7 @@ const ChatList = ({navigation}) => {
                 height: 60,
                 marginTop: 15,
               }}>
-              <Ionicons name="chevron-back-outline" size={28} color={COLORS.black} />
+              <Ionicons name="chevron-back-outline" size={28} color={Colors.black} />
             </TouchableOpacity>
           )}
         </View>
@@ -112,7 +112,7 @@ const ChatList = ({navigation}) => {
                 marginTop: 30,
                 paddingHorizontal: 10,
               }}>
-              <AntDesign name="search1" size={22} color={COLORS.greylight} />
+              <AntDesign name="search1" size={22} color={Colors.old_silver_o2} />
             </View>
           </View>
         )}
@@ -120,7 +120,7 @@ const ChatList = ({navigation}) => {
         <View>
           {!showInputField && (
             <TouchableOpacity onPress={handleSearchIconPress}>
-              <AntDesign name="search1" size={22} color={COLORS.black} />
+              <AntDesign name="search1" size={22} color={Colors.black} />
             </TouchableOpacity>
           )}
         </View>
@@ -152,7 +152,7 @@ const ChatList = ({navigation}) => {
                     }}>
                     <CustomText
                       text={item.title}
-                      style={{fontWeight: 'bold', color: COLORS.black}}
+                      style={{fontWeight: 'bold', color: Colors.black}}
                     />
                     <CustomText text={item.time} />
                   </View>
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   titleView: {
-    color: COLORS.secondary,
+    color: Colors.secondary,
     fontSize: 18,
     marginHorizontal: 10,
     fontWeight: 'bold',

@@ -1,25 +1,18 @@
 import React from 'react'
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Image,
-  View,
-  TouchableOpacity,
-  Platform,
-} from 'react-native'
+import {SafeAreaView, ScrollView, StatusBar, Image, View, TouchableOpacity} from 'react-native'
 
 import {Formik} from 'formik'
 import {Text, Divider} from 'react-native-paper'
 
-import COLORS from '../../themes/colors'
-import appImages from './../../constants/Images'
+import Colors from '../../themes/colors'
+import images from '../../constants/images'
 import CustomButton from '../../components/button/Custom_Button'
 import Signin_signup_header from '../../components/button/Signin_signup_header'
 import styles from './styles'
 import {logInValidationSchema} from '../../utils/Validations'
 import InputField from '../../components/InputFiled'
 import CustomText from '../../components/Text'
+import {isIos} from '../../utils/helpers/Dimensions'
 
 const SignIn = ({navigation}) => {
   const LogInUser = async (values, {setSubmitting, setValues}) => {
@@ -55,7 +48,7 @@ const SignIn = ({navigation}) => {
                     Lefticon={true}
                     name="email-outline"
                     type={'material-community'}
-                    color={COLORS.grey}
+                    color={Colors.quartz}
                     size={18}
                   />
                   {errors.email && touched.email && (
@@ -71,7 +64,7 @@ const SignIn = ({navigation}) => {
                     Lefticon={true}
                     name="lock"
                     type={'SimpleLineIcons'}
-                    color={COLORS.greylight}
+                    color={Colors.old_silver_o2}
                     size={18}
                   />
                   {errors.password && touched.password && (
@@ -106,17 +99,15 @@ const SignIn = ({navigation}) => {
                   <Divider style={styles.divider} />
                 </View>
 
-                <View style={[styles.v2, {width: Platform.OS === 'ios' ? '60%' : '40%'}]}>
-                  <Image source={appImages.f} style={styles.img} />
-                  <Image source={appImages.g} style={styles.img} />
-                  {Platform.OS === 'ios' && <Image source={appImages.a} style={styles.img} />}
+                <View style={[styles.v2, {width: isIos ? '60%' : '40%'}]}>
+                  <Image source={images.facebook} style={styles.img} />
+                  <Image source={images.google} style={styles.img} />
+                  {isIos && <Image source={images.apple} style={styles.img} />}
                 </View>
 
                 <TouchableOpacity
                   activeOpacity={0.7}
-                  onPress={() => {
-                    navigation.navigate('SignUp')
-                  }}
+                  onPress={() => navigation.navigate('SignUp')}
                   style={{
                     alignSelf: 'center',
                     marginTop: '5%',

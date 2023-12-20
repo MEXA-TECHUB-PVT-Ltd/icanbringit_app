@@ -11,9 +11,9 @@ import {
 } from 'react-native'
 
 import SettingHeader from '../../components/SettingHeader/SettingHeader'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import CustomText from '../../components/Text'
-import Images from '../../constants/Images'
+import images from '../../constants/images'
 import InputField from '../../components/InputFiled'
 import DropDownPicker from 'react-native-dropdown-picker'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker'
@@ -22,6 +22,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Custom_Button from '../../components/button/Custom_Button'
 import CustomSnackbar from '../../components/CustomSnackbar/CustomSnackbar'
+import {colors} from '../../themes'
+import {globalStyles as gs, globalMarginStyles as gms} from '../../styles'
 
 const EditProfile = ({navigation}) => {
   const [openItem, setOpenItem] = useState(false)
@@ -46,11 +48,8 @@ const EditProfile = ({navigation}) => {
         if (!response.didCancel) {
           if (response.assets && response.assets.length > 0) {
             setImageUri(response.assets[0].uri)
-            console.log('response', response.assets[0].uri)
           } else if (response.uri) {
-            // Handle the case when no assets are present (e.g., for videos)
             setImageUri(response.uri)
-            console.log('response', response.uri)
           }
         }
         ref_RBSheetCamera.current.close()
@@ -85,7 +84,6 @@ const EditProfile = ({navigation}) => {
       if (!response.didCancel && response.assets.length > 0) {
         setImageUri(response.assets[0].uri)
       }
-      console.log('response', imageUri)
       ref_RBSheetCamera.current.close()
     })
   }
@@ -99,22 +97,21 @@ const EditProfile = ({navigation}) => {
       navigation.navigate('Setting')
     }, 3000)
   }
-  const UpdateProfile = () => {
-    handleUpdatePassword()
-  }
+  const UpdateProfile = () => handleUpdatePassword()
+
   return (
-    <SafeAreaView style={{flexGrow: 1, paddingTop: 25, backgroundColor: COLORS.white}}>
+    <SafeAreaView style={{flexGrow: 1, paddingTop: 25, backgroundColor: Colors.white}}>
       <ScrollView>
         <SettingHeader title={'Edit Profile'} />
         <View
           style={{
+            marginTop: 50,
             alignSelf: 'center',
             justifyContent: 'center',
-            marginTop: 50,
             alignContent: 'center',
             alignItems: 'center',
           }}>
-          <Image source={Images.avatar} style={{}} />
+          <Image source={images.avatar} />
           <TouchableOpacity onPress={() => ref_RBSheetCamera.current.open()}>
             <CustomText
               text={'Change Photo'}
@@ -122,17 +119,17 @@ const EditProfile = ({navigation}) => {
                 marginTop: 10,
                 fontSize: 18,
                 fontWeight: 'bold',
-                color: COLORS.green,
+                color: Colors.primary,
                 textDecorationLine: 'underline',
               }}
             />
           </TouchableOpacity>
         </View>
-        <View style={{marginHorizontal: 20, marginTop: 20}}>
-          <CustomText text={'Full Name'} style={{fontWeight: 'bold', color: COLORS.black}} />
+        <View style={[gms.mh20, gms.mt20]}>
+          <CustomText text={'Full Name'} style={styles.boldText} />
           <InputField placeholder={'John Doe'} />
-          <View style={{marginTop: 20}}>
-            <CustomText text={'Gender'} style={{fontWeight: 'bold', color: COLORS.black}} />
+          <View style={gms.mt20}>
+            <CustomText text={'Gender'} style={styles.boldText} />
             <DropDownPicker
               placeholder="Gender"
               open={openItem}
@@ -143,16 +140,16 @@ const EditProfile = ({navigation}) => {
               setItems={setItems}
               style={{
                 marginTop: 10,
-                borderColor: '#D1D0E0',
+                borderColor: colors.lavender,
                 paddingHorizontal: 20,
               }}
             />
           </View>
-          <CustomText text={'Age'} style={{fontWeight: 'bold', color: COLORS.black}} />
+          <CustomText text={'Age'} style={styles.boldText} />
           <InputField placeholder={'29'} />
-          <CustomText text={'City'} style={{fontWeight: 'bold', color: COLORS.black}} />
+          <CustomText text={'City'} style={styles.boldText} />
           <InputField placeholder={'Washington'} />
-          <CustomText text={'Country'} style={{fontWeight: 'bold', color: COLORS.black}} />
+          <CustomText text={'Country'} style={styles.boldText} />
           <InputField placeholder={'United States'} />
         </View>
         <View
@@ -162,7 +159,7 @@ const EditProfile = ({navigation}) => {
             marginTop: 40,
             bottom: 10,
           }}>
-          <Custom_Button title={'Edit'} customClick={() => UpdateProfile()} />
+          <Custom_Button title={'Edit'} customClick={UpdateProfile} />
         </View>
       </ScrollView>
       <RBSheet
@@ -184,53 +181,35 @@ const EditProfile = ({navigation}) => {
             height: 150,
           },
         }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: 10,
-            alignItems: 'center',
-          }}>
+        <View style={[gs.row, gms.mh10]}>
           <Text style={styles.maintext}>Select an option</Text>
           <TouchableOpacity onPress={() => ref_RBSheetCamera.current.close()}>
             <Ionicons
               name="close"
               size={22}
-              color={'#303030'}
+              color={Colors.dark_charcoal}
               onPress={() => ref_RBSheetCamera.current.close()}
             />
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            // flexDirection: 'row',
-            // justifyContent: 'space-evenly',
-            // alignItems: 'center',
-            marginHorizontal: 20,
-            marginTop: 10,
-          }}>
+        <View style={[gms.mh20, gms.mt10]}>
           <TouchableOpacity
             onPress={() => takePhotoFromCamera('camera')}
             style={{flexDirection: 'row'}}>
-            <Ionicons
-              // color={selectedItem === 'camera' ? '#FACA4E' : '#888888'}
-              name="camera"
-              size={25}
-              color={COLORS.green}
-            />
-            <Text style={{color: '#333333', marginLeft: 10}}>Take Photo</Text>
+            <Ionicons name="camera" size={25} color={Colors.primary} />
+            <Text style={{color: colors.dark_charcoal, marginLeft: 10}}>Take Photo</Text>
           </TouchableOpacity>
-          <View style={{height: 0.5, backgroundColor: '#D1D0E0', marginTop: 9}} />
+          <View style={{height: 0.5, backgroundColor: colors.lavender, marginTop: 9}} />
           <TouchableOpacity
             onPress={() => choosePhotoFromLibrary('gallery')}
             style={{flexDirection: 'row', marginTop: 10}}>
             <MaterialCommunityIcons
-              //   color={selectedItem === 'gallery' ? '#FACA4E' : '#888888'}
+              //   color={selectedItem === 'gallery' ? colors.maize : colors.taupe_grey}
               name="image"
               size={25}
-              color={COLORS.green}
+              color={Colors.primary}
             />
-            <Text style={{color: '#333333', marginLeft: 10}}>Choose a Photo</Text>
+            <Text style={{color: colors.dark_charcoal, marginLeft: 10}}>Choose a Photo</Text>
           </TouchableOpacity>
         </View>
       </RBSheet>
@@ -246,4 +225,6 @@ const EditProfile = ({navigation}) => {
 
 export default EditProfile
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  boldText: {fontWeight: 'bold', color: colors.black},
+})

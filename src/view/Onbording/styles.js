@@ -1,11 +1,13 @@
 import {StyleSheet} from 'react-native'
 
 import {widthPercentageToDP} from 'react-native-responsive-screen'
+import {colors, fonts} from '../../themes'
+import Colors from '../../themes/Colors'
 
 const STYLES = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffff',
+    backgroundColor: colors.white,
     paddingVertical: '5%',
   },
   v: {
@@ -29,7 +31,6 @@ const STYLES = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor:'pink'
   },
   button: {
     paddingHorizontal: '5%',
@@ -37,24 +38,24 @@ const STYLES = StyleSheet.create({
     alignSelf: 'center',
   },
   txt3: {
-    color: '#2B2B2B',
+    color: Colors.bright_green,
     fontSize: widthPercentageToDP(7),
     textAlign: 'center',
-    fontFamily: 'Mulish-SemiBold',
+    fontFamily: fonts.mulish.semi_bold,
     marginHorizontal: '15%',
     marginTop: '10%',
   },
   txt4: {
-    color: '#2B2B2B',
+    color: Colors.bright_green,
     fontSize: widthPercentageToDP(3.5),
     textAlign: 'center',
     marginHorizontal: '5%',
-    fontFamily: 'Mulish-Medium',
+    fontFamily: fonts.mulish.medium,
     marginTop: '5%',
     lineHeight: 20,
   },
   buttonText: {
-    color: 'white',
+    color: Colors.white,
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -62,7 +63,7 @@ const STYLES = StyleSheet.create({
     bottom: '30%', // Adjust this value to center the pagination dots vertically.
   },
   txt: {
-    color: 'white',
+    color: Colors.white,
     fontSize: widthPercentageToDP(2),
   },
 
@@ -74,16 +75,14 @@ const STYLES = StyleSheet.create({
     marginVertical: 5,
     alignSelf: 'center',
     width: 300,
-    backgroundColor: '#FF0180',
+    backgroundColor: Colors.dark_pink,
   },
   txtl: {
-    color: 'white',
+    color: Colors.white,
     fontSize: 16,
     alignSelf: 'center',
   },
-  wrapper: {
-    // backgroundColor: 'pink',
-  },
+  wrapper: {},
 })
 
 export default STYLES

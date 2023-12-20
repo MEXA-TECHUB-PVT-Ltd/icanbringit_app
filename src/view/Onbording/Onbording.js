@@ -6,15 +6,11 @@ import Swiper from 'react-native-swiper'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import styles from './styles'
-import {appImages} from '../../assets/utilities'
+import {images} from '../../assets/utilities'
 import B1 from '../../assets/svgs/blankdot.svg'
 import B2 from '../../assets/svgs/filldot.svg'
 
-const images = [
-  appImages.b1, // Replace with your image paths
-  appImages.b2,
-  appImages.b3,
-]
+const imagesArr = [images.b1, images.b2, images.b3]
 
 const slideTexts = [
   'Find Your Someone Special',
@@ -34,7 +30,6 @@ function App({navigation}) {
 
   const onIndexChanged = async index => {
     setCurrentSlide(index)
-    console.log('index--->', index)
     if (index == 3) {
       navigation.replace('Welcome')
       await AsyncStorage.setItem('boardcheck', 'true')
@@ -44,24 +39,15 @@ function App({navigation}) {
   return (
     <View style={styles.container}>
       <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate('Welcome')}>
-        <Text
-          style={{
-            fontSize: 17,
-            color: '#FF0180',
-            alignSelf: 'flex-end',
-            marginRight: '5%',
-          }}>
-          Skip
-        </Text>
+        <Text style={styles.smText}>Skip</Text>
       </TouchableOpacity>
       <Swiper
         style={styles.wrapper}
         loop={false}
         ref={swiperRef}
-        // paginationStyle={styles.paginationStyle}
         showsPagination={false}
         onIndexChanged={onIndexChanged}>
-        {images.map((image, index) => (
+        {imagesArr.map((image, index) => (
           <View style={styles.slide} key={index}>
             <Image source={image} style={styles.image} resizeMode={'cover'} />
             <View style={styles.buttonContainer}>

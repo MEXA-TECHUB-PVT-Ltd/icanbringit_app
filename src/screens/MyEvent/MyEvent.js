@@ -19,13 +19,14 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import Back from '../../assets/svgs/back.svg'
-import Images from '../../constants/Images'
+import images from '../../constants/images'
 import CustomText from '../../components/Text'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
+import { colors } from '../../themes'
 
 const MyEvent = ({navigation}) => {
   const [showDownloadButton, setShowDownloadButton] = useState(true)
-  const [imageSource, setImageSource] = useState(Images.downloadBlurAvatar) // Initial image source
+  const [imageSource, setImageSource] = useState(images.downloadBlurAvatar) // Initial image source
   const [isModalVisible, setModalVisible] = useState(false)
   const refRBSheet = useRef()
 
@@ -48,7 +49,7 @@ const MyEvent = ({navigation}) => {
   ]
   return (
     <SafeAreaView style={{flex: 1, paddingTop: 50}}>
-      <ScrollView style={{backgroundColor: '#ffff'}}>
+      <ScrollView style={{backgroundColor: colors.white}}>
         {/* <StatusBar
           barStyle={'dark-content'}
           backgroundColor={'transparent'}
@@ -56,7 +57,7 @@ const MyEvent = ({navigation}) => {
         /> */}
         {/* <View style={{height: 40}} /> */}
         <FastImage
-          source={Images.EventBG}
+          source={images.EventBG}
           style={{
             height: 200,
             flexDirection: 'row',
@@ -91,7 +92,7 @@ const MyEvent = ({navigation}) => {
               justifyContent: 'center',
             }}
             onPress={() => refRBSheet.current.open()}>
-            <Entypo name="dots-three-vertical" size={20} color={COLORS.black} />
+            <Entypo name="dots-three-vertical" size={20} color={Colors.black} />
           </TouchableOpacity>
         </FastImage>
         <View
@@ -104,7 +105,7 @@ const MyEvent = ({navigation}) => {
           <View>
             <CustomText text={'Halloween Festivals'} style={{fontWeight: 'bold', fontSize: 16}} />
             <View style={{flexDirection: 'row', marginTop: 5}}>
-              <Entypo name="location-pin" size={20} color={COLORS.blue} />
+              <Entypo name="location-pin" size={20} color={colors.skye_blue} />
 
               <CustomText text={'123 Elm Street, USA'} style={{fontSize: 12}} />
             </View>
@@ -113,7 +114,7 @@ const MyEvent = ({navigation}) => {
             <View
               style={{
                 height: 50,
-                backgroundColor: '#DDDCE8',
+                backgroundColor: colors.gainsboro_light,
                 width: 40,
                 borderRadius: 6,
                 justifyContent: 'center',
@@ -132,12 +133,12 @@ const MyEvent = ({navigation}) => {
               marginTop: 5,
             }}>
             <View style={{flexDirection: 'row', marginTop: 5}}>
-              <MaterialCommunityIcons name="party-popper" size={20} color={COLORS.blue} />
+              <MaterialCommunityIcons name="party-popper" size={20} color={colors.skye_blue} />
 
               <CustomText text={'Party'} style={{fontSize: 12, marginHorizontal: 5}} />
             </View>
             <View style={{flexDirection: 'row', marginTop: 5}}>
-              <Ionicons name="time-outline" size={20} color={COLORS.blue} />
+              <Ionicons name="time-outline" size={20} color={colors.skye_blue} />
 
               <CustomText text={'05:00 pm - 10:00pm'} style={{fontSize: 12, marginHorizontal: 5}} />
             </View>
@@ -153,14 +154,14 @@ const MyEvent = ({navigation}) => {
             justifyContent: 'space-between',
           }}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Image source={Images.joinPplDP} />
+            <Image source={images.joinPplDP} />
             <CustomText text={'+ 250 people joined'} style={{fontSize: 12, marginHorizontal: 5}} />
           </View>
 
           <View>
             <TouchableOpacity
               onPress={() => navigation.navigate('AttendeesList')}
-              style={{backgroundColor: '#DDDCE8', padding: 6, borderRadius: 4}}>
+              style={{backgroundColor: colors.gainsboro_light, padding: 6, borderRadius: 4}}>
               <CustomText text={'View List'} />
             </TouchableOpacity>
           </View>
@@ -168,7 +169,7 @@ const MyEvent = ({navigation}) => {
         <View style={{marginHorizontal: 20, marginTop: 10}}>
           <CustomText
             text={'Description'}
-            style={{fontWeight: 'bold', fontSize: 16, color: COLORS.black}}
+            style={{fontWeight: 'bold', fontSize: 16, color: Colors.black}}
           />
           <CustomText
             text={
@@ -180,7 +181,7 @@ const MyEvent = ({navigation}) => {
         <View style={{marginHorizontal: 20, marginTop: 10}}>
           <CustomText
             text={'Location'}
-            style={{fontWeight: 'bold', fontSize: 16, color: COLORS.black}}
+            style={{fontWeight: 'bold', fontSize: 16, color: Colors.black}}
           />
           <View
             style={{
@@ -190,7 +191,7 @@ const MyEvent = ({navigation}) => {
               alignItems: 'center',
             }}>
             <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-              <Entypo name="link" size={18} color={COLORS.black} />
+              <Entypo name="link" size={18} color={Colors.black} />
               <CustomText text={'http://www.sample.com./'} style={{fontSize: 12, marginLeft: 7}} />
             </View>
             <View style={{alignSelf: 'flex-end', width: '30%'}}>
@@ -199,11 +200,11 @@ const MyEvent = ({navigation}) => {
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                   padding: 5,
-                  backgroundColor: '#DDDCE8',
+                  backgroundColor: colors.gainsboro_light,
                   borderRadius: 5,
                 }}>
-                <Ionicons name="copy-outline" size={20} color={COLORS.black} />
-                <CustomText text={'CopyLink'} style={{color: COLORS.black}} />
+                <Ionicons name="copy-outline" size={20} color={Colors.black} />
+                <CustomText text={'CopyLink'} style={{color: Colors.black}} />
               </TouchableOpacity>
             </View>
           </View>
@@ -211,7 +212,7 @@ const MyEvent = ({navigation}) => {
         <View style={{paddingHorizontal: 20}}>
           <CustomText
             text={'Event Items'}
-            style={{fontWeight: 'bold', fontSize: 16, color: COLORS.black}}
+            style={{fontWeight: 'bold', fontSize: 16, color: Colors.black}}
           />
           <View>
             <FlatList
@@ -225,7 +226,7 @@ const MyEvent = ({navigation}) => {
                     <View style={styles.card}>
                       <TouchableOpacity
                         style={{
-                          backgroundColor: COLORS.blue,
+                          backgroundColor: colors.skye_blue,
                           padding: 10,
                           borderRadius: 10,
                           marginTop: 10,
@@ -242,24 +243,24 @@ const MyEvent = ({navigation}) => {
         <View style={{paddingHorizontal: 20}}>
           <CustomText
             text={'Invitation Card'}
-            style={{fontWeight: 'bold', fontSize: 16, color: COLORS.black}}
+            style={{fontWeight: 'bold', fontSize: 16, color: Colors.black}}
           />
         </View>
         {/* <FastImage
-          source={Images.downloadBlurAvatar}
+          source={images.downloadBlurAvatar}
           resizeMode="contain"
           style={{height: 220}}>
           <View style={{marginHorizontal: 20, width: '30%', borderRadius: 10, alignSelf:'center',marginTop:100}}>
             <TouchableOpacity
               style={{
-                backgroundColor: COLORS.green,
+                backgroundColor: Colors.primary,
                 flexDirection: 'row',
                 padding: 10,
                 borderRadius:10,
                 justifyContent:'space-around',
               }}>
-              <AntDesign name="download" size={16} color={COLORS.white} />
-              <CustomText text={'Download'} style={{color: COLORS.white}} />
+              <AntDesign name="download" size={16} color={Colors.white} />
+              <CustomText text={'Download'} style={{color: Colors.white}} />
             </TouchableOpacity>
           </View>
         </FastImage> */}
@@ -276,7 +277,7 @@ const MyEvent = ({navigation}) => {
               }}>
               <TouchableOpacity
                 style={{
-                  backgroundColor: COLORS.green,
+                  backgroundColor: Colors.primary,
                   flexDirection: 'row',
                   padding: 10,
                   borderRadius: 10,
@@ -284,17 +285,17 @@ const MyEvent = ({navigation}) => {
                 }}
                 onPress={() => {
                   setShowDownloadButton(false)
-                  setImageSource(Images.downloadBlurAvatar) // Change to the new image source
+                  setImageSource(images.downloadBlurAvatar) // Change to the new image source
                 }}>
-                <AntDesign name="download" size={16} color={COLORS.white} />
-                <CustomText text={'Download'} style={{color: COLORS.white}} />
+                <AntDesign name="download" size={16} color={Colors.white} />
+                <CustomText text={'Download'} style={{color: Colors.white}} />
               </TouchableOpacity>
             </View>
           </FastImage>
         ) : (
           <>
             <FastImage
-              source={Images.downloadAvatar}
+              source={images.downloadAvatar}
               resizeMode="contain"
               style={{height: 220}}></FastImage>
             <View
@@ -313,7 +314,7 @@ const MyEvent = ({navigation}) => {
                 }}>
                 <TouchableOpacity
                   style={{
-                    backgroundColor: COLORS.green,
+                    backgroundColor: Colors.primary,
                     flexDirection: 'row',
                     padding: 10,
                     borderRadius: 10,
@@ -321,10 +322,10 @@ const MyEvent = ({navigation}) => {
                   }}
                   onPress={() => {
                     setShowDownloadButton(false)
-                    // setImageSource(Images.downloadAvatar); // Change to the new image source
+                    // setImageSource(images.downloadAvatar); // Change to the new image source
                   }}>
-                  <AntDesign name="download" size={16} color={COLORS.white} />
-                  <CustomText text={'download'} style={{color: COLORS.white}} />
+                  <AntDesign name="download" size={16} color={Colors.white} />
+                  <CustomText text={'download'} style={{color: Colors.white}} />
                 </TouchableOpacity>
               </View>
               <View
@@ -336,7 +337,7 @@ const MyEvent = ({navigation}) => {
                 }}>
                 <TouchableOpacity
                   style={{
-                    backgroundColor: COLORS.green,
+                    backgroundColor: Colors.primary,
                     flexDirection: 'row',
                     padding: 10,
                     borderRadius: 10,
@@ -344,10 +345,10 @@ const MyEvent = ({navigation}) => {
                   }}
                   onPress={() => {
                     setShowDownloadButton(false)
-                    setImageSource(Images.downloadBlurAvatar) // Change to the new image source
+                    setImageSource(images.downloadBlurAvatar) // Change to the new image source
                   }}>
-                  <AntDesign name="sharealt" size={16} color={COLORS.white} />
-                  <CustomText text={'Share card'} style={{color: COLORS.white}} />
+                  <AntDesign name="sharealt" size={16} color={Colors.white} />
+                  <CustomText text={'Share card'} style={{color: Colors.white}} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -366,7 +367,7 @@ const MyEvent = ({navigation}) => {
             backgroundColor: 'rgba(52, 52, 52, 0.5)',
           },
           draggableIcon: {
-            backgroundColor: COLORS.white,
+            backgroundColor: Colors.white,
             height: 3,
             width: 50,
           },
@@ -380,7 +381,7 @@ const MyEvent = ({navigation}) => {
           <View style={{marginHorizontal: 20}}>
             <View style={{alignItems: 'flex-end'}}>
               <TouchableOpacity onPress={() => refRBSheet.current.close()}>
-                <AntDesign name="close" size={20} color={COLORS.black} />
+                <AntDesign name="close" size={20} color={Colors.black} />
               </TouchableOpacity>
             </View>
             <TouchableOpacity
@@ -391,7 +392,7 @@ const MyEvent = ({navigation}) => {
               style={{padding: 10}}>
               <CustomText text={'Edit Event'} />
             </TouchableOpacity>
-            <View style={{height: 0.5, backgroundColor: '#D1D0E0'}} />
+            <View style={{height: 0.5, backgroundColor: colors.lavender}} />
             <TouchableOpacity
               style={{marginTop: 10}}
               onPress={() => {
@@ -400,7 +401,7 @@ const MyEvent = ({navigation}) => {
               }}>
               <CustomText text={'Delete Event'} style={{padding: 10}} />
             </TouchableOpacity>
-            <View style={{height: 0.5, backgroundColor: '#D1D0E0'}} />
+            <View style={{height: 0.5, backgroundColor: colors.lavender}} />
             <TouchableOpacity
               style={{marginTop: 10}}
               onPress={() => {
@@ -409,7 +410,7 @@ const MyEvent = ({navigation}) => {
               }}>
               <CustomText text={'Share Link'} style={{padding: 10}} />
             </TouchableOpacity>
-            <View style={{height: 0.5, backgroundColor: '#D1D0E0'}} />
+            <View style={{height: 0.5, backgroundColor: colors.lavender}} />
             <TouchableOpacity
               style={{marginTop: 10}}
               onPress={() => {
@@ -425,18 +426,18 @@ const MyEvent = ({navigation}) => {
         <View
           style={{
             flex: 0.2,
-            backgroundColor: COLORS.white,
+            backgroundColor: Colors.white,
             borderRadius: 15,
             marginHorizontal: 20,
           }}>
           <View style={{marginHorizontal: 20, marginTop: 10}}>
             <CustomText
               text={'Delete'}
-              style={{fontSize: 18, fontWeight: 'bold', color: COLORS.black}}
+              style={{fontSize: 18, fontWeight: 'bold', color: Colors.black}}
             />
             <CustomText
               text={'Do you want to delete Event?'}
-              style={{fontSize: 13, color: COLORS.grey, marginTop: 6}}
+              style={{fontSize: 13, color: Colors.quartz, marginTop: 6}}
             />
           </View>
           <View
@@ -450,24 +451,24 @@ const MyEvent = ({navigation}) => {
               onPress={() => toggleModal()}
               style={{
                 padding: 10,
-                backgroundColor: '#D1D0E0',
+                backgroundColor: colors.lavender,
                 width: '40%',
                 borderRadius: 10,
                 alignContent: 'center',
                 alignItems: 'center',
               }}>
-              <CustomText text={'Cancel'} style={{color: COLORS.black}} />
+              <CustomText text={'Cancel'} style={{color: Colors.black}} />
             </TouchableOpacity>
             <TouchableOpacity
               style={{
                 padding: 10,
-                backgroundColor: '#1B1464',
+                backgroundColor: colors.primary,
                 width: '40%',
                 borderRadius: 10,
                 alignContent: 'center',
                 alignItems: 'center',
               }}>
-              <CustomText text={'Yes Delete'} style={{color: COLORS.white}} />
+              <CustomText text={'Yes Delete'} style={{color: Colors.white}} />
             </TouchableOpacity>
           </View>
           {/* <Button title="Hide modal" onPress={toggleModal} /> */}
@@ -481,12 +482,12 @@ export default MyEvent
 
 const styles = StyleSheet.create({
   txt: {
-    color: COLORS.green,
+    color: Colors.primary,
     fontWeight: 'bold',
   },
   flatlist_container: {
     height: 100,
     marginHorizontal: 10,
   },
-  btnView: {backgroundColor: COLORS.green, padding: 10, borderRadius: 7},
+  btnView: {backgroundColor: Colors.primary, padding: 10, borderRadius: 7},
 })

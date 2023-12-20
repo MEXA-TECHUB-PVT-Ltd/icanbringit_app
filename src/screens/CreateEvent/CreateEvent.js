@@ -13,11 +13,12 @@ import {
 
 import styles from './styles'
 import Back from '../../assets/svgs/back.svg'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import InputField from '../../components/InputFiled'
 import {Picker} from '@react-native-picker/picker'
-import Images from '../../constants/Images'
+import images from '../../constants/images'
 import InnerButton from '../../components/InnerButton/InnerButton'
+import { colors } from '../../themes'
 
 LogBox.ignoreAllLogs()
 
@@ -33,7 +34,7 @@ const CreateEvent = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={{backgroundColor: '#ffff'}}>
+      <ScrollView style={{backgroundColor: colors.white}}>
         <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
         <View style={styles.mainView}>
           <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.goBack()}>
@@ -50,7 +51,7 @@ const CreateEvent = () => {
 
           <Text style={styles.txt}>Create Event</Text>
           {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                {progressImages.map((image, index) => (
+                {progressimages.map((image, index) => (
                   <Image
                   resizeMode='contain'
                     key={index}
@@ -64,7 +65,7 @@ const CreateEvent = () => {
               <View style={{}}>
                 <View style={{alignSelf: 'flex-end'}}>
                   <Image
-                    source={Images.progress1}
+                    source={images.progress1}
                     resizeMode="contain"
                     style={{height: 60, alignSelf: 'flex-end'}}
                   />
@@ -80,7 +81,7 @@ const CreateEvent = () => {
                     Lefticon={true}
                     name="user"
                     type={'feather'}
-                    color={COLORS.black}
+                    color={Colors.black}
                     size={20}
                     style={{width: '45%'}}
                   />
@@ -89,7 +90,7 @@ const CreateEvent = () => {
                     Lefticon={true}
                     name="user"
                     type={'feather'}
-                    color={COLORS.black}
+                    color={Colors.black}
                     size={20}
                     style={{width: '45%'}}
                   />
@@ -104,7 +105,7 @@ const CreateEvent = () => {
                     Lefticon={true}
                     name="user"
                     type={'feather'}
-                    color={COLORS.black}
+                    color={Colors.black}
                     size={20}
                     style={{width: '45%'}}
                   />
@@ -113,7 +114,7 @@ const CreateEvent = () => {
                     Lefticon={true}
                     name="user"
                     type={'feather'}
-                    color={COLORS.black}
+                    color={Colors.black}
                     size={20}
                     style={{width: '45%'}}
                   />
@@ -146,7 +147,7 @@ const CreateEvent = () => {
                     flex: 1,
                     height: 100,
                     borderRadius: 10,
-                    borderColor: COLORS.black,
+                    borderColor: Colors.black,
                     borderWidth: 0.5,
                   }}
                 />
@@ -172,7 +173,7 @@ const CreateEvent = () => {
               <View>
                 <View style={{alignSelf: 'flex-end'}}>
                   <Image
-                    source={Images.progress1}
+                    source={images.progress1}
                     resizeMode="contain"
                     style={{height: 60, alignSelf: 'flex-end'}}
                   />
@@ -219,7 +220,7 @@ const CreateEvent = () => {
               <View>
                 <View style={{alignSelf: 'flex-end'}}>
                   <Image
-                    source={Images.progress1}
+                    source={images.progress1}
                     resizeMode="contain"
                     style={{height: 60, alignSelf: 'flex-end'}}
                   />
@@ -242,24 +243,20 @@ const CreateEvent = () => {
                   </Picker>
                 </View>
                 <View style={{marginTop: 10}}></View>
-                <Image source={Images.coverPhoto} resizeMode="contain" style={{width: '100%'}} />
+                <Image source={images.coverPhoto} resizeMode="contain" style={{width: '100%'}} />
               </View>
             )}
             <View style={styles.v1}>
-              {/* <Text style={styles.txt1}>
-                  {count}
-                  <Text style={styles.txt2}>/3</Text>
-                </Text> */}
               <TouchableOpacity
                 activeOpacity={0.7}
-                style={[styles.btnl, {backgroundColor: '#1B1464'}]}
+                style={[styles.btnl, {backgroundColor: colors.primary}]}
                 onPress={() => {
                   setcount(count + 1)
                   if (count >= 3) {
                     //   navigation.navigate('Thank_you');
                   }
                 }}>
-                <Text style={{color: COLORS.white}}>Save And Continue</Text>
+                <Text style={{color: Colors.white}}>Save And Continue</Text>
               </TouchableOpacity>
             </View>
           </View>

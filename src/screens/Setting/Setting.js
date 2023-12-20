@@ -4,9 +4,10 @@ import {FlatList, SafeAreaView, StyleSheet, TouchableOpacity, View} from 'react-
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import SettingHeader from '../../components/SettingHeader/SettingHeader'
 import CustomText from '../../components/Text'
+import { colors } from '../../themes'
 
 const Setting = ({navigation}) => {
   const data = [
@@ -69,13 +70,13 @@ const Setting = ({navigation}) => {
           alignContent: 'center',
           alignItems: 'center',
         }}>
-        <CustomText text={item.title} style={{fontSize: 16, color: COLORS.black}} />
-        <AntDesign name="right" size={18} color={COLORS.black} />
+        <CustomText text={item.title} style={{fontSize: 16, color: Colors.black}} />
+        <AntDesign name="right" size={18} color={Colors.black} />
       </TouchableOpacity>
       <View
         style={{
           height: 0.5,
-          backgroundColor: '#D1D0E0',
+          backgroundColor: colors.lavender,
           marginHorizontal: 20,
           marginTop: 10,
         }}
@@ -83,7 +84,7 @@ const Setting = ({navigation}) => {
     </View>
   )
   return (
-    <SafeAreaView style={{flexGrow: 1, paddingTop: 25, backgroundColor: COLORS.white}}>
+    <SafeAreaView style={{flexGrow: 1, paddingTop: 25, backgroundColor: Colors.white}}>
       <SettingHeader title={'Settings'} />
       <View>
         <FlatList data={data} keyExtractor={item => item.id} renderItem={renderItem} />
@@ -92,7 +93,7 @@ const Setting = ({navigation}) => {
         <TouchableOpacity
           style={{
             flexDirection: 'row',
-            backgroundColor: COLORS.green,
+            backgroundColor: Colors.primary,
             width: '90%',
             padding: 12,
             alignContent: 'center',
@@ -100,9 +101,9 @@ const Setting = ({navigation}) => {
             justifyContent: 'center',
             borderRadius: 10,
           }}>
-          <SimpleLineIcons name="logout" size={18} color={COLORS.white} />
+          <SimpleLineIcons name="logout" size={18} color={Colors.white} />
 
-          <CustomText text={'Logout'} style={{color: COLORS.white, marginLeft: 10}} />
+          <CustomText text={'Logout'} style={{color: Colors.white, marginLeft: 10}} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>

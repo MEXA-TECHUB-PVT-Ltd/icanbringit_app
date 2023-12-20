@@ -17,12 +17,14 @@ import FastImage from 'react-native-fast-image'
 import DatePicker from 'react-native-date-picker'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
-import COLORS from '../../themes/colors'
-import Images from '../../constants/Images'
+import Colors from '../../themes/colors'
+import images from '../../constants/images'
 import CustomText from '../../components/Text'
 import Icon from '../../constants/Icons'
 import InnerButton from '../../components/InnerButton/InnerButton'
 import Custom_Button from '../../components/button/Custom_Button'
+import {colors} from '../../themes'
+import { globalMarginStyles as gms } from '../../styles'
 
 const Explore = ({navigation}) => {
   const ref_RBSheetCamera = useRef(null)
@@ -42,32 +44,12 @@ const Explore = ({navigation}) => {
     {label: 'Category5', value: 'Category5'},
   ]
   const [date, setDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
   const [open, setOpen] = useState(false)
-  const [endOpen, setEndOpen] = useState(false)
-  const Data = [
-    {
-      id: 1,
-      image: Images.SuggestionBG1,
-      title: 'Candyland Carnival',
-    },
-    {
-      id: 2,
-      image: Images.SuggestionBG1,
 
-      title: 'Candyland Carnival',
-    },
-    {
-      id: 3,
-      image: Images.SuggestionBG1,
-
-      title: 'Candyland Carnival',
-    },
-  ]
   const PartiesData = [
     {
       id: 1,
-      image: Images.PartiesBg1,
+      image: images.partiesBg1,
       title: 'Candyland Carnival',
       time: 'Sun, Oct 29 - 5:00 pm',
       online: 'online',
@@ -75,7 +57,7 @@ const Explore = ({navigation}) => {
     },
     {
       id: 2,
-      image: Images.PartiesBg1,
+      image: images.partiesBg1,
       title: 'Candyland Carnival',
       time: 'Sun, Oct 29 - 5:00 pm',
       online: 'online',
@@ -83,7 +65,7 @@ const Explore = ({navigation}) => {
     },
     {
       id: 3,
-      image: Images.PartiesBg1,
+      image: images.partiesBg1,
       title: 'Candyland Carnival',
       time: 'Sun, Oct 29 - 5:00 pm',
       online: 'online',
@@ -92,10 +74,10 @@ const Explore = ({navigation}) => {
   ]
   return (
     <SafeAreaView
-      style={{flexGrow: 1, backgroundColor: COLORS.white, paddingHorizontal: 20, paddingTop: 25}}>
+      style={{flexGrow: 1, backgroundColor: Colors.white, paddingHorizontal: 20, paddingTop: 25}}>
       <View style={styles.headerView}>
         <View style={{flexDirection: 'row'}}>
-          <Image source={Images.locationIcon} />
+          <Image source={images.locationIcon} />
           <View style={{paddingHorizontal: 20}}>
             <Text>Your location</Text>
             <Text>123 Elm Street...</Text>
@@ -103,10 +85,10 @@ const Explore = ({navigation}) => {
         </View>
         <View style={{flexDirection: 'row'}}>
           <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
-            <Image source={Images.NotificationsIcon} style={{marginRight: 20}} />
+            <Image source={images.NotificationsIcon} style={{marginRight: 20}} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => ref_RBSheetCamera.current.open()}>
-            <Image source={Images.filterIcon} />
+            <Image source={images.filterIcon} />
           </TouchableOpacity>
         </View>
       </View>
@@ -114,7 +96,7 @@ const Explore = ({navigation}) => {
         style={{
           height: 50,
           borderWidth: 0.5,
-          borderColor: '#868686',
+          borderColor: colors.old_silver,
           borderRadius: 10,
           marginTop: 15,
           paddingHorizontal: 15,
@@ -132,16 +114,18 @@ const Explore = ({navigation}) => {
             justifyContent: 'space-between',
             marginTop: 20,
           }}>
-          <Text style={{fontWeight: 'bold', color: COLORS.black}}>AI Suggestions</Text>
+          <Text style={{fontWeight: 'bold', color: Colors.black}}>AI Suggestions</Text>
           <TouchableOpacity>
-            <Text style={{color: COLORS.blue, textDecorationLine: 'underline'}}>Suggest More</Text>
+            <Text style={{color: Colors.spanish_grey, textDecorationLine: 'underline'}}>
+              Suggest More
+            </Text>
           </TouchableOpacity>
         </View>
 
         <View style={{flexDirection: 'row'}}>
           <View style={styles.flatlist_container}>
             <FastImage
-              source={Images.SuggestionBG1}
+              source={images.suggestionBG1}
               style={{height: 150, width: 150}}
               resizeMode="contain">
               <View style={styles.cardInnerView}>
@@ -152,7 +136,7 @@ const Explore = ({navigation}) => {
                     type={'MaterialIcons'}
                     color={'white'}
                     size={15}
-                    style={{marginTop: 5}}
+                    style={gms.mt5}
                   />
                   <CustomText text={'19 Dec 2023 - 02:00'} style={[styles.txt, {marginLeft: 5}]} />
                 </View>
@@ -161,7 +145,7 @@ const Explore = ({navigation}) => {
           </View>
           <View style={styles.flatlist_container}>
             <FastImage
-              source={Images.SuggestionBG1}
+              source={images.SuggestionBG1}
               style={{height: 150, width: 150}}
               resizeMode="contain">
               <View style={styles.cardInnerView}>
@@ -186,9 +170,11 @@ const Explore = ({navigation}) => {
             justifyContent: 'space-between',
             // marginTop: 20,
           }}>
-          <Text style={{color: COLORS.black, fontWeight: 'bold'}}>Parties</Text>
+          <Text style={{color: Colors.black, fontWeight: 'bold'}}>Parties</Text>
           <TouchableOpacity onPress={() => navigation.navigate('Parties')}>
-            <Text style={{color: COLORS.blue, textDecorationLine: 'underline'}}>View All</Text>
+            <Text style={{color: Colors.spanish_grey, textDecorationLine: 'underline'}}>
+              View All
+            </Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -208,7 +194,7 @@ const Explore = ({navigation}) => {
                       <TouchableOpacity style={styles.cardBtn}>
                         <CustomText text={item.online} />
                       </TouchableOpacity>
-                      <TouchableOpacity style={[styles.cardBtn, {backgroundColor: '#FF6B01'}]}>
+                      <TouchableOpacity style={[styles.cardBtn, {backgroundColor: colors.orange}]}>
                         <CustomText text={item.privte} style={styles.textView} />
                       </TouchableOpacity>
                     </View>
@@ -226,7 +212,9 @@ const Explore = ({navigation}) => {
           }}>
           <Text>Concerts</Text>
           <TouchableOpacity>
-            <Text style={{color: COLORS.blue, textDecorationLine: 'underline'}}>View All</Text>
+            <Text style={{color: Colors.spanish_grey, textDecorationLine: 'underline'}}>
+              View All
+            </Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -245,7 +233,7 @@ const Explore = ({navigation}) => {
                     <TouchableOpacity style={styles.cardBtn}>
                       <CustomText text={item.online} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.cardBtn, {backgroundColor: '#FF6B01'}]}>
+                    <TouchableOpacity style={[styles.cardBtn, {backgroundColor: colors.orange}]}>
                       <CustomText text={item.privte} style={styles.textView} />
                     </TouchableOpacity>
                   </View>
@@ -268,7 +256,7 @@ const Explore = ({navigation}) => {
             backgroundColor: 'rgba(52, 52, 52, 0.5)',
           },
           draggableIcon: {
-            backgroundColor: COLORS.greylight,
+            backgroundColor: Colors.old_silver_o2,
             height: 3,
             width: 50,
           },
@@ -289,7 +277,7 @@ const Explore = ({navigation}) => {
             style={{
               fontSize: 14,
               marginTop: 10,
-              color: COLORS.black,
+              color: Colors.black,
               fontWeight: 'bold',
             }}
           />
@@ -315,7 +303,7 @@ const Explore = ({navigation}) => {
             style={{
               fontSize: 14,
               marginTop: 10,
-              color: COLORS.black,
+              color: Colors.black,
               fontWeight: 'bold',
             }}
           />
@@ -355,7 +343,7 @@ const Explore = ({navigation}) => {
             style={{
               fontSize: 14,
               marginTop: 10,
-              color: COLORS.black,
+              color: Colors.black,
               fontWeight: 'bold',
             }}
           />
@@ -365,7 +353,7 @@ const Explore = ({navigation}) => {
             onPress={() => setOpen(true)}
             name="calendar"
             type={'feather'}
-            color={COLORS.black}
+            color={Colors.black}
             size={20}
           />
           <View style={{marginTop: 20, alignSelf: 'center'}}>
@@ -407,7 +395,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   txt: {
-    color: COLORS.white,
+    color: Colors.white,
     fontSize: 10,
     marginTop: 5,
   },
@@ -416,12 +404,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginTop: 10,
     borderRadius: 10,
-    borderColor: COLORS.black,
+    borderColor: Colors.black,
     borderWidth: 0.5,
     width: 160,
   },
   titleView: {
-    color: COLORS.green,
+    color: Colors.primary,
     fontSize: 20,
     marginHorizontal: 10,
     fontWeight: 'bold',
@@ -434,7 +422,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   cardBtn: {
-    backgroundColor: COLORS.blue,
+    backgroundColor: Colors.spanish_grey,
     padding: 8,
     marginHorizontal: 10,
     borderRadius: 20,
@@ -442,10 +430,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textView: {
-    color: COLORS.white,
+    color: Colors.white,
   },
   titleText: {
-    color: COLORS.primary,
+    color: Colors.primary,
     fontWeight: 'bold',
     fontSize: 18,
   },

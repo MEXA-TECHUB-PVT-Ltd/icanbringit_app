@@ -1,14 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {Image, PermissionsAndroid, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {Image, PermissionsAndroid, Text, TouchableOpacity, View} from 'react-native'
 
 import Signin_signup_header from '../../components/button/Signin_signup_header'
-import Images from '../../constants/Images'
+import images from '../../constants/images'
 import Custom_Button from '../../components/button/Custom_Button'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker'
 import RBSheet from 'react-native-raw-bottom-sheet'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
+import {colors} from '../../themes'
 
 const ProfilePic = ({navigation}) => {
   const [selectedImage, setSelectedImage] = useState(null)
@@ -21,18 +22,13 @@ const ProfilePic = ({navigation}) => {
     launchCamera(
       {
         mediaType: 'Photo',
-        //videoQuality: 'medium',
       },
       response => {
-        console.log('image here', response)
         if (!response.didCancel) {
           if (response.assets && response.assets.length > 0) {
             setImageUri(response.assets[0].uri)
-            console.log('response', response.assets[0].uri)
           } else if (response.uri) {
-            // Handle the case when no assets are present (e.g., for videos)
             setImageUri(response.uri)
-            console.log('response', response.uri)
           }
         }
         ref_RBSheetCamera.current.close()
@@ -65,11 +61,9 @@ const ProfilePic = ({navigation}) => {
   const choosePhotoFromLibrary = value => {
     setSelectedItem(value)
     launchImageLibrary({mediaType: 'Photo'}, response => {
-      console.log('image here', response)
       if (!response.didCancel && response.assets.length > 0) {
         setImageUri(response.assets[0].uri)
       }
-      console.log('response', imageUri)
       ref_RBSheetCamera.current.close()
     })
   }
@@ -89,7 +83,7 @@ const ProfilePic = ({navigation}) => {
             />
           ) : (
             <Image
-              source={Images.profilePic}
+              source={images.profilePic}
               style={{width: 200, height: 200}}
               resizeMode="contain"
             />
@@ -101,9 +95,7 @@ const ProfilePic = ({navigation}) => {
           title="Continue"
           load={false}
           // checkdisable={inn == '' && cm == '' ? true : false}
-          customClick={() => {
-            navigation.navigate('Select_preferences')
-          }}
+          customClick={() => navigation.navigate('Select_preferences')}
         />
       </View>
       <RBSheet
@@ -137,41 +129,28 @@ const ProfilePic = ({navigation}) => {
             <Ionicons
               name="close"
               size={22}
-              color={'#303030'}
+              color={Colors.dark_charcoal}
               onPress={() => ref_RBSheetCamera.current.close()}
             />
           </TouchableOpacity>
         </View>
         <View
           style={{
-            // flexDirection: 'row',
-            // justifyContent: 'space-evenly',
-            // alignItems: 'center',
             marginHorizontal: 20,
             marginTop: 10,
           }}>
           <TouchableOpacity
             onPress={() => takePhotoFromCamera('camera')}
             style={{flexDirection: 'row'}}>
-            <Ionicons
-              // color={selectedItem === 'camera' ? '#FACA4E' : '#888888'}
-              name="camera"
-              size={25}
-              color={COLORS.green}
-            />
-            <Text style={{color: '#333333', marginLeft: 10}}>Take Photo</Text>
+            <Ionicons name="camera" size={25} color={Colors.primary} />
+            <Text style={{color: colors.dark_charcoal, marginLeft: 10}}>Take Photo</Text>
           </TouchableOpacity>
-          <View style={{height: 0.5, backgroundColor: '#D1D0E0', marginTop: 9}} />
+          <View style={{height: 0.5, backgroundColor: colors.lavender, marginTop: 9}} />
           <TouchableOpacity
             onPress={() => choosePhotoFromLibrary('gallery')}
             style={{flexDirection: 'row', marginTop: 10}}>
-            <MaterialCommunityIcons
-              //   color={selectedItem === 'gallery' ? '#FACA4E' : '#888888'}
-              name="image"
-              size={25}
-              color={COLORS.green}
-            />
-            <Text style={{color: '#333333', marginLeft: 10}}>Choose a Photo</Text>
+            <MaterialCommunityIcons name="image" size={25} color={Colors.primary} />
+            <Text style={{color: colors.dark_charcoal, marginLeft: 10}}>Choose a Photo</Text>
           </TouchableOpacity>
         </View>
       </RBSheet>
@@ -180,5 +159,3 @@ const ProfilePic = ({navigation}) => {
 }
 
 export default ProfilePic
-
-const styles = StyleSheet.create({})

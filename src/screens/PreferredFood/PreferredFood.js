@@ -2,9 +2,11 @@ import React, {useState} from 'react'
 import {StyleSheet, View, FlatList, Text, TouchableOpacity} from 'react-native'
 
 import Signin_signup_header from '../../components/button/Signin_signup_header'
-import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
+import {widthPercentageToDP} from 'react-native-responsive-screen'
 
 import Custom_Button from '../../components/button/Custom_Button'
+import {colors, fonts} from '../../themes'
+import {globalStyles as gs, globalMarginStyles as gms} from '../../styles'
 
 const PreferredFood = () => {
   const [clickedId, setclickedId] = useState()
@@ -24,8 +26,8 @@ const PreferredFood = () => {
     },
   ])
   return (
-    <View style={{backgroundColor: 'white', flex: 1}}>
-      <View style={{marginHorizontal: 20}}>
+    <View style={gs.whiteContainer}>
+      <View style={gms.mh20}>
         <Signin_signup_header title="What is your preferred food?" />
       </View>
       <View style={{marginHorizontal: '7%'}}>
@@ -35,20 +37,13 @@ const PreferredFood = () => {
           renderItem={({item, index}) => {
             return (
               <TouchableOpacity
-                onPress={() => {
-                  setclickedId(index)
-                }}
+                onPress={() => setclickedId(index)}
                 style={[
-                  index === clickedId
-                    ? [styles.optionsView, {backgroundColor: '#3FA9F5'}]
-                    : [styles.optionsView, {backgroundColor: 'white'}],
+                  styles.optionsView,
+                  {backgroundColor: index === clickedId ? colors.picton_blue : colors.white},
                 ]}>
                 <Text
-                  style={[
-                    index === clickedId
-                      ? [styles.text, {color: 'white'}]
-                      : [styles.text, {color: 'black'}],
-                  ]}>
+                  style={[styles.text, {color: index === clickedId ? colors.white : colors.black}]}>
                   {item.head}
                 </Text>
               </TouchableOpacity>
@@ -75,30 +70,21 @@ const PreferredFood = () => {
 export default PreferredFood
 
 const styles = StyleSheet.create({
-  txt: {
-    color: 'black',
-    fontSize: heightPercentageToDP(3.2),
-    fontFamily: 'Montserrat-Bold',
-    alignSelf: 'center',
-    textAlign: 'center',
-    marginHorizontal: '11%',
-  },
   optionsView: {
     justifyContent: 'center',
     borderWidth: 1,
     alignSelf: 'center',
     borderRadius: 15,
-    borderColor: 'lightgray',
+    borderColor: colors.ash_grey,
     width: 280,
     height: 40,
     marginTop: '5%',
-    backgroundColor: 'white',
+    backgroundColor: colors.black,
   },
   text: {
-    color: '#000000',
-    fontSize: 20,
+    color: colors.black,
     textAlign: 'center',
     fontSize: widthPercentageToDP(4),
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: fonts.montserrat.regular,
   },
 })

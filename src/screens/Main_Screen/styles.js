@@ -1,11 +1,12 @@
 import {StyleSheet} from 'react-native'
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
 import {widthPercentageToDP} from 'react-native-responsive-screen'
+import { colors, fonts } from '../../themes'
 
 const STYLES = StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: '#ADDAFA',
+    backgroundColor: colors.fresh_air,
     alignItems: 'center',
   },
 
@@ -16,10 +17,10 @@ const STYLES = StyleSheet.create({
     marginTop: '16%',
   },
   txt1: {
-    color: COLORS.dark,
+    color: Colors.dark,
     fontSize: widthPercentageToDP(5.7),
     textAlign: 'center',
-    fontFamily: 'Montserrat-SemiBold',
+    fontFamily: fonts.montserrat.semi_bold,
     marginHorizontal: '15%',
     marginTop: '10%',
   },
@@ -29,7 +30,7 @@ const STYLES = StyleSheet.create({
   },
   btn1: {
     width: '100%',
-    backgroundColor: COLORS.primary,
+    backgroundColor: Colors.primary,
     height: 45,
     borderRadius: 10,
     justifyContent: 'center',
@@ -41,15 +42,14 @@ const STYLES = StyleSheet.create({
     marginVertical: '5%',
   },
   divider: {
-    backgroundColor: '#4B4B4B4D',
-    // color: '#707070',
+    backgroundColor: colors.quartz,
     height: 1,
     width: '30%',
     alignSelf: 'center',
   },
   btn2: {
     width: '83%',
-    borderColor: COLORS.primary,
+    borderColor: Colors.primary,
     borderWidth: 1.5,
     height: 45,
     borderRadius: 10,
@@ -58,16 +58,16 @@ const STYLES = StyleSheet.create({
     alignSelf: 'center',
   },
   txt2: {
-    color: COLORS.white,
+    color: Colors.white,
     fontSize: widthPercentageToDP(4),
     textAlign: 'center',
-    fontFamily: 'Montserrat-SemiBold',
+    fontFamily: fonts.montserrat.semi_bold,
   },
   txt3: {
-    color: COLORS.primary,
+    color: Colors.primary,
     fontSize: widthPercentageToDP(4),
     textAlign: 'center',
-    fontFamily: 'Montserrat-SemiBold',
+    fontFamily: fonts.montserrat.semi_bold,
   },
   v2: {
     flexDirection: 'row',

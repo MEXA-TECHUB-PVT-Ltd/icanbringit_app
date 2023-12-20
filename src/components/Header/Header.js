@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native'
 import {heightPercentageToDP} from 'react-native-responsive-screen'
 
 import Back from './../../assets/svgs/back.svg'
+import {colors, fonts} from '../../themes'
 
 export default function Header({title, txtStyle}) {
   const navigation = useNavigation()
@@ -12,7 +13,7 @@ export default function Header({title, txtStyle}) {
     <View>
       <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
       <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.goBack()}>
-        <Back width={35} height={35} style={{marginTop: '14%', marginHorizontal: '3%'}} />
+        <Back width={35} height={35} style={styles.icon} />
       </TouchableOpacity>
 
       <Text style={[styles.txt, txtStyle]}>{title}</Text>
@@ -21,15 +22,10 @@ export default function Header({title, txtStyle}) {
 }
 const styles = StyleSheet.create({
   txt: {
-    color: 'black',
+    color: colors.black,
     fontSize: heightPercentageToDP(3.2),
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: fonts.montserrat.bold,
     textAlign: 'center',
   },
-  txt1: {
-    color: '#5D5D5D',
-    fontSize: heightPercentageToDP(2),
-    fontFamily: 'Montserrat-Medium',
-    textAlign: 'center',
-  },
+  icon: {marginTop: '14%', marginHorizontal: '3%'},
 })

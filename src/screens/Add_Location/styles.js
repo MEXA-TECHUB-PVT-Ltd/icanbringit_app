@@ -2,24 +2,35 @@ import {StyleSheet} from 'react-native'
 
 import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
+import {colors, fonts} from '../../themes'
 
 const STYLES = StyleSheet.create({
   mainView: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: Colors.white,
   },
-
+  icon: {
+    marginTop: '14%',
+    marginBottom: '7%',
+    marginHorizontal: '5%',
+  },
+  dividerCont: {marginHorizontal: '7%', marginTop: '0%'},
+  divider: {
+    alignSelf: 'center',
+    marginTop: '33%',
+    marginBottom: '5%',
+  },
   txt1: {
-    color: '#000',
+    color: colors.black,
     fontSize: heightPercentageToDP(3.2),
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',
   },
   txt: {
-    color: '#5D5D5D',
-    fontFamily: 'Montserrat-Medium',
+    color: colors.davy_grey,
+    fontFamily: fonts.montserrat.medium,
     fontSize: heightPercentageToDP(1.9),
     marginHorizontal: '9%',
     textAlign: 'center',
@@ -33,18 +44,17 @@ const STYLES = StyleSheet.create({
     marginTop: 100,
   },
   button: {
-    // flexDirection: 'row',
-    backgroundColor: '#1B146433',
+    backgroundColor: colors.primary_light,
     borderRadius: 10,
     width: 300,
     marginTop: '4%',
     marginBottom: '5%',
   },
   text: {
-    color: '#1B1464',
+    color: colors.primary,
     alignSelf: 'center',
     fontSize: widthPercentageToDP(4),
-    fontFamily: 'Montserrat-Medium',
+    fontFamily: fonts.montserrat.medium,
   },
 })
 

@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native'
 import React from 'react'
+import {Text, View} from 'react-native'
 
 const PartiesCard = () => {
   return (
@@ -10,5 +10,3 @@ const PartiesCard = () => {
 }
 
 export default PartiesCard
-
-const styles = StyleSheet.create({})

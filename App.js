@@ -12,7 +12,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import {createStackNavigator} from '@react-navigation/stack'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
-import COLORS from './src/themes/colors'
+import Colors from './src/themes/Colors'
 
 import Onboarding from './src/screens/Onboarding/Onboarding'
 import Main_Screen from './src/screens/Main_Screen/Main_Screen'
@@ -72,7 +72,7 @@ function MyTabs({route, navigation}) {
             paddingTop: 5,
             paddingBottom: 5,
           },
-          tabBarActiveTintColor: COLORS.blue,
+          tabBarActiveTintColor: colors.skye_blue,
           headerShown: false,
           tabBarInactiveTintColor: 'green',
           tabBarShowLabel: true,
@@ -84,7 +84,7 @@ function MyTabs({route, navigation}) {
               <MaterialIcons
                 name="explore"
                 size={24}
-                color={focused ? COLORS.blue : COLORS.greylight}
+                color={focused ? Colors.skye_blue : Colors.old_silver_o2}
               />
             ),
           }}
@@ -98,7 +98,7 @@ function MyTabs({route, navigation}) {
               <FontAwesome6
                 name="calendar-days"
                 size={24}
-                color={focused ? COLORS.blue : COLORS.greylight}
+                color={focused ? Colors.skye_blue : Colors.old_silver_o2}
               />
             ),
           }}
@@ -115,7 +115,7 @@ function MyTabs({route, navigation}) {
                   style={{
                     bottom: 20,
                     height: 50,
-                    backgroundColor: COLORS.blue,
+                    backgroundColor: colors.skye_blue,
                     width: 50,
                     alignItems: 'center',
                     borderRadius: 25,
@@ -124,7 +124,7 @@ function MyTabs({route, navigation}) {
                   <AntDesign
                     name="plussquare"
                     size={24}
-                    color={focused ? COLORS.blue : COLORS.greylight}
+                    color={focused ? Colors.skye_blue : Colors.old_silver_o2}
                   />
                 </View>
               </TouchableOpacity>
@@ -141,7 +141,7 @@ function MyTabs({route, navigation}) {
                 <MaterialIcons
                   name="chat"
                   size={24}
-                  color={focused ? COLORS.blue : COLORS.greylight}
+                  color={focused ? Colors.skye_blue : Colors.old_silver_o2}
                 />
               </TouchableOpacity>
             ),
@@ -155,7 +155,7 @@ function MyTabs({route, navigation}) {
               <FontAwesome5
                 name="user"
                 size={24}
-                color={focused ? COLORS.blue : COLORS.greylight}
+                color={focused ? Colors.skye_blue : Colors.old_silver_o2}
               />
             ),
           }}

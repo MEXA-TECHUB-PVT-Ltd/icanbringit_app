@@ -4,6 +4,8 @@ import {View, Text, TouchableOpacity, StyleSheet, StatusBar} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import Back from './../../assets/svgs/back.svg'
 import {heightPercentageToDP} from 'react-native-responsive-screen'
+import {fonts} from '../../themes'
+import Colors from '../../themes/Colors'
 
 export default function Custom_Button(props) {
   const navigation = useNavigation()
@@ -13,11 +15,7 @@ export default function Custom_Button(props) {
       <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
 
       <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.goBack()}>
-        <Back
-          width={35}
-          height={35}
-          style={{marginTop: '14%', marginBottom: '7%', marginHorizontal: '5%'}}
-        />
+        <Back width={35} height={35} style={styles.icon} />
       </TouchableOpacity>
 
       <Text style={styles.txt}>{props.title}</Text>
@@ -28,17 +26,18 @@ export default function Custom_Button(props) {
 }
 const styles = StyleSheet.create({
   txt: {
-    color: 'black',
+    color: Colors.black,
     fontSize: heightPercentageToDP(3.2),
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',
   },
   txt1: {
-    color: 'black',
+    color: Colors.black,
     fontSize: heightPercentageToDP(2.8),
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: fonts.montserrat.bold,
     marginLeft: '8%',
     marginTop: '10%',
   },
+  icon: {marginTop: '14%', marginBottom: '7%', marginHorizontal: '5%'},
 })

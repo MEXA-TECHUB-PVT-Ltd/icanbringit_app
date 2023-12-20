@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {View, Text, StyleSheet, Animated} from 'react-native'
 
-import CheckSnackBar from '../../assets/svgs/CheckSnackBar.svg'
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen'
+
+import CheckSnackBar from '../../assets/svgs/CheckSnackBar.svg'
+import { colors, theme } from '../../themes'
 
 const CustomSnackbar = ({visible, message, messageDescription, onDismiss}) => {
   const [animation] = useState(new Animated.Value(0))
@@ -26,6 +28,7 @@ const CustomSnackbar = ({visible, message, messageDescription, onDismiss}) => {
       }).start()
     }
   }, [visible])
+  
   if (!visible) return null
   return (
     <Animated.View
@@ -53,41 +56,29 @@ const CustomSnackbar = ({visible, message, messageDescription, onDismiss}) => {
           <Text style={styles.messageDescription}>{messageDescription}</Text>
         </View>
       </View>
-      {/*  <TouchableOpacity onPress={onDismiss} style={styles.dismissButton}>
-        <Text style={styles.dismissButtonText}>Dismiss</Text>
-      </TouchableOpacity> */}
     </Animated.View>
   )
 }
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: 60, // Display at the top of the screen
+    top: 60,
     left: 15,
     right: 15,
     height: hp(7.5),
     borderRadius: 10,
-    backgroundColor: 'white',
-    //padding: 14,
+    backgroundColor: colors.white,
     flexDirection: 'row',
-    //alignItems: 'center',
   },
   message: {
-    color: '#00CB14',
+    color: colors.vivid_malachite,
     fontSize: wp(4.5),
-    fontWeight: '500',
+    fontWeight: theme.light.fontWeight.medium,
   },
   messageDescription: {
-    color: '#2E2E2E',
+    color: colors.dark_charcoal,
     fontSize: wp(3.5),
-    fontWeight: '200',
-  },
-  dismissButton: {
-    marginLeft: 16,
-  },
-  dismissButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: theme.light.fontWeight.ultraLight,
   },
 })
 export default CustomSnackbar

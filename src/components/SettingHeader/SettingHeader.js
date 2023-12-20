@@ -3,26 +3,17 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import Back from './../../assets/svgs/back.svg'
 import {heightPercentageToDP} from 'react-native-responsive-screen'
+import {colors, fonts} from '../../themes'
 
 const SettingHeader = ({title, txtStyle}) => {
   const navigation = useNavigation()
 
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        marginTop: '8%',
-        justifyContent: 'space-around',
-        marginHorizontal: 20,
-      }}>
-      <TouchableOpacity
-        activeOpacity={0.7}
-        onPress={() => {
-          navigation.goBack()
-        }}>
-        <Back width={35} height={35} style={{}} />
+    <View style={styles.container}>
+      <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.goBack()}>
+        <Back width={35} height={35} />
       </TouchableOpacity>
-      <View style={{width: '99%'}}>
+      <View style={styles.titleWidth}>
         <Text style={[styles.txt, txtStyle]}>{title}</Text>
       </View>
     </View>
@@ -32,11 +23,18 @@ const SettingHeader = ({title, txtStyle}) => {
 export default SettingHeader
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    marginTop: '8%',
+    justifyContent: 'space-around',
+    marginHorizontal: 20,
+  },
   txt: {
-    color: '#000',
+    color: colors.black,
     fontSize: heightPercentageToDP(3),
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',
   },
+  titleWidth: {width: '99%'},
 })

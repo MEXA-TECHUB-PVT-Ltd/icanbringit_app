@@ -1,9 +1,10 @@
-import {SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native'
+import {SafeAreaView, StatusBar, Text} from 'react-native'
 import React from 'react'
+import { globalStyles as gs} from '../../styles'
 
 const Home = () => {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={gs.fill}>
       <StatusBar translucent={false}></StatusBar>
       <Text>Home</Text>
     </SafeAreaView>
@@ -11,5 +12,3 @@ const Home = () => {
 }
 
 export default Home
-
-const styles = StyleSheet.create({})

@@ -4,8 +4,11 @@ import {ScrollView, View, ImageBackground, Text, StatusBar} from 'react-native'
 import {CircularProgress} from 'react-native-circular-progress'
 import {useIsFocused} from '@react-navigation/native'
 
-import appImages from './../../constants/Images'
+import images from '../../constants/images'
+import { colors } from '../../themes'
+
 import styles from './styles'
+import { globalStyles as gs } from '../../styles'
 
 const Thank_you = ({navigation}) => {
   const isFocused = useIsFocused()
@@ -31,21 +34,21 @@ const Thank_you = ({navigation}) => {
   }, [count, navigation, isFocused])
 
   return (
-    <ScrollView style={styles.bg} contentContainerStyle={{flexGrow: 1}}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
+    <ScrollView style={gs.fill} contentContainerStyle={gs.flexGrowFill}>
+      <StatusBar barStyle={'dark-content'} backgroundColor={colors.transparent} translucent={true} />
       <View style={styles.mainv}>
         <ImageBackground
-          source={appImages.bbg}
-          style={{width: '100%', height: '100%'}}
+          source={images.bbg}
+          style={styles.full}
           resizeMode="stretch">
           <Text style={styles.txt}>Thank you for providing the information</Text>
 
-          <View style={{alignSelf: 'center', marginTop: '30%'}}>
+          <View style={styles.progressBarContainer}>
             <CircularProgress
               size={170}
               width={10}
               fill={count}
-              tintColor="#B6BEA9"
+              tintColor={colors.ash_grey}
               backgroundColor="#B6BEA959"
               rotation={0}
               lineCap="round">

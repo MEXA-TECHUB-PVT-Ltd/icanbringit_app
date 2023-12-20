@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
+import { colors } from '../../themes'
 
 const STYLES = StyleSheet.create({
   bg: {
@@ -11,11 +12,11 @@ const STYLES = StyleSheet.create({
   },
   mainView: {
     flex: 1,
-    backgroundColor: '#ADDAFA',
+    backgroundColor: colors.fresh_air,
   },
   input: {
-    backgroundColor: COLORS.white,
-    borderColor: COLORS.white,
+    backgroundColor: Colors.white,
+    borderColor: Colors.white,
   },
   errors: {
     fontSize: 11,

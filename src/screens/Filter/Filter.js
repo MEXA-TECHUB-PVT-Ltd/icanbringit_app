@@ -1,7 +1,8 @@
 import React, {useRef} from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import {Text, View} from 'react-native'
 
 import RBSheet from 'react-native-raw-bottom-sheet'
+import { globalMarginStyles as gms, globalStyles } from '../../styles'
 
 const Filter = () => {
   const ref_RBSheetCamera = useRef(null)
@@ -28,13 +29,8 @@ const Filter = () => {
           },
         }}>
         <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: 10,
-            alignItems: 'center',
-          }}>
-          <Text style={styles.maintext}>Select an option</Text>
+          style={[globalStyles.row, gms.mh10]}>
+          <Text>Select an option</Text>
         </View>
         <View
           style={{
@@ -49,5 +45,3 @@ const Filter = () => {
 }
 
 export default Filter
-
-const styles = StyleSheet.create({})

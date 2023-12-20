@@ -5,6 +5,7 @@ import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive
 
 import Signin_signup_header from '../../components/button/Signin_signup_header'
 import Custom_Button from '../../components/button/Custom_Button'
+import {colors, fonts} from '../../themes'
 
 const PreferredLocation = () => {
   const [clickedId, setclickedId] = useState()
@@ -31,19 +32,17 @@ const PreferredLocation = () => {
           renderItem={({item, index}) => {
             return (
               <TouchableOpacity
-                onPress={() => {
-                  setclickedId(index)
-                }}
+                onPress={() => setclickedId(index)}
                 style={[
                   index === clickedId
-                    ? [styles.optionsView, {backgroundColor: '#3FA9F5'}]
-                    : [styles.optionsView, {backgroundColor: 'white'}],
+                    ? [styles.optionsView, {backgroundColor: colors.picton_blue}]
+                    : [styles.optionsView, {backgroundColor: colors.white}],
                 ]}>
                 <Text
                   style={[
                     index === clickedId
-                      ? [styles.text, {color: 'white'}]
-                      : [styles.text, {color: 'black'}],
+                      ? [styles.text, {color: colors.white}]
+                      : [styles.text, {color: colors.black}],
                   ]}>
                   {item.head}
                 </Text>
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
   txt: {
     color: 'black',
     fontSize: heightPercentageToDP(3.2),
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',
     marginHorizontal: '11%',
@@ -88,13 +87,13 @@ const styles = StyleSheet.create({
     width: 280,
     height: 40,
     marginTop: '5%',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
   text: {
-    color: '#000000',
+    color: colors.black,
     fontSize: 20,
     textAlign: 'center',
     fontSize: widthPercentageToDP(4),
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: fonts.montserrat.regular,
   },
 })

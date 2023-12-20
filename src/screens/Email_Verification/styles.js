@@ -1,7 +1,8 @@
 import {StyleSheet} from 'react-native'
 import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
 
-import COLORS from '../../themes/colors'
+import Colors from '../../themes/colors'
+import { colors, fonts } from '../../themes'
 
 const STYLES = StyleSheet.create({
   bg: {
@@ -12,11 +13,11 @@ const STYLES = StyleSheet.create({
   },
   mainView: {
     flex: 1,
-    backgroundColor: '#ADDAFA',
+    backgroundColor: colors.fresh_air,
   },
   btn2: {
     width: '83%',
-    borderColor: COLORS.primary,
+    borderColor: Colors.primary,
     borderWidth: 1.5,
     height: 45,
     borderRadius: 10,
@@ -25,16 +26,16 @@ const STYLES = StyleSheet.create({
     alignSelf: 'center',
   },
   txt1: {
-    color: COLORS.primary,
+    color: Colors.primary,
     fontSize: heightPercentageToDP(1.8),
     textAlign: 'center',
-    fontFamily: 'Montserrat-SemiBold',
+    fontFamily: fonts.montserrat.semi_bold,
   },
   txt3: {
-    color: COLORS.primary,
+    color: Colors.primary,
     fontSize: widthPercentageToDP(4),
     textAlign: 'center',
-    fontFamily: 'Montserrat-SemiBold',
+    fontFamily: fonts.montserrat.semi_bold,
   },
   // ------------------------verification styling-------------------------------
   root: {flex: 1, padding: 0, marginBottom: '10%', marginRight: '8%', marginTop: '20%'},
@@ -45,29 +46,29 @@ const STYLES = StyleSheet.create({
     height: 45,
     lineHeight: 38,
     fontSize: 20,
-    fontFamily: 'Montserrat-Medium',
+    fontFamily: fonts.montserrat.medium,
     borderWidth: 1,
-    borderColor: '#E4DFDF',
-    backgroundColor: '#ffff',
-    color: 'black',
+    borderColor: colors.gainsboro,
+    backgroundColor: colors.white,
+    color: colors.black,
     textAlign: 'center',
     marginHorizontal: 15,
     borderRadius: 10,
     paddingTop: '1%',
   },
   focusCell: {
-    borderColor: '#B6BEA9',
-    backgroundColor: 'white',
-    fontFamily: 'Laila-Medium',
+    borderColor: colors.as,
+    backgroundColor: colors.white,
+    fontFamily: fonts.laila.medium,
     paddingTop: '2%',
   },
   textWS: {
-    color: 'gray',
+    color: Colors.grey,
     textAlign: 'center',
     fontSize: 14,
   },
   textWL: {
-    color: 'gray',
+    color: Colors.grey,
     textAlign: 'center',
     fontSize: 15,
   },
