@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native'
 import Back from './../../assets/svgs/back.svg'
 import {heightPercentageToDP} from 'react-native-responsive-screen'
 import {fonts} from '../../themes'
-import Colors from '../../themes/Colors'
+import Colors from '../../themes/colors'
 
 export default function Custom_Button(props) {
   const navigation = useNavigation()

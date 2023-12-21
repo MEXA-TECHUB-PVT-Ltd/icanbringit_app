@@ -13,8 +13,8 @@ import {
 import {Calendar, LocaleConfig} from 'react-native-calendars'
 
 import images from '../../constants/images'
-import { colors, theme } from '../../themes'
-import Colors from '../../themes/Colors'
+import {colors, theme} from '../../themes'
+import {globalStyles as gs} from '../../styles'
 
 LocaleConfig.locales['en'] = {
   monthNames: [
@@ -53,28 +53,27 @@ LocaleConfig.defaultLocale = 'en'
 
 const Schedule = ({navigation}) => {
   const [selectedDate, setSelectedDate] = useState('')
-  const [button1Color, setButton1Color] = useState('white')
-  const [button2Color, setButton2Color] = useState('transparent')
-  const [button2TextColor, setButton2TextColor] = useState('black')
+  const [button1Color, setButton1Color] = useState(colors.white)
+  const [button2Color, setButton2Color] = useState(colors.transparent)
+  const [button2TextColor, setButton2TextColor] = useState(colors.black)
   const [showEvents, setShowEvents] = useState(true)
 
   const handleButton1Click = () => {
-    setButton1Color('white')
-    setButton2Color('transparent')
-    setButton2TextColor('black')
+    setButton1Color(colors.white)
+    setButton2Color(colors.transparent)
+    setButton2TextColor(colors.black)
     setShowEvents(true)
   }
 
   const handleButton2Click = () => {
-    setButton1Color('transparent')
-    setButton2Color('white')
-    setButton2TextColor(Colors.grey)
+    setButton1Color(colors.transparent)
+    setButton2Color(colors.white)
+    setButton2TextColor(colors.grey)
     setShowEvents(false)
   }
 
-  const onDayPress = day => {
-    setSelectedDate(day.dateString)
-  }
+  const onDayPress = day => setSelectedDate(day.dateString)
+
   const data = [
     {
       id: '1',
@@ -106,7 +105,6 @@ const Schedule = ({navigation}) => {
       title: 'Notification Title 3',
       time: '1:45 PM',
     },
-    // Add more data as needed
   ]
   const data2 = [
     {id: '1', user: 'Candyland Carnival'},
@@ -125,7 +123,6 @@ const Schedule = ({navigation}) => {
         <TouchableOpacity style={styles.actionButton}>
           <Text style={styles.buttonText22}>Done</Text>
         </TouchableOpacity>
-        <View>{/* <Text style={styles.userName2}>{item.user}</Text> */}</View>
       </View>
     </TouchableOpacity>
   )
@@ -142,8 +139,12 @@ const Schedule = ({navigation}) => {
     </View>
   )
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
+    <SafeAreaView style={gs.fill}>
+      <StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={colors.transparent}
+        translucent={true}
+      />
       <View style={styles.container}>
         <Calendar
           onDayPress={onDayPress}
@@ -156,7 +157,7 @@ const Schedule = ({navigation}) => {
             calendarBackground: colors.white,
             textSectionTitleColor: colors.pastel_blue,
             selectedDayBackgroundColor: colors.cerulean,
-            selectedDayTextColor: 'white',
+            selectedDayTextColor: colors.white,
             todayTextColor: colors.cerulean,
             dayTextColor: colors.charcoal,
             textDisabledColor: colors.gainsboro_taupe,
@@ -253,7 +254,7 @@ const styles = StyleSheet.create({
   },
   notificationTime: {
     fontSize: 12,
-    color: Colors.grey,
+    color: colors.grey,
   },
   button: {
     backgroundColor: colors.tufts_blue,

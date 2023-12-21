@@ -42,7 +42,6 @@ function Onboarding({navigation}) {
   }
 
   const goToNextSlide = () => {
-    console.log('currentSlide---', currentSlide)
     if (currentSlide < imagesArr.length - 1) {
       const newSlide = currentSlide + 1
       setCurrentSlide(newSlide)
@@ -63,13 +62,16 @@ function Onboarding({navigation}) {
 
   return (
     <SafeAreaView style={gs.fill}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
+      <StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={colors.transparent}
+        translucent={true}
+      />
       <View style={styles.mainView}>
         <Swiper
           style={styles.wrapper}
           loop={false}
           ref={swiperRef}
-          // paginationStyle={styles.paginationStyle}
           showsPagination={false}
           onIndexChanged={onIndexChanged}>
           {imagesArr.map((image, index) => (
