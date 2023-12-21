@@ -6,10 +6,6 @@ import Colors from '../../themes/colors'
 import { colors, fonts } from '../../themes'
 
 const STYLES = StyleSheet.create({
-  mainView: {
-    flex: 1,
-    backgroundColor: Colors.white,
-  },
   bigview: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -21,6 +17,16 @@ const STYLES = StyleSheet.create({
     height: 1,
     width: '30%',
     alignSelf: 'center',
+  },
+  loginBtn: {
+    alignSelf: 'center',
+    marginTop: '5%',
+    marginBottom: '5%',
+  },
+  signupBtn: {
+    alignSelf: 'center',
+    marginTop: '20%',
+    marginBottom: '5%',
   },
   txt1: {
     color: Colors.quartz,

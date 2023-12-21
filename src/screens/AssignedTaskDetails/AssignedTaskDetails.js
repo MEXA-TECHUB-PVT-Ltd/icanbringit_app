@@ -3,7 +3,7 @@ import {Image, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View} fro
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-import Colors from '../../themes/Colors'
+import Colors from '../../themes/colors'
 import Back from '../../assets/svgs/back.svg'
 import CustomText from '../../components/Text'
 import images from '../../constants/images'

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {SafeAreaView, ScrollView, Image, View, TouchableOpacity} from 'react-native'
 
 import {Text, Divider} from 'react-native-paper'
@@ -14,31 +14,38 @@ import {isIos} from '../../utils/helpers/Dimensions'
 import images from '../../constants/images'
 import Colors from '../../themes/colors'
 import styles from './styles'
+import {globalStyles as gs} from '../../styles'
+
+import {useDispatch, useSelector} from 'react-redux'
+import {userSignup} from '../../redux/actions/userSignupAction'
 
 const SignUp = ({navigation}) => {
-  const RegisterUser = () => navigation.navigate('AboutYourSelf')
+  const [userData, setUserData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  })
+
+  const dispatch = useDispatch()
+  const {data, loading, error} = useSelector(state => state.userSignup)
+
+  const RegisterUser = values => {
+    const userData = {...values, signup_type: 'email', device_id: 'i dont know'}
+    console.log(userData)
+    dispatch(userSignup(userData))
+    console.log('done')
+  }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={{backgroundColor: 'white'}}>
-        {/* <StatusBar
-          barStyle={'dark-content'}
-          backgroundColor={'transparent'}
-          translucent={true}
-        />{' '} */}
+    <SafeAreaView style={gs.fill}>
+      <ScrollView style={{backgroundColor: Colors.white}}>
         <Formik
-          initialValues={{
-            email: '',
-            password: '',
-            confirmPassword: '',
-          }}
+          initialValues={userData}
           validateOnMount={true}
-          onSubmit={(values, {setSubmitting, setValues}) =>
-            RegisterUser(values, {setSubmitting, setValues})
-          }
+          onSubmit={values => RegisterUser(values)}
           validationSchema={SignUpValidationSchema}>
-          {({handleSubmit, handleChange, handleBlur, values, touched, errors, isValid}) => (
-            <View style={styles.mainView}>
+          {({handleSubmit, handleChange, handleBlur, values, touched, errors}) => (
+            <View style={gs.whiteContainer}>
               <Signin_signup_header title="I Can Bring It!" title1="Create Account" />
               <View style={{marginHorizontal: '7%', marginTop: '8%'}}>
                 <InputField
@@ -91,20 +98,11 @@ const SignUp = ({navigation}) => {
                 )}
               </View>
 
-              <View
-                style={{
-                  alignSelf: 'center',
-                  marginTop: '20%',
-                  marginBottom: '5%',
-                }}>
+              <View style={styles.signupBtn}>
                 <CustomButton
                   title="Continue"
                   load={false}
-                  // checkdisable={inn == '' && cm == '' ? true : false}
-                  customClick={() => {
-                    handleSubmit(values)
-                    navigation.navigate('AboutYourSelf')
-                  }}
+                  customClick={() => handleSubmit(values)}
                 />
               </View>
               <View style={styles.bigview}>
@@ -114,21 +112,14 @@ const SignUp = ({navigation}) => {
               </View>
 
               <View style={[styles.v2, {width: isIos ? '60%' : '40%'}]}>
-                <Image source={images.f} style={styles.img} />
-                <Image source={images.g} style={styles.img} />
+                <Image source={images.facebook} style={styles.img} />
+                <Image source={images.google} style={styles.img} />
                 {isIos && <Image source={images.a} style={styles.img} />}
               </View>
-
               <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => {
-                  navigation.navigate('SignIn')
-                }}
-                style={{
-                  alignSelf: 'center',
-                  marginTop: '5%',
-                  marginBottom: '5%',
-                }}>
+                onPress={() => navigation.navigate('SignIn')}
+                style={styles.loginBtn}>
                 <Text style={styles.txt2}>
                   Already have an account?
                   <Text style={styles.txt3}> Sign In</Text>
