@@ -5,37 +5,27 @@ import Email from './../../assets/svgs/email.svg'
 import Lock from './../../assets/svgs/Lock.svg'
 import Eye from './../../assets/svgs/eye.svg'
 import Close_eye from './../../assets/svgs/close_eye.svg'
-import { colors } from '../../themes'
 
-const EmailInput = props => {
-  return (
-    <View
-      style={styles.emailInputContainer}>
-      <Email width={20} height={20} />
-      <TextInput style={{flex: 1}} placeholder={props.title} />
-    </View>
-  )
-}
+import {colors} from '../../themes'
+import {globalStyles as gs} from '../../styles'
+
+const EmailInput = props => (
+  <View style={[styles.container, styles.mt7p]}>
+    <Email width={20} height={20} />
+    <TextInput style={gs.fill} placeholder={props.title} />
+  </View>
+)
 
 const PasswordInput = props => {
   const [passwordVisible, setPasswordVisible] = useState(false)
+
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible)
   }
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderColor: colors.gainsboro,
-        borderWidth: 1,
-        borderRadius: 10,
-        paddingHorizontal: '4%',
-        marginTop: '7%',
-        backgroundColor: colors.white,
-      }}>
+    <View style={styles.container}>
       <Lock width={20} height={20} />
-      <TextInput style={{flex: 1}} placeholder={props.title} secureTextEntry={!passwordVisible} />
+      <TextInput style={gs.fill} placeholder={props.title} secureTextEntry={!passwordVisible} />
       <TouchableOpacity onPress={togglePasswordVisibility}>
         {passwordVisible ? <Eye width={20} height={20} /> : <Close_eye width={20} height={20} />}
       </TouchableOpacity>
@@ -43,25 +33,21 @@ const PasswordInput = props => {
   )
 }
 
-const Input = props => {
-  return (
-    <View
-      style={{
-        borderColor: colors.gainsboro,
-        borderWidth: 1,
-        borderRadius: 10,
-        paddingHorizontal: '4%',
-        marginTop: '2%',
-        marginBottom: '5%',
-        backgroundColor: colors.white,
-      }}>
-      <TextInput style={{flex: 1}} keyboardType={props.type} placeholder={props.title} />
-    </View>
-  )
-}
+const Input = props => (
+  <View style={styles.inputContainer}>
+    <TextInput
+      value={props.value}
+      onChangeText={props.onChangeText}
+      style={[gs.fill, styles.textColor]}
+      keyboardType={props.type}
+      placeholder={props.title}
+      placeholderTextColor={colors.spanish_grey}
+    />
+  </View>
+)
 
 const styles = StyleSheet.create({
-  emailInputContainer: {
+  container: {
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: colors.gainsboro,
@@ -69,6 +55,19 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: '4%',
     backgroundColor: colors.white,
+  },
+  inputContainer: {
+    borderColor: colors.gainsboro,
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: '4%',
+    marginTop: '2%',
+    marginBottom: '5%',
+    backgroundColor: colors.white,
+  },
+  mt7p: {marginTop: '7%'},
+  textColor: {
+    color: colors.spanish_grey,
   },
 })
 

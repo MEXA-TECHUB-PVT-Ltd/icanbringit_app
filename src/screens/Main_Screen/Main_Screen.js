@@ -8,12 +8,18 @@ import images from '../../constants/images'
 import CustomButton from '../../components/button/Custom_Button'
 
 import styles from './styles'
-import { isIos } from '../../utils/helpers/Dimensions'
+import {isIos} from '../../utils/helpers/Dimensions'
+import {globalStyles as gs} from '../../styles'
+import {colors} from '../../themes'
 
 function Onboarding({navigation}) {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
+    <SafeAreaView style={gs.fill}>
+      <StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={colors.transparent}
+        translucent={true}
+      />
       <View style={styles.mainView}>
         <Image source={images.f5} style={styles.image} resizeMode={'contain'} />
         <Text style={styles.txt1}>I Can Bring It!</Text>
@@ -23,14 +29,11 @@ function Onboarding({navigation}) {
             <CustomButton
               title="Create Account"
               load={false}
-              // checkdisable={inn == '' && cm == '' ? true : false}
               customClick={() => navigation.navigate('SignUp')}
             />
           </View>
           <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('SignIn')
-            }}
+            onPress={() => navigation.navigate('SignIn')}
             activeOpacity={0.7}
             style={styles.btn2}>
             <Text style={styles.txt3}>Already have an account</Text>

@@ -6,6 +6,7 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
+  TextInput,
 } from 'react-native'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -14,14 +15,14 @@ import {Text, Button, Snackbar, Headline} from 'react-native-paper'
 import LoginHeader from '../../components/logins_comp/LoginHeader'
 import STYLES from '../../components/button/styles'
 import base_url from '../../constants/base_url'
-import Colors from '../../themes/colors'
 import styles from './styles'
 import {isIos} from '../../utils/helpers/Dimensions'
+import {globalStyles as gs, globalMarginStyles as gms} from '../../styles'
+import {colors} from '../../themes'
 
 const height = Dimensions.get('window').height
 
-function Login({route, navigation}) {
-  // snackbar
+function Login({navigation}) {
   const [visible, setVisible] = useState(false)
   const [snackDetails, setSnackDetails] = useState({
     text: '',
@@ -31,20 +32,18 @@ function Login({route, navigation}) {
   const onToggleSnackBar = () => setVisible(!visible)
   const onDismissSnackBar = () => setVisible(false)
 
-  // variables
   const [loading, setloading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
 
-  // register api call
   const callLogin = async () => {
     setloading(true)
     if (password.length == 0 || email.length == 0) {
       setloading(false)
       setSnackDetails({
         text: 'Please fill all the fields',
-        backgroundColor: Colors.red,
+        backgroundColor: colors.red,
       })
       onToggleSnackBar()
     } else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
@@ -52,7 +51,7 @@ function Login({route, navigation}) {
 
       setSnackDetails({
         text: 'Please enter a valid email address',
-        backgroundColor: Colors.red,
+        backgroundColor: colors.red,
       })
       onToggleSnackBar()
     } else {
@@ -77,17 +76,16 @@ function Login({route, navigation}) {
           if (response[0].error == true) {
             setSnackDetails({
               text: response[0].message,
-              backgroundColor: Colors.red,
+              backgroundColor: colors.red,
             })
             onToggleSnackBar()
           } else {
             setSnackDetails({
               text: response[0].message,
-              backgroundColor: Colors.primary,
+              backgroundColor: colors.primary,
             })
             onToggleSnackBar()
             storeData(response[0])
-            getData()
             navigation.replace('MyDrawer')
           }
         })
@@ -97,34 +95,19 @@ function Login({route, navigation}) {
         })
     }
   }
-  // store user data in async storage
+
   const storeData = async value => {
     try {
       const jsonValue = JSON.stringify(value)
       await AsyncStorage.setItem('userDetail', jsonValue)
-      // console.log('userDetail', jsonValue)
     } catch (e) {
-      // saving error
       alert('Error : ' + e)
     }
   }
-  // get user data from async storage
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem('userDetail')
-      const data = JSON.parse(jsonValue)
-      // return jsonValue != null ? console.log(JSON.parse(jsonValue)) : null;
-    } catch (e) {
-      // error reading value
-    }
-  }
+
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: Colors.white,
-      }}>
+    <SafeAreaView style={gs.whiteContainer}>
       <Snackbar
         visible={visible}
         style={{
@@ -141,11 +124,7 @@ function Login({route, navigation}) {
       </Snackbar>
       <KeyboardAvoidingView
         behavior={isIos ? 'padding' : 'height'}
-        style={{
-          flex: 1,
-          backgroundColor: Colors.white,
-          zIndex: -9,
-        }}>
+        style={[gs.whiteContainer, {zIndex: -9}]}>
         <ScrollView
           keyboardShouldPersistTaps="always"
           showsVerticalScrollIndicator={false}
@@ -173,47 +152,39 @@ function Login({route, navigation}) {
 
             <View style={styles.txtInptView}>
               <TextInput
-                // left={<TextInput.Icon name="email" color={Colors.primary} />}
                 style={styles.txtInpt}
-                color={Colors.dark}
+                color={colors.dark}
                 placeholder="Email"
-                placeholderTextColor={Colors.dark}
+                placeholderTextColor={colors.dark}
                 keyboardType="email-address"
                 autoCapitalize="none"
-                underlineColor={Colors.dark}
-                activeUnderlineColor={Colors.primary}
+                underlineColor={colors.dark}
+                activeUnderlineColor={colors.primary}
                 autoCorrect={false}
                 mode="flat"
                 onChangeText={text => setEmail(text)}
-                left={<TextInput.Icon icon="email" iconColor={Colors.light} />}
+                left={<TextInput.Icon icon="email" iconColor={colors.light} />}
               />
               <TextInput
-                // left={<TextInput.Icon name="email" color={Colors.primary} />}
-                style={[
-                  styles.txtInpt,
-                  {
-                    marginTop: 20,
-                  },
-                ]}
-                color={Colors.dark}
+                style={[styles.txtInpt, gms.mt20]}
+                color={colors.dark}
                 placeholder="Password"
-                placeholderTextColor={Colors.dark}
+                placeholderTextColor={colors.dark}
                 autoCapitalize="none"
-                underlineColor={Colors.dark}
-                activeUnderlineColor={Colors.primary}
+                underlineColor={colors.dark}
+                activeUnderlineColor={colors.primary}
                 autoCorrect={false}
                 mode="flat"
                 secureTextEntry={secureTextEntry}
                 onChangeText={text => setPassword(text)}
-                left={<TextInput.Icon icon="lock" iconColor={Colors.light} />}
+                left={<TextInput.Icon icon="lock" iconColor={colors.light} />}
                 right={
                   <TextInput.Icon
                     icon={secureTextEntry ? 'eye' : 'eye-off'}
                     onPress={() => setSecureTextEntry(!secureTextEntry)}
-                    iconColor={Colors.light}
+                    iconColor={colors.light}
                   />
                 }
-                // onChangeText={text => setEmail(text)}
               />
               <View
                 style={{
@@ -226,11 +197,7 @@ function Login({route, navigation}) {
                 </TouchableOpacity>
               </View>
 
-              <View
-                style={{
-                  // marginTop:height* 0.005,
-                  zIndex: -9,
-                }}>
+              <View style={{zIndex: -9}}>
                 <Button
                   mode="contained"
                   style={STYLES.btn}
@@ -248,16 +215,11 @@ function Login({route, navigation}) {
                       backgroundColor: Colors.white,
                     },
                   ]}>
-                  <Text
-                    style={{
-                      color: Colors.dark,
-                    }}>
-                    Don’t have account?{' '}
-                  </Text>
+                  <Text style={{color: colors.dark}}>Don`t have account? </Text>
                   <TouchableOpacity
                     style={{left: '5%'}}
                     onPress={() => navigation.navigate('Signup')}>
-                    <Text style={{color: Colors.secondary}}>Sign up</Text>
+                    <Text style={{color: colors.secondary}}>Sign up</Text>
                   </TouchableOpacity>
                 </View>
               </View>

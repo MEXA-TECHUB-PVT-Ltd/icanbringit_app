@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native'
-
 import {Dropdown} from 'react-native-element-dropdown'
-import CustomButton from '../../components/button/Custom_Button'
 
-import Signin_signup_header from '../../components/button/Signin_signup_header'
+import CustomButton from '../../components/button/Custom_Button'
 import {Input} from '../../components/button/TextInput'
+import Signin_signup_header from '../../components/button/Signin_signup_header'
+
+import {colors} from '../../themes'
+import {globalStyles as gs} from '../../styles'
 import styles from './styles'
 
 const data = [
@@ -14,23 +16,45 @@ const data = [
   {label: 'Other', value: '3'},
 ]
 function SignIn({navigation}) {
-  const [value, setValue] = useState(null)
+  const [name, setName] = useState('')
+  const [gender, setGender] = useState(null)
+  const [age, setAge] = useState('')
+  const [city, setCity] = useState('')
+  const [country, setCountry] = useState('')
+
+  const onNameChange = value => setName(value)
+  const onAgeChange = value => setAge(value)
+  const onCityChange = value => setCity(value)
+  const onCountryChange = value => setCountry(value)
+
+  const onSubmit = () =>
+    navigation.navigate('Add_Profile_photo', {
+      fullname: name,
+      gender: gender.label,
+      age,
+      city,
+      country,
+    })
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={{backgroundColor: 'white'}}>
-        <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
-        <View style={styles.mainView}>
+    <SafeAreaView style={gs.fill}>
+      <ScrollView style={colors.white}>
+        <StatusBar
+          barStyle={'dark-content'}
+          backgroundColor={colors.transparent}
+          translucent={true}
+        />
+        <View style={gs.whiteContainer}>
           <Signin_signup_header title="Tell Us About Yourself" />
-          <View style={{marginHorizontal: '7%', marginTop: '0%'}}>
-            <Input title={'Full name'} />
-
+          <View style={styles.firstInputContainer}>
+            <Input title={'Full name'} value={name} onChangeText={onNameChange} />
             <Dropdown
               style={styles.dropdown}
               placeholderStyle={styles.placeholderStyle}
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
               iconStyle={styles.iconStyle}
+              itemTextStyle={styles.placeholderStyle}
               data={data}
               search
               maxHeight={300}
@@ -38,21 +62,16 @@ function SignIn({navigation}) {
               valueField="value"
               placeholder="Select Gender"
               searchPlaceholder="Search..."
-              value={value}
-              onChange={item => setValue(item.value)}
+              value={gender}
+              onChange={item => setGender(item)}
             />
-            <Input title={'Age'} type={'numeric'} />
-            <Input title={'City'} />
-            <Input title={'Country'} />
+            <Input value={age} onChangeText={onAgeChange} title={'Age'} type={'numeric'} />
+            <Input value={city} onChangeText={onCityChange} title={'City'} />
+            <Input value={country} onChangeText={onCountryChange} title={'Country'} />
           </View>
 
-          <View style={{alignSelf: 'center', marginTop: '33%', marginBottom: '5%'}}>
-            <CustomButton
-              title="Continue"
-              load={false}
-              // checkdisable={inn == '' && cm == '' ? true : false}
-              customClick={() => navigation.navigate('Add_Profile_photo')}
-            />
+          <View style={styles.submitBtnContainer}>
+            <CustomButton title="Continue" load={false} customClick={onSubmit} />
           </View>
         </View>
       </ScrollView>

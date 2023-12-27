@@ -1,15 +1,9 @@
 import {StyleSheet} from 'react-native'
 
 import Colors from '../../themes/colors'
-import { colors } from '../../themes'
+import {colors} from '../../themes'
 
 const STYLES = StyleSheet.create({
-  bg: {
-    flex: 1,
-  },
-  mainv: {
-    flex: 1,
-  },
   mainView: {
     flex: 1,
     backgroundColor: colors.fresh_air,
@@ -18,10 +12,22 @@ const STYLES = StyleSheet.create({
     backgroundColor: Colors.white,
     borderColor: Colors.white,
   },
+  formContainer: {marginHorizontal: '7%', marginTop: '25%'},
+  emailContainer: {marginHorizontal: '7%', marginTop: '8%'},
+  btn: {
+    alignSelf: 'center',
+    marginTop: '70%',
+    marginBottom: '5%',
+  },
+  btnContainer: {
+    alignSelf: 'center',
+    marginTop: '20%',
+    marginBottom: '5%',
+  },
   errors: {
     fontSize: 11,
     fontWeight: 'bold',
-    color: 'red',
+    color: colors.red,
     marginTop: 5,
   },
 })

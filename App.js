@@ -166,51 +166,49 @@ const App = () => {
     SplashScreen.hide()
   }, [])
 
-  const MainContainer = () => {
-    return (
-      <Stack.Navigator screenOptions={{header: () => null}}>
-        <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="Main_Screen" component={Main_Screen} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="Forget_Password" component={Forget_Password} />
-        <Stack.Screen name="Verification" component={Verification} />
-        <Stack.Screen name="Email_Verification" component={Email_Verification} />
-        <Stack.Screen name="Tell_Us_About_Yourself" component={Tell_Us_About_Yourself} />
-        <Stack.Screen name="Add_Profile_photo" component={Add_Profile_photo} />
-        <Stack.Screen name="Add_Location" component={Add_Location} />
-        <Stack.Screen name="Map" component={Map} />
-        <Stack.Screen name="Reset_Password" component={Reset_Password} />
-        <Stack.Screen name="Select_preferences" component={Select_preferences} />
-        <Stack.Screen name="Thank_you" component={Thank_you} />
-        <Stack.Screen name="MyTabs" component={MyTabs} />
-        <Stack.Screen name="AboutYourSelf" component={AboutYourSelf} />
-        <Stack.Screen name="ProfilePic" component={ProfilePic} />
-        <Stack.Screen name="Notifications" component={Notifications} />
-        <Stack.Screen name="Parties" component={Parties} />
-        <Stack.Screen name="Filter" component={Filter} />
-        <Stack.Screen name="CreateEvent" component={CreateEvent} />
-        <Stack.Screen name="ViewEvent" component={ViewEvent} />
-        <Stack.Screen name="ReminderScreen" component={ReminderScreen} />
-        <Stack.Screen name="ChatList" component={ChatList} />
-        <Stack.Screen name="Chat" component={Chat} />
-        <Stack.Screen name="Report" component={Report} />
-        <Stack.Screen name="DescribeIssue" component={DescribeIssue} />
-        <Stack.Screen name="PreferredFood" component={PreferredFood} />
-        <Stack.Screen name="PreferredLocation" component={PreferredLocation} />
-        <Stack.Screen name="PreferedEvents" component={PreferedEvents} />
-        <Stack.Screen name="Setting" component={Setting} />
-        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
-        <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
-        <Stack.Screen name="EditProfile" component={EditProfile} />
-        <Stack.Screen name="GoPremium" component={GoPremium} />
-        <Stack.Screen name="MyEvent" component={MyEvent} />
-        <Stack.Screen name="AttendeesList" component={AttendeesList} />
-        <Stack.Screen name="AssignedTask" component={AssignedTask} />
-        <Stack.Screen name="AssignedTaskDetails" component={AssignedTaskDetails} />
-      </Stack.Navigator>
-    )
-  }
+  const MainContainer = () => (
+    <Stack.Navigator screenOptions={{header: () => null}}>
+      <Stack.Screen name="Onboarding" component={Onboarding} />
+      <Stack.Screen name="Main_Screen" component={Main_Screen} />
+      <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="Forget_Password" component={Forget_Password} />
+      <Stack.Screen name="Verification" component={Verification} />
+      <Stack.Screen name="Email_Verification" component={Email_Verification} />
+      <Stack.Screen name="Tell_Us_About_Yourself" component={Tell_Us_About_Yourself} />
+      <Stack.Screen name="Add_Profile_photo" component={Add_Profile_photo} />
+      <Stack.Screen name="Add_Location" component={Add_Location} />
+      <Stack.Screen name="Map" component={Map} />
+      <Stack.Screen name="Reset_Password" component={Reset_Password} />
+      <Stack.Screen name="Select_preferences" component={Select_preferences} />
+      <Stack.Screen name="Thank_you" component={Thank_you} />
+      <Stack.Screen name="MyTabs" component={MyTabs} />
+      <Stack.Screen name="AboutYourSelf" component={AboutYourSelf} />
+      <Stack.Screen name="ProfilePic" component={ProfilePic} />
+      <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="Parties" component={Parties} />
+      <Stack.Screen name="Filter" component={Filter} />
+      <Stack.Screen name="CreateEvent" component={CreateEvent} />
+      <Stack.Screen name="ViewEvent" component={ViewEvent} />
+      <Stack.Screen name="ReminderScreen" component={ReminderScreen} />
+      <Stack.Screen name="ChatList" component={ChatList} />
+      <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="Report" component={Report} />
+      <Stack.Screen name="DescribeIssue" component={DescribeIssue} />
+      <Stack.Screen name="PreferredFood" component={PreferredFood} />
+      <Stack.Screen name="PreferredLocation" component={PreferredLocation} />
+      <Stack.Screen name="PreferedEvents" component={PreferedEvents} />
+      <Stack.Screen name="Setting" component={Setting} />
+      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+      <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
+      <Stack.Screen name="GoPremium" component={GoPremium} />
+      <Stack.Screen name="MyEvent" component={MyEvent} />
+      <Stack.Screen name="AttendeesList" component={AttendeesList} />
+      <Stack.Screen name="AssignedTask" component={AssignedTask} />
+      <Stack.Screen name="AssignedTaskDetails" component={AssignedTaskDetails} />
+    </Stack.Navigator>
+  )
 
   return (
     <Provider store={store}>

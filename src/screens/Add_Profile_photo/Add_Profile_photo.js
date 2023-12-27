@@ -5,7 +5,6 @@ import {Text, Divider} from 'react-native-paper'
 import RBSheet from 'react-native-raw-bottom-sheet'
 import FlashMessage, {showMessage} from 'react-native-flash-message'
 import ImagePicker from 'react-native-image-crop-picker'
-
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 import Signin_signup_header from '../../components/button/Signin_signup_header'
@@ -15,45 +14,91 @@ import styles from './styles'
 import Profile from '../../assets/svgs/Profile.svg'
 import Gallery from '../../assets/svgs/gallary.svg'
 import Camera from '../../assets/svgs/camera.svg'
+
 import {globalPaddingStyles, globalStyles} from '../../styles'
 import {colors} from '../../themes'
 
-function SignIn({navigation}) {
-  const [image, setImage] = useState('')
+import {useDispatch, useSelector} from 'react-redux'
+import {uploadProfilePhoto} from '../../redux/slices/onboarding/uploadProfilePhotoSlice'
+
+function SignIn({navigation, route}) {
+  const userInfo = route.params
+
+  const dispatch = useDispatch()
+  const state = useSelector(state => state.uploadProfilePhoto)
+  const [image, setImage] = useState(null)
 
   const takePhotoFromCamera = async () => {
     const data = await ImagePicker.openCamera({
       width: 500,
       height: 500,
-    }).then(imageDetail =>
-      setImage({
-        uri: imageDetail.path,
-      }),
-    )
+      cropping: true,
+      cropperCircleOverlay: false,
+      mediaType: 'photo',
+      compressImageQuality: 0.8,
+    })
+      .then(img => {
+        const imageFile = {
+          height: img.height,
+          width: img.width,
+          mime: img.mime,
+          uri: img.path,
+        }
+        setImage(imageFile)
+      })
+      .catch(error => console.log('Image picker error[Camera]:', error))
   }
   const takePhotoFromGallery = async () => {
     const data = await ImagePicker.openPicker({
       width: 500,
       height: 500,
-    }).then(imageDetail =>
-      setImage({
-        uri: imageDetail.path,
-      }),
-    )
+      cropping: true,
+      cropperCircleOverlay: false,
+      mediaType: 'photo',
+      compressImageQuality: 0.8,
+    })
+      .then(img => {
+        const imageFile = {
+          name: img.path.split('/').pop(),
+          height: img.height,
+          width: img.width,
+          mime: img.mime,
+          uri: img.path,
+        }
+        setImage(imageFile)
+      })
+      .catch(error => console.log('Image picker error[Gallery]:', error))
   }
   const refRBSheet = useRef()
   const optionsv = item => refRBSheet.current.open()
 
+  const onSubmit = () => {
+    if (image?.uri) {
+      dispatch(uploadProfilePhoto(image))
+      navigation.navigate('Add_Location', {...userInfo, profile_pic_id: ''})
+    } else {
+      showMessage({
+        message: 'Error',
+        description: 'Add profile photo to continue',
+        type: 'danger',
+      })
+    }
+  }
+
   return (
     <SafeAreaView style={globalStyles.fill}>
       <ScrollView style={{backgroundColor: colors.white}}>
-        <StatusBar barStyle={'dark-content'} backgroundColor={colors.transparent} translucent={true} />
+        <StatusBar
+          barStyle={'dark-content'}
+          backgroundColor={colors.transparent}
+          translucent={true}
+        />
         <View style={styles.mainView}>
           <Signin_signup_header title="Add Profile Photo" />
           <View style={styles.avatarContainer}>
             <View style={styles.v1}>
-              {image ? (
-                <Image source={image} style={styles.upload} resizeMode={'stretch'} />
+              {image?.uri ? (
+                <Image source={{uri: image.uri}} style={styles.upload} resizeMode={'stretch'} />
               ) : (
                 <View style={styles.v}>
                   <Profile />
@@ -61,30 +106,17 @@ function SignIn({navigation}) {
               )}
             </View>
             <Text onPress={optionsv} style={styles.txt1}>
-              {image == '' ? 'Add Photo' : 'Change Photo'}
+              {image?.uri == '' ? 'Add Photo' : 'Change Photo'}
             </Text>
           </View>
 
           <FlashMessage position="top" />
           <View style={styles.btnContainer}>
-            <CustomButton
-              title="Continue"
-              load={false}
-              customClick={() => {
-                if (image == '') {
-                  showMessage({
-                    message: 'Error',
-                    description: 'Add profile photo to continue',
-                    type: 'danger',
-                  })
-                } else {
-                  navigation.navigate('Add_Location')
-                }
-              }}
-            />
+            <CustomButton title="Continue" load={false} customClick={onSubmit} />
           </View>
         </View>
       </ScrollView>
+
       {/* ------------------RBSheet for image---------------- */}
 
       <RBSheet
@@ -94,7 +126,7 @@ function SignIn({navigation}) {
             backgroundColor: 'rgba(52, 52, 52, 0.5)',
           },
           draggableIcon: {
-            backgroundColor: '#ffff',
+            backgroundColor: colors.white,
           },
           container: {
             borderTopLeftRadius: 40,
