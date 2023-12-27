@@ -1,46 +1,79 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {SafeAreaView, ScrollView, View, LogBox, StatusBar} from 'react-native'
 
 import FlashMessage, {showMessage} from 'react-native-flash-message'
 import {Formik} from 'formik'
 
 import CustomButton from '../../components/button/Custom_Button'
-import styles from './styles'
 import FVR_headers from '../../components/button/FVR_headers'
 import {resetPasswordValidationSchema} from '../../utils/Validations'
 import InputField from '../../components/InputFiled'
 import CustomText from '../../components/Text'
-import Colors from '../../themes/colors'
-import { colors } from '../../themes'
+
+import {colors} from '../../themes'
+import {globalStyles as gs} from '../../styles'
+import styles from './styles'
+
+import {useDispatch, useSelector} from 'react-redux'
+import {resetPass} from '../../redux/slices/auth/resetPassSlice'
 
 LogBox.ignoreAllLogs()
 
-const App = ({navigation}) => {
+const App = ({navigation, route}) => {
+  const email = route?.params.email
+
+  const state = useSelector(state => state.resetPass)
+  const dispatch = useDispatch()
+
+  const [userData, setUserData] = useState({
+    password: '',
+    confirmPassword: '',
+  })
+
+  const onResetPass = async values => {
+    const credentials = {email: email, new_password: values.password}
+    dispatch(resetPass(credentials))
+  }
+
+  useEffect(() => {
+    if (state?.data?.status) {
+      showMessage({
+        message: 'Success',
+        description: state.data.message,
+        type: 'success',
+      })
+      navigation.navigate('SignIn')
+    }
+  }, [state?.data])
+
+  useEffect(() => {
+    if (state?.error) {
+      showMessage({
+        message: 'Error',
+        description: state?.error,
+        type: 'error',
+      })
+    }
+  }, [state?.error])
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={gs.fill}>
       <ScrollView style={{backgroundColor: colors.fresh_air}}>
-        <StatusBar barStyle={'dark-content'} backgroundColor={'transparent'} translucent={true} />
+        <StatusBar
+          barStyle={'dark-content'}
+          backgroundColor={colors.transparent}
+          translucent={true}
+        />
         <View style={styles.mainView}>
           <FVR_headers title="Reset Password" title1="Create a strong password." />
-          {/* <View style={{ marginHorizontal: '7%', marginTop: '25%' }}>
-                        <PasswordInput title={'Your password'} />
-                        <PasswordInput title={'Confirm password'} />
-                    </View> */}
           <Formik
-            initialValues={{
-              email: '',
-              password: '',
-              confirmPassword: '',
-            }}
+            initialValues={userData}
             validateOnMount={true}
-            onSubmit={(values, {setSubmitting, setValues}) =>
-              RegisterUser(values, {setSubmitting, setValues})
-            }
+            onSubmit={values => onResetPass(values)}
             validationSchema={resetPasswordValidationSchema}>
-            {({handleSubmit, handleChange, handleBlur, values, touched, errors, isValid}) => (
+            {({handleSubmit, handleChange, handleBlur, values, touched, errors}) => (
               <View style={styles.mainView}>
-                <View style={{marginHorizontal: '7%', marginTop: '8%'}}>
+                <View style={styles.inputMg}>
                   <InputField
                     placeholder={'password'}
                     value={values.password}
@@ -51,14 +84,13 @@ const App = ({navigation}) => {
                     Lefticon={true}
                     name="lock"
                     type={'SimpleLineIcons'}
-                    color={Colors.grey}
+                    color={colors.grey}
                     size={18}
                     style={styles.input}
                   />
                   {errors.password && touched.password && (
                     <CustomText text={errors.password} style={styles.errors} />
                   )}
-
                   <InputField
                     placeholder={'Re-type Password'}
                     value={values.confirmPassword}
@@ -69,7 +101,7 @@ const App = ({navigation}) => {
                     Lefticon={true}
                     name="lock"
                     type={'SimpleLineIcons'}
-                    color={Colors.quartz}
+                    color={colors.quartz}
                     size={18}
                     style={styles.input}
                   />
@@ -77,27 +109,11 @@ const App = ({navigation}) => {
                     <CustomText text={errors.confirmPassword} style={styles.errors} />
                   )}
                 </View>
-
-                <View
-                  style={{
-                    alignSelf: 'center',
-                    marginTop: '70%',
-                    marginBottom: '5%',
-                  }}>
+                <View style={styles.btnContainer}>
                   <CustomButton
                     title="Reset"
                     load={false}
-                    // checkdisable={inn == '' && cm == '' ? true : false}
-                    customClick={() => {
-                      showMessage({
-                        message: 'Success',
-                        description: 'Password reset successfully',
-                        type: 'success',
-                      })
-                      setTimeout(() => {
-                        navigation.navigate('SignIn')
-                      }, 3000)
-                    }}
+                    customClick={() => handleSubmit(values)}
                   />
                 </View>
               </View>

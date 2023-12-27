@@ -20,6 +20,8 @@ const Colors = {
   dark_pink: '#FF0180',
 
   black: '#000000',
+  black_o5: 'rgba(0, 0, 0, 0.5)',
+  black_o8: 'rgba(0, 0, 0, 0.8)',
   light_black: '#00000024',
   eerie_black: '#191919',
 

@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
-import {SafeAreaView, ScrollView, Image, View, TouchableOpacity} from 'react-native'
+import React, {useEffect, useState} from 'react'
+import {SafeAreaView, ScrollView, Image, View, TouchableOpacity, Alert} from 'react-native'
 
+import DeviceInfo from 'react-native-device-info'
 import {Text, Divider} from 'react-native-paper'
 import {Formik} from 'formik'
 
 import Signin_signup_header from '../../components/button/Signin_signup_header'
+import CustomLoader from '../../components/common/CustomLoader'
 import CustomButton from '../../components/button/Custom_Button'
 import InputField from '../../components/InputFiled'
 import CustomText from '../../components/Text'
@@ -13,28 +15,51 @@ import {SignUpValidationSchema} from '../../utils/Validations'
 import {isIos} from '../../utils/helpers/Dimensions'
 import images from '../../constants/images'
 import Colors from '../../themes/colors'
+
 import styles from './styles'
 import {globalStyles as gs} from '../../styles'
 
 import {useDispatch, useSelector} from 'react-redux'
-import {userSignup} from '../../redux/actions/userSignupAction'
+import {signupUser} from '../../redux/slices/auth/signupSlice'
 
 const SignUp = ({navigation}) => {
   const [userData, setUserData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
+    signup_type: 'email',
+    device_id: '',
   })
 
   const dispatch = useDispatch()
-  const {data, loading, error} = useSelector(state => state.userSignup)
+  const signupState = useSelector(state => state.signup)
 
   const RegisterUser = values => {
-    const userData = {...values, signup_type: 'email', device_id: 'i dont know'}
-    console.log(userData)
-    dispatch(userSignup(userData))
-    console.log('done')
+    const {confirmPassword, ...data} = values
+    data.device_id = data.device_id || userData.device_id
+    dispatch(signupUser(data))
   }
+
+  const fetchDeviceId = async () => {
+    const deviceId = await DeviceInfo.getUniqueId()
+    setUserData(prevData => ({...prevData, device_id: deviceId}))
+  }
+
+  useEffect(() => {
+    fetchDeviceId()
+  }, [])
+
+  useEffect(() => {
+    if (signupState?.data) {
+      navigation.navigate('Email_Verification', {email: signupState.data?.result?.result.email})
+    }
+  }, [signupState?.data])
+
+  useEffect(() => {
+    if (signupState?.error) {
+      Alert.alert('error: ', signupState.error)
+    }
+  }, [signupState?.error])
 
   return (
     <SafeAreaView style={gs.fill}>
@@ -83,8 +108,8 @@ const SignUp = ({navigation}) => {
                 <InputField
                   placeholder={'Re-type Password'}
                   value={values.confirmPassword}
-                  onChangeText={handleChange('confirmPassword')}
                   onBlur={handleBlur('confirmPassword')}
+                  onChangeText={handleChange('confirmPassword')}
                   secureText={true}
                   icon={true}
                   Lefticon={true}
@@ -128,6 +153,7 @@ const SignUp = ({navigation}) => {
             </View>
           )}
         </Formik>
+        {signupState?.loading && <CustomLoader />}
       </ScrollView>
     </SafeAreaView>
   )

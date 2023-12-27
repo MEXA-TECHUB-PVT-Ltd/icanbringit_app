@@ -1,15 +1,9 @@
 import {StyleSheet} from 'react-native'
 
 import Colors from '../../themes/colors'
-import { colors } from '../../themes'
+import {colors} from '../../themes'
 
 const STYLES = StyleSheet.create({
-  bg: {
-    flex: 1,
-  },
-  mainv: {
-    flex: 1,
-  },
   mainView: {
     flex: 1,
     backgroundColor: colors.fresh_air,
@@ -23,6 +17,12 @@ const STYLES = StyleSheet.create({
   input: {
     backgroundColor: Colors.white,
     borderColor: Colors.white,
+  },
+  inputMg: {marginHorizontal: '7%', marginTop: '8%'},
+  btnContainer: {
+    alignSelf: 'center',
+    marginTop: '70%',
+    marginBottom: '5%',
   },
 })
 

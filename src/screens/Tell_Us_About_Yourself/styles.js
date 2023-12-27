@@ -3,18 +3,17 @@ import {StyleSheet} from 'react-native'
 import {heightPercentageToDP} from 'react-native-responsive-screen'
 
 import Colors from '../../themes/colors'
-import { colors, fonts } from '../../themes'
+import {colors, fonts} from '../../themes'
 
 const STYLES = StyleSheet.create({
-  mainView: {
-    flex: 1,
-    backgroundColor: Colors.white,
-  },
   bigview: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: '5%',
-    marginVertical: '5%',
+    margin: '5%',
+  },
+  firstInputContainer: {
+    marginHorizontal: '7%',
+    marginTop: '0%',
   },
   divider: {
     backgroundColor: colors.quartz,
@@ -53,6 +52,11 @@ const STYLES = StyleSheet.create({
     color: Colors.primary,
     fontFamily: fonts.montserrat.bold,
     fontSize: heightPercentageToDP(1.8),
+  },
+  submitBtnContainer: {
+    alignSelf: 'center',
+    marginTop: '33%',
+    marginBottom: '5%',
   },
 
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++

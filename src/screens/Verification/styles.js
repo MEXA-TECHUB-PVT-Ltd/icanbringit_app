@@ -1,25 +1,17 @@
 import {StyleSheet} from 'react-native'
-import {
-  heightPercentageToDP,
-  widthPercentageToDP,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
-import Colors from '../../themes/colors'
-import { colors, fonts } from '../../themes'
+import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
+
+import {colors, fonts} from '../../themes'
+
 const STYLES = StyleSheet.create({
-  bg: {
-    flex: 1,
-  },
-  mainv: {
-    flex: 1,
-  },
   mainView: {
     flex: 1,
     backgroundColor: colors.fresh_air,
   },
+  btn: {alignSelf: 'center', marginTop: '70%', marginBottom: '3%'},
   btn2: {
     width: '83%',
-    borderColor: Colors.primary,
+    borderColor: colors.primary,
     borderWidth: 1.5,
     height: 45,
     borderRadius: 10,
@@ -28,13 +20,14 @@ const STYLES = StyleSheet.create({
     alignSelf: 'center',
   },
   txt1: {
-    color: Colors.primary,
+    color: colors.primary,
     fontSize: heightPercentageToDP(1.8),
     textAlign: 'center',
     fontFamily: fonts.montserrat.semi_bold,
   },
+  alignSelfCenter: {alignSelf: 'center'},
   txt3: {
-    color: Colors.primary,
+    color: colors.primary,
     fontSize: widthPercentageToDP(4),
     textAlign: 'center',
     fontFamily: fonts.montserrat.semi_bold,
@@ -52,7 +45,7 @@ const STYLES = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.gainsboro,
     backgroundColor: colors.white,
-    color: 'black',
+    color: colors.black,
     textAlign: 'center',
     marginHorizontal: 15,
     borderRadius: 10,
@@ -65,12 +58,12 @@ const STYLES = StyleSheet.create({
     paddingTop: '2%',
   },
   textWS: {
-    color: Colors.grey,
+    color: colors.grey,
     textAlign: 'center',
     fontSize: 14,
   },
   textWL: {
-    color: Colors.grey,
+    color: colors.grey,
     textAlign: 'center',
     fontSize: 15,
   },

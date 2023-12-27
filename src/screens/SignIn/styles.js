@@ -1,44 +1,53 @@
 import {StyleSheet} from 'react-native'
 
-import {heightPercentageToDP} from 'react-native-responsive-screen'
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen'
 
 import Colors from '../../themes/colors'
-import { colors, fonts } from '../../themes'
+import {colors, fonts} from '../../themes'
+import {isIos} from '../../utils/helpers/Dimensions'
 
 const STYLES = StyleSheet.create({
-  mainView: {
-    flex: 1,
-    backgroundColor: Colors.white,
-  },
   bigview: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: '5%',
-    marginVertical: '5%',
+    margin: '5%',
   },
+  emailInputContainer: {marginHorizontal: '7%', marginTop: '8%'},
   divider: {
     backgroundColor: colors.quartz,
     height: 1,
     width: '30%',
     alignSelf: 'center',
   },
+  submitBtnContainer: {
+    alignSelf: 'center',
+    marginTop: '20%',
+    marginBottom: '5%',
+  },
   txt: {
     color: colors.picton_blue,
     fontFamily: fonts.montserrat.semi_bold,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
     marginTop: '4%',
     alignSelf: 'flex-end',
   },
   txt1: {
     color: Colors.quartz,
     fontFamily: fonts.montserrat.semi_bold,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
   },
+  mh23: {marginHorizontal: 23},
   v2: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: '4%',
     alignSelf: 'center',
+    marginTop: '4%',
+    width: isIos ? '60%' : '40%'
+  },
+  smtext: {
+    alignSelf: 'center',
+    marginTop: '5%',
+    marginBottom: '5%',
   },
   img: {
     width: 50,
@@ -47,17 +56,17 @@ const STYLES = StyleSheet.create({
   txt2: {
     color: colors.granite_grey,
     fontFamily: fonts.montserrat.medium,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
   },
   txt3: {
     color: Colors.primary,
     fontFamily: fonts.montserrat.bold,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
   },
   errors: {
     fontSize: 11,
     fontWeight: 'bold',
-    color: 'red',
+    color: colors.red,
     marginTop: 5,
   },
 })

@@ -2,14 +2,13 @@ import {StyleSheet} from 'react-native'
 import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
 
 import Colors from '../../themes/colors'
-import { colors, fonts } from '../../themes'
+import {colors, fonts} from '../../themes'
 
 const STYLES = StyleSheet.create({
-  bg: {
-    flex: 1,
-  },
-  mainv: {
-    flex: 1,
+  primaryBtn: {
+    alignSelf: 'center',
+    marginTop: '70%',
+    marginBottom: '3%',
   },
   mainView: {
     flex: 1,
@@ -30,6 +29,9 @@ const STYLES = StyleSheet.create({
     fontSize: heightPercentageToDP(1.8),
     textAlign: 'center',
     fontFamily: fonts.montserrat.semi_bold,
+  },
+  alignSelfCenter: {
+    alignSelf: 'center',
   },
   txt3: {
     color: Colors.primary,

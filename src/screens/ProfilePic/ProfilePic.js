@@ -10,6 +10,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Colors from '../../themes/colors'
 import {colors} from '../../themes'
+import {globalStyles as gs, globalMarginStyles as gms} from '../../styles'
 
 const ProfilePic = ({navigation}) => {
   const [selectedImage, setSelectedImage] = useState(null)
@@ -37,24 +38,18 @@ const ProfilePic = ({navigation}) => {
   }
   const requestCameraPermission = async () => {
     try {
-      const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA, {
+      await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA, {
         title: 'Camera Permission',
         message: 'App needs access to your camera',
         buttonNeutral: 'Ask Me Later',
         buttonNegative: 'Cancel',
         buttonPositive: 'OK',
       })
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('Camera permission granted')
-      } else {
-        console.log('Camera permission denied')
-      }
     } catch (err) {
       console.warn(err)
     }
   }
 
-  // Call this function before using the camera
   useEffect(() => {
     requestCameraPermission()
   }, [])
@@ -69,7 +64,7 @@ const ProfilePic = ({navigation}) => {
   }
 
   return (
-    <View style={{flex: 1}}>
+    <View style={gs.fill}>
       <Signin_signup_header title="Add Profile Photo" />
       <View>
         <TouchableOpacity
@@ -134,11 +129,7 @@ const ProfilePic = ({navigation}) => {
             />
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            marginHorizontal: 20,
-            marginTop: 10,
-          }}>
+        <View style={[gms.mh20, gms.mt10]}>
           <TouchableOpacity
             onPress={() => takePhotoFromCamera('camera')}
             style={{flexDirection: 'row'}}>
