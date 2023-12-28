@@ -3,9 +3,9 @@ import {View, Text, TouchableOpacity, StyleSheet, StatusBar} from 'react-native'
 
 import {useNavigation} from '@react-navigation/native'
 import Back from './../../assets/svgs/back.svg'
-import {heightPercentageToDP} from 'react-native-responsive-screen'
 import {fonts} from '../../themes'
 import Colors from '../../themes/colors'
+import { hp } from '../../utils/helpers/Dimensions'
 
 export default function Custom_Button(props) {
   const navigation = useNavigation()
@@ -27,14 +27,14 @@ export default function Custom_Button(props) {
 const styles = StyleSheet.create({
   txt: {
     color: Colors.black,
-    fontSize: heightPercentageToDP(3.2),
+    fontSize: hp(3.2),
     fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',
   },
   txt1: {
     color: Colors.black,
-    fontSize: heightPercentageToDP(2.8),
+    fontSize: hp(2.8),
     fontFamily: fonts.montserrat.bold,
     marginLeft: '8%',
     marginTop: '10%',

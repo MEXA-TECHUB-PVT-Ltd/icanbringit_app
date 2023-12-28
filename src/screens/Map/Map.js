@@ -5,22 +5,50 @@ import MapView, {Marker} from 'react-native-maps'
 import Geolocation from '@react-native-community/geolocation'
 
 import Custom_Button from '../../components/button/Custom_Button'
-
 import Back from '../../assets/svgs/back.svg'
 import Pin from '../../assets/svgs/pin.svg'
+
 import styles from './styles'
-import { colors } from '../../themes'
+import {globalStyles as gs} from '../../styles'
+import {colors} from '../../themes'
+import {googleMapApiKey, googleMapsApiURL} from '../../api/endpoints'
 
 const CustomMarker = () => (
-  <View style={{alignItems: 'center', justifyContent: 'center'}}>
+  <View style={styles.center}>
     <Pin width={41} height={41} />
   </View>
 )
 
-const Onclick_getlatlong = ({navigation}) => {
-  const [lat, setLat] = useState(0)
-  const [long, setLong] = useState(0)
-  const [check, setCheck] = useState(true)
+const Map = ({navigation}) => {
+  const [initialRegion, setInitialRegion] = useState({
+    latitude: 0,
+    longitude: 0,
+    latitudeDelta: 0.005,
+    longitudeDelta: 0.0005,
+  })
+
+  const [region, setRegion] = useState(initialRegion)
+  const [markerPosition, setMarkerPosition] = useState({latitude: 0, longitude: 0})
+  const [locationName, setLocationName] = useState('')
+
+  const onMarkerDragEnd = async e => {
+    const {latitude, longitude} = e.nativeEvent.coordinate
+    setMarkerPosition({latitude, longitude})
+
+    try {
+      const response = await fetch(
+        `${googleMapsApiURL}json?latlng=${latitude},${longitude}&key=${googleMapApiKey}`,
+      )
+      const data = await response.json()
+
+      if (data.results && data.results.length > 0) {
+        const address = data.results[0].formatted_address
+        setLocationName(address)
+      }
+    } catch (error) {
+      console.error('Error fetching location name:', error)
+    }
+  }
 
   useEffect(() => {
     const getCurrentLocation = async () => {
@@ -31,9 +59,27 @@ const Onclick_getlatlong = ({navigation}) => {
             error => reject(error),
           )
         })
+        const currentRegion = {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.0005,
+        }
+        setInitialRegion(currentRegion)
+        setRegion(currentRegion)
+        setMarkerPosition({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        })
 
-        setLat(location.coords.latitude)
-        setLong(location.coords.longitude)
+        const response = await fetch(
+          `${googleMapsApiURL}json?latlng=${location.coords.latitude},${location.coords.longitude}&key=${process.env.GOOGLE_MAPS_API_KEY}`,
+        )
+        const data = await response.json()
+        if (data.results && data.results.length > 0) {
+          const address = data.results[0].formatted_address
+          setLocationName(address)
+        }
       } catch (error) {
         Alert.alert('Error', 'Failed to fetch location')
         console.error('Error fetching location:', error)
@@ -43,122 +89,46 @@ const Onclick_getlatlong = ({navigation}) => {
     getCurrentLocation()
   }, [])
 
+  const onAddLocation = () => navigation.navigate('Select_preferences')
+
   return (
-    <View style={{flex: 1}}>
+    <View style={gs.fill}>
       <MapView
         style={styles.body}
-        region={{
-          latitude: lat,
-          longitude: long,
-          latitudeDelta: 0.005,
-          longitudeDelta: 0.0005,
-        }}
-        showsUserLocation={false}>
+        region={region}
+        showsUserLocation={true}
+        onPress={onMarkerDragEnd}>
         <Marker
-          coordinate={{latitude: lat, longitude: long}}
-          title="San Francisco"
-          description="Test"
+          coordinate={markerPosition}
+          title="Current Location"
+          description="Your current location"
           pinColor="gold"
           draggable={true}
-          onDragEnd={e => {
-            setLat(e.nativeEvent.coordinate.latitude)
-            setLong(e.nativeEvent.coordinate.longitude)
-          }}>
+          onDragEnd={onMarkerDragEnd}>
           <CustomMarker />
         </Marker>
       </MapView>
 
-      {check ? (
-        <Back
-          width={20}
-          height={20}
-          style={{
-            position: 'absolute',
-            marginLeft: '5%',
-            marginTop: '5%',
-          }}
-          onPress={() => navigation.goBack()}
-        />
-      ) : (
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            marginLeft: '5%',
-            marginTop: '5%',
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-          onPress={() => setCheck(true)}>
-          <Back width={37} height={37} />
-          <View
-            style={{
-              height: 46,
-              alignItems: 'center',
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-            }}>
-            <TextInput
-              style={{
-                backgroundColor: colors.white,
-                width: '85%',
-                borderRadius: 20,
-                paddingLeft: '15%',
-                marginLeft: '5%',
-                color: 'black',
-              }}
-              placeholder="Search here"
-            />
-            <Back
-              width={20}
-              height={20}
-              style={{position: 'absolute', width: 10, height: 13, marginLeft: 29}}
-            />
-          </View>
-        </TouchableOpacity>
-      )}
-
-      <TouchableOpacity
-        style={{
-          position: 'absolute',
-          marginLeft: '80%',
-          marginTop: '5%',
-        }}
-        onPress={() => setCheck(false)}>
+      <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
         <Back width={37} height={37} />
       </TouchableOpacity>
 
-      <View style={styles.v}>
-        <View
-          style={{
-            borderColor: colors.gainsboro,
-            borderWidth: 1,
-            borderRadius: 10,
-            paddingHorizontal: '4%',
-            marginTop: '10%',
-            marginBottom: '5%',
-            alignSelf: 'center',
-            backgroundColor: colors.white,
-            width: '82%',
-          }}>
+      <View style={styles.inputContainer}>
+        <View style={styles.input}>
           <TextInput
-            // keyboardType={props.type}
+            placeholderTextColor={colors.spanish_grey}
             placeholder={'Enter Location'}
+            style={{color: colors.spanish_grey}}
+            value={locationName}
+            onChangeText={text => setLocationName(text)}
           />
         </View>
-
-        <View style={{alignSelf: 'center', marginTop: '1%', marginBottom: '5%'}}>
-          <Custom_Button
-            title="Add Location"
-            load={false}
-            // checkdisable={inn == '' && cm == '' ? true : false}
-            customClick={() => {
-              navigation.navigate('Select_preferences')
-            }}
-          />
+        <View style={styles.primarybtnContainer}>
+          <Custom_Button title="Add Location" load={false} customClick={onAddLocation} />
         </View>
       </View>
     </View>
   )
 }
 
-export default Onclick_getlatlong
+export default Map

@@ -2,8 +2,8 @@ import React from 'react'
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import Back from './../../assets/svgs/back.svg'
-import {heightPercentageToDP} from 'react-native-responsive-screen'
 import {colors, fonts} from '../../themes'
+import { hp } from '../../utils/helpers/Dimensions'
 
 const SettingHeader = ({title, txtStyle}) => {
   const navigation = useNavigation()
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     color: colors.black,
-    fontSize: heightPercentageToDP(3),
+    fontSize: hp(3),
     fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',

@@ -33,7 +33,7 @@ const CELL_COUNT = 4
 LogBox.ignoreAllLogs()
 
 const App = ({navigation, route}) => {
-  const {email} = route.params
+  const {email, id} = route.params
 
   const dispatch = useDispatch()
   const {loading, data, error} = useSelector(state => state.verifyOtp)
@@ -76,7 +76,7 @@ const App = ({navigation, route}) => {
         description: data.message,
         type: 'success',
       })
-      navigation.navigate('Tell_Us_About_Yourself')
+      navigation.navigate('Tell_Us_About_Yourself', {user_id: id})
     }
   }, [data])
 

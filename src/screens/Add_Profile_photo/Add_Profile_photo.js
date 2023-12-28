@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import {SafeAreaView, ScrollView, StatusBar, Image, View, TouchableOpacity} from 'react-native'
 
 import {Text, Divider} from 'react-native-paper'
@@ -29,7 +29,17 @@ function Add_Profile_photo({navigation, route}) {
   const [image, setImage] = useState(null)
 
   const takePhotoFromCamera = async () => {
-    const data = await ImagePicker.openCamera({
+    const onError = error => console.error('Image picker error[Camera]:', error)
+    const onResponse = img => {
+      const imageFile = {
+        height: img.height,
+        width: img.width,
+        mime: img.mime,
+        uri: img.path,
+      }
+      setImage(imageFile)
+    }
+    await ImagePicker.openCamera({
       width: 500,
       height: 500,
       cropping: true,
@@ -37,19 +47,23 @@ function Add_Profile_photo({navigation, route}) {
       mediaType: 'photo',
       compressImageQuality: 0.8,
     })
-      .then(img => {
-        const imageFile = {
-          height: img.height,
-          width: img.width,
-          mime: img.mime,
-          uri: img.path,
-        }
-        setImage(imageFile)
-      })
-      .catch(error => console.log('Image picker error[Camera]:', error))
+      .then(onResponse)
+      .catch(onError)
   }
   const takePhotoFromGallery = async () => {
-    const data = await ImagePicker.openPicker({
+    const onError = error => console.error('Image picker error[Gallery]:', error)
+    const onResponse = img => {
+      const imageFile = {
+        name: img.path.split('/').pop(),
+        height: img.height,
+        width: img.width,
+        mime: img.mime,
+        uri: img.path,
+        type: img.mime,
+      }
+      setImage(imageFile)
+    }
+    await ImagePicker.openPicker({
       width: 500,
       height: 500,
       cropping: true,
@@ -57,25 +71,15 @@ function Add_Profile_photo({navigation, route}) {
       mediaType: 'photo',
       compressImageQuality: 0.8,
     })
-      .then(img => {
-        const imageFile = {
-          name: img.path.split('/').pop(),
-          height: img.height,
-          width: img.width,
-          mime: img.mime,
-          uri: img.path,
-        }
-        setImage(imageFile)
-      })
-      .catch(error => console.log('Image picker error[Gallery]:', error))
+      .then(onResponse)
+      .catch(onError)
   }
   const refRBSheet = useRef()
-  const optionsv = item => refRBSheet.current.open()
+  const optionsv = () => refRBSheet.current.open()
 
   const onSubmit = () => {
     if (image?.uri) {
       dispatch(uploadProfilePhoto(image))
-      navigation.navigate('Add_Location', {...userInfo, profile_pic_id: ''})
     } else {
       showMessage({
         message: 'Error',
@@ -84,6 +88,27 @@ function Add_Profile_photo({navigation, route}) {
       })
     }
   }
+
+  useEffect(() => {
+    if (state?.data?.status) {
+      showMessage({
+        message: 'Success',
+        description: state?.data.message,
+        type: 'success',
+      })
+      navigation.navigate('Add_Location', {...userInfo, uploads_id: state?.data.result.id})
+    }
+  }, [state?.data])
+
+  useEffect(() => {
+    if (state?.error) {
+      showMessage({
+        message: 'Error',
+        description: state?.error,
+        type: 'error',
+      })
+    }
+  }, [state?.error])
 
   return (
     <SafeAreaView style={globalStyles.fill}>

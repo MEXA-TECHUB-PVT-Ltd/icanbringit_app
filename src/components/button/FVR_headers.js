@@ -2,10 +2,10 @@ import React from 'react'
 import {View, Text, TouchableOpacity, StatusBar, StyleSheet} from 'react-native'
 
 import {useNavigation} from '@react-navigation/native'
-import {heightPercentageToDP} from 'react-native-responsive-screen'
 
 import Back from '../../assets/svgs/back.svg'
 import {colors, fonts} from '../../themes'
+import { hp } from '../../utils/helpers/Dimensions'
 
 export default function Custom_Button(props) {
   const navigation = useNavigation()
@@ -27,14 +27,14 @@ export default function Custom_Button(props) {
 const styles = StyleSheet.create({
   txt: {
     color: colors.black,
-    fontSize: heightPercentageToDP(3.2),
+    fontSize: hp(3.2),
     fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',
   },
   txt1: {
     color: colors.davy_grey,
-    fontSize: heightPercentageToDP(2),
+    fontSize: hp(2),
     fontFamily: fonts.montserrat.medium,
     marginTop: '5%',
     marginHorizontal: '8%',

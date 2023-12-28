@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native'
-import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
 
 import {colors, fonts} from '../../themes'
+import { hp, wp } from '../../utils/helpers/Dimensions'
 
 const STYLES = StyleSheet.create({
   mainView: {
@@ -21,14 +21,14 @@ const STYLES = StyleSheet.create({
   },
   txt1: {
     color: colors.primary,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
     textAlign: 'center',
     fontFamily: fonts.montserrat.semi_bold,
   },
   alignSelfCenter: {alignSelf: 'center'},
   txt3: {
     color: colors.primary,
-    fontSize: widthPercentageToDP(4),
+    fontSize: wp(4),
     textAlign: 'center',
     fontFamily: fonts.montserrat.semi_bold,
   },

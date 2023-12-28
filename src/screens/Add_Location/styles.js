@@ -1,29 +1,23 @@
 import {StyleSheet} from 'react-native'
 
-import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
-
-import Colors from '../../themes/colors'
 import {colors, fonts} from '../../themes'
+import {hp, screen_width, wp} from '../../utils/helpers/Dimensions'
 
 const STYLES = StyleSheet.create({
-  mainView: {
-    flex: 1,
-    backgroundColor: Colors.white,
+  img: {
+    height: (screen_width * 50) / 100,
+    width: (screen_width * 50) / 100,
+    alignSelf: 'center',
+    marginVertical: '33%',
   },
   icon: {
     marginTop: '14%',
     marginBottom: '7%',
     marginHorizontal: '5%',
   },
-  dividerCont: {marginHorizontal: '7%', marginTop: '0%'},
-  divider: {
-    alignSelf: 'center',
-    marginTop: '33%',
-    marginBottom: '5%',
-  },
   txt1: {
     color: colors.black,
-    fontSize: heightPercentageToDP(3.2),
+    fontSize: hp(3.2),
     fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',
@@ -31,7 +25,7 @@ const STYLES = StyleSheet.create({
   txt: {
     color: colors.davy_grey,
     fontFamily: fonts.montserrat.medium,
-    fontSize: heightPercentageToDP(1.9),
+    fontSize: hp(1.9),
     marginHorizontal: '9%',
     textAlign: 'center',
     marginTop: '5%',
@@ -50,10 +44,20 @@ const STYLES = StyleSheet.create({
     marginTop: '4%',
     marginBottom: '5%',
   },
+  btnPrimary: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  btnSecondary: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 8,
+  },
   text: {
     color: colors.primary,
     alignSelf: 'center',
-    fontSize: widthPercentageToDP(4),
+    fontSize: wp(4),
     fontFamily: fonts.montserrat.medium,
   },
 })

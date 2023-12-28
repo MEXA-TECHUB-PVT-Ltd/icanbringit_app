@@ -1,10 +1,8 @@
 import {StyleSheet} from 'react-native'
 
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen'
-
 import Colors from '../../themes/colors'
 import {colors, fonts} from '../../themes'
-import {isIos} from '../../utils/helpers/Dimensions'
+import {hp, isIos} from '../../utils/helpers/Dimensions'
 
 const STYLES = StyleSheet.create({
   bigview: {

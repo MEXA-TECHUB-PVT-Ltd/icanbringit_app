@@ -2,10 +2,10 @@ import React from 'react'
 import {View, Text, TouchableOpacity, StyleSheet, StatusBar} from 'react-native'
 
 import {useNavigation} from '@react-navigation/native'
-import {heightPercentageToDP} from 'react-native-responsive-screen'
 
 import Back from './../../assets/svgs/back.svg'
 import {colors, fonts} from '../../themes'
+import { hp } from '../../utils/helpers/Dimensions'
 
 export default function Header({title, txtStyle}) {
   const navigation = useNavigation()
@@ -23,7 +23,7 @@ export default function Header({title, txtStyle}) {
 const styles = StyleSheet.create({
   txt: {
     color: colors.black,
-    fontSize: heightPercentageToDP(3.2),
+    fontSize: hp(3.2),
     fontFamily: fonts.montserrat.bold,
     textAlign: 'center',
   },
