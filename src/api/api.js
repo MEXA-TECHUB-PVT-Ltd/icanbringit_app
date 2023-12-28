@@ -6,3 +6,13 @@ const axiosInstance = axios.create({
   // timeout: 5000,
 })
 export default axiosInstance
+
+axiosInstance.interceptors.request.use(request => {
+  console.log('Starting Request', request)
+  return request
+})
+
+axiosInstance.interceptors.response.use(response => {
+  console.log('Response:', response)
+  return response
+})

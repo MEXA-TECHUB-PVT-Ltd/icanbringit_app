@@ -21,7 +21,7 @@ import {colors} from '../../themes'
 import {useDispatch, useSelector} from 'react-redux'
 import {uploadProfilePhoto} from '../../redux/slices/onboarding/uploadProfilePhotoSlice'
 
-function SignIn({navigation, route}) {
+function Add_Profile_photo({navigation, route}) {
   const userInfo = route.params
 
   const dispatch = useDispatch()
@@ -169,4 +169,4 @@ function SignIn({navigation, route}) {
   )
 }
 
-export default SignIn
+export default Add_Profile_photo

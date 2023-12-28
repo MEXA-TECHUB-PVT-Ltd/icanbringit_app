@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 
-import {uploadImage} from '../../../api/endpoints'
+import {uploadImageURL} from '../../../api/endpoints'
 import axiosInstance from '../../../api/api'
 
 const initialState = {
@@ -9,17 +9,17 @@ const initialState = {
   error: null,
 }
 
-const headers = {
-  'Content-Type': 'multipart/form-data',
-  "cache-control": "no-cache"
-}
-
 export const uploadProfilePhoto = createAsyncThunk('uploadProfilePhoto', async file => {
   try {
     const formData = new FormData()
     formData.append('file', file, file.name)
 
-    const response = await axiosInstance.post(uploadImage, formData, {headers})
+    const response = await axiosInstance.post(uploadImageURL, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      withCredentials: true,
+    })
     return response.data
   } catch (error) {
     console.error('Upload Failed: ', error)

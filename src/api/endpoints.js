@@ -13,4 +13,4 @@ export const resetPassURL = 'users/resetPassword'
 
 /* ----------------------O N B O A R D I N G----------------------*/
 
-export const uploadImage = 'uploads/cloudinary'
+export const uploadImageURL = 'uploads/cloudinary'
