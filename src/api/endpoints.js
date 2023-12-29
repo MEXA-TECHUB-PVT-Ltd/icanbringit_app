@@ -1,7 +1,9 @@
 import {isIos} from '../utils/helpers/Dimensions'
 
-export const BASE_URL = 'https://icanbringit-be.mtechub.com/api/'
+export const BASE_URL = process.env.BASE_API_URL
+export const googleMapApiKey = process.env.GOOGLE_MAPS_API_KEY
 export const LOCAL_URL = isIos ? 'http://localhost' : 'http://10.0.2.2'
+export const googleMapsApiURL = 'https://maps.googleapis.com/maps/api/geocode/'
 
 /* ----------------------------A U T H----------------------------*/
 

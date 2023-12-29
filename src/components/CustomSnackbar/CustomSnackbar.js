@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {View, Text, StyleSheet, Animated} from 'react-native'
 
-import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen'
-
 import CheckSnackBar from '../../assets/svgs/CheckSnackBar.svg'
 import { colors, theme } from '../../themes'
+import { hp, wp } from '../../utils/helpers/Dimensions'
 
 const CustomSnackbar = ({visible, message, messageDescription, onDismiss}) => {
   const [animation] = useState(new Animated.Value(0))

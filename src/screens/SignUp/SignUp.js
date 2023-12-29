@@ -51,7 +51,10 @@ const SignUp = ({navigation}) => {
 
   useEffect(() => {
     if (signupState?.data) {
-      navigation.navigate('Email_Verification', {email: signupState.data?.result?.result.email})
+      navigation.navigate('Email_Verification', {
+        email: signupState.data?.result?.result.email,
+        id: signupState.data?.result?.result.id,
+      })
     }
   }, [signupState?.data])
 

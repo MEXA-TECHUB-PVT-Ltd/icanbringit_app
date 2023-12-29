@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native'
-import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
 
 import Colors from '../../themes/colors'
 import {colors, fonts} from '../../themes'
+import { hp, wp } from '../../utils/helpers/Dimensions'
 
 const STYLES = StyleSheet.create({
   primaryBtn: {
@@ -26,7 +26,7 @@ const STYLES = StyleSheet.create({
   },
   txt1: {
     color: Colors.primary,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
     textAlign: 'center',
     fontFamily: fonts.montserrat.semi_bold,
   },
@@ -35,7 +35,7 @@ const STYLES = StyleSheet.create({
   },
   txt3: {
     color: Colors.primary,
-    fontSize: widthPercentageToDP(4),
+    fontSize: wp(4),
     textAlign: 'center',
     fontFamily: fonts.montserrat.semi_bold,
   },

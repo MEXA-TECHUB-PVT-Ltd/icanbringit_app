@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native'
 import Colors from '../../themes/colors'
-import {heightPercentageToDP} from 'react-native-responsive-screen'
 import { colors, fonts } from '../../themes'
+import { hp } from '../../utils/helpers/Dimensions'
 
 const styles = StyleSheet.create({
   mainView: {
@@ -23,14 +23,14 @@ const styles = StyleSheet.create({
   txt: {
     color: colors.picton_blue,
     fontFamily: fonts.montserrat.semi_bold,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
     marginTop: '4%',
     alignSelf: 'flex-end',
   },
   txt1: {
     color: Colors.quartz,
     fontFamily: fonts.montserrat.semi_bold,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
   },
   v2: {
     flexDirection: 'row',
@@ -45,17 +45,17 @@ const styles = StyleSheet.create({
   txt2: {
     color: colors.granite_grey,
     fontFamily: fonts.montserrat.medium,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
   },
   txt3: {
     color: Colors.primary,
     fontFamily: fonts.montserrat.bold,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
   },
   errors: {
     fontSize: 11,
     fontWeight: 'bold',
-    color: 'red',
+    color: colors.red,
     marginTop: 5,
   },
 })

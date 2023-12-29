@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native'
 
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
-import { colors, fonts } from '../../themes'
+import {colors, fonts} from '../../themes'
+import {wp} from '../../utils/helpers/Dimensions'
 
 const STYLES = StyleSheet.create({
   BUTTONSTYLE: {
@@ -10,10 +10,21 @@ const STYLES = StyleSheet.create({
     marginTop: 60,
     marginBottom: 0,
     alignSelf: 'center',
-    justifyContent: 'center', // for middle writting
+    justifyContent: 'center',
     height: 40,
     width: 200,
     backgroundColor: colors.irresistible,
+  },
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backBtn: {
+    position: 'absolute',
+    marginLeft: '5%',
+    marginBottom: '15%',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   body: {
     width: '100%',
@@ -53,15 +64,45 @@ const STYLES = StyleSheet.create({
     marginLeft: '3%',
     marginRight: '10%',
   },
-  v: {
+  inputContainer: {
     height: 170,
     width: '100%',
     alignSelf: 'center',
     bottom: 0,
     position: 'absolute',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     borderTopEndRadius: 25,
     borderTopStartRadius: 25,
+  },
+  inputContainer2: {
+    height: 46,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  input: {
+    borderColor: colors.gainsboro,
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: '4%',
+    marginTop: '10%',
+    marginBottom: '5%',
+    alignSelf: 'center',
+    backgroundColor: colors.white,
+    width: '82%',
+  },
+  input2: {
+    backgroundColor: colors.white,
+    width: '85%',
+    borderRadius: 20,
+    paddingLeft: '15%',
+    marginLeft: '5%',
+    color: colors.black,
+  },
+  primarybtnContainer: {
+    alignSelf: 'center',
+    marginTop: '1%',
+    marginBottom: '5%',
   },
 })
 

@@ -1,9 +1,8 @@
 import {StyleSheet} from 'react-native'
 
-import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
-
 import Colors from '../../themes/colors'
 import {colors, fonts} from '../../themes'
+import { hp, wp } from '../../utils/helpers/Dimensions'
 
 const STYLES = StyleSheet.create({
   mainView: {
@@ -15,7 +14,7 @@ const STYLES = StyleSheet.create({
   txt: {
     color: colors.picton_blue,
     fontFamily: fonts.montserrat.semi_bold,
-    fontSize: heightPercentageToDP(1.8),
+    fontSize: hp(1.8),
     marginTop: '4%',
     alignSelf: 'flex-end',
   },
@@ -36,7 +35,7 @@ const STYLES = StyleSheet.create({
     marginTop: '5%',
     color: Colors.primary,
     fontFamily: fonts.montserrat.semi_bold,
-    fontSize: widthPercentageToDP(4),
+    fontSize: wp(4),
   },
   rbview: {
     flexDirection: 'row',
@@ -53,7 +52,7 @@ const STYLES = StyleSheet.create({
 
     color: colors.eerie_black,
     fontFamily: fonts.montserrat.semi_bold,
-    fontSize: widthPercentageToDP(4),
+    fontSize: wp(4),
   },
   upload: {
     width: '100%',

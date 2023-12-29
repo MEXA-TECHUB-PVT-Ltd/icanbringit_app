@@ -2,34 +2,35 @@ import React from 'react'
 import {StyleSheet} from 'react-native'
 
 import {Button} from 'react-native-paper'
-import {widthPercentageToDP} from 'react-native-responsive-screen'
 import {colors, fonts} from '../../themes'
+import {wp} from '../../utils/helpers/Dimensions'
 
-export default function Custom_Button(props, style) {
+function Custom_Button(props, style) {
+  const textColor = props.type === 'secondary' ? colors.primary : colors.white
+  const buttonColor = props.type === 'secondary' ? colors.primary_light : colors.primary
+  
   return (
     <Button
       disabled={props.checkdisable}
       mode="contained"
       onPress={props.customClick}
-      style={[styles.button, style]}
+      style={[styles.button, style, {backgroundColor: buttonColor}]}
       contentStyle={styles.contentStyle}
       loading={props.load}
-      labelStyle={styles.labelStyle}>
+      labelStyle={[styles.labelStyle, {color: textColor}]}>
       {props.title}
     </Button>
   )
 }
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.primary,
     borderRadius: 10,
     width: 300,
     marginBottom: '3%',
   },
   labelStyle: {
-    fontSize: widthPercentageToDP(4),
+    fontSize: wp(4),
     fontFamily: fonts.montserrat.medium,
-    color: colors.white,
     alignSelf: 'center',
   },
   contentStyle: {
@@ -38,3 +39,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
+
+export default Custom_Button

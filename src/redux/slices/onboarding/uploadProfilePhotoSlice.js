@@ -12,7 +12,7 @@ const initialState = {
 export const uploadProfilePhoto = createAsyncThunk('uploadProfilePhoto', async file => {
   try {
     const formData = new FormData()
-    formData.append('file', file, file.name)
+    formData.append('file', file)
 
     const response = await axiosInstance.post(uploadImageURL, formData, {
       headers: {

@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native'
 
-import {heightPercentageToDP, widthPercentageToDP as wp} from 'react-native-responsive-screen'
 import {colors, fonts} from '../../themes'
+import { hp, wp } from '../../utils/helpers/Dimensions'
 
 const STYLES = StyleSheet.create({
   full: {width: '100%', height: '100%'},
@@ -9,7 +9,7 @@ const STYLES = StyleSheet.create({
   txt: {
     color: colors.eerie_black,
     fontFamily: fonts.montserrat.bold,
-    fontSize: heightPercentageToDP(3),
+    fontSize: hp(3),
     marginTop: '25%',
     textAlign: 'center',
     marginHorizontal: '8%',
@@ -32,7 +32,7 @@ const STYLES = StyleSheet.create({
   txt3: {
     color: colors.eerie_black,
     fontFamily: fonts.montserrat.bold,
-    fontSize: heightPercentageToDP(2.4),
+    fontSize: hp(2.4),
   },
 })
 

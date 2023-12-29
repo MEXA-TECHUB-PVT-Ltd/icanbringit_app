@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native'
 
-import {heightPercentageToDP, widthPercentageToDP} from 'react-native-responsive-screen'
 import { colors, fonts } from '../../themes'
+import { hp, wp } from '../../utils/helpers/Dimensions'
 
 const STYLES = StyleSheet.create({
   bg: {
@@ -14,8 +14,8 @@ const STYLES = StyleSheet.create({
     flex: 1,
   },
   txt: {
-    color: 'black',
-    fontSize: heightPercentageToDP(3.2),
+    color: colors.black,
+    fontSize: hp(3.2),
     fontFamily: fonts.montserrat.bold,
     alignSelf: 'center',
     textAlign: 'center',
@@ -36,7 +36,7 @@ const STYLES = StyleSheet.create({
     color: colors.black,
     fontSize: 20,
     textAlign: 'center',
-    fontSize: widthPercentageToDP(4),
+    fontSize: wp(4),
     fontFamily: fonts.montserrat.regular,
   },
   btnl: {
@@ -58,14 +58,14 @@ const STYLES = StyleSheet.create({
     color: colors.black,
     fontSize: 20,
     textAlign: 'center',
-    fontSize: widthPercentageToDP(4.5),
+    fontSize: wp(4.5),
     fontFamily: fonts.montserrat.bold,
   },
   txt2: {
     color: colors.old_silver,
     fontSize: 20,
     textAlign: 'center',
-    fontSize: widthPercentageToDP(4.5),
+    fontSize: wp(4.5),
     fontFamily: fonts.montserrat.regular,
   },
   p: {

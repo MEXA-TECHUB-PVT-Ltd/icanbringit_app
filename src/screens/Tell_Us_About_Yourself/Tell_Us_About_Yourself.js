@@ -15,7 +15,10 @@ const data = [
   {label: 'Female', value: '2'},
   {label: 'Other', value: '3'},
 ]
-function SignIn({navigation}) {
+function Tell_Us_About_Yourself({navigation, route}) {
+
+  const user_id = route?.params?.user_id
+
   const [name, setName] = useState('')
   const [gender, setGender] = useState(null)
   const [age, setAge] = useState('')
@@ -29,8 +32,9 @@ function SignIn({navigation}) {
 
   const onSubmit = () =>
     navigation.navigate('Add_Profile_photo', {
-      fullname: name,
+      full_name: name,
       gender: gender.label,
+      user_id,
       age,
       city,
       country,
@@ -79,4 +83,4 @@ function SignIn({navigation}) {
   )
 }
 
-export default SignIn
+export default Tell_Us_About_Yourself
